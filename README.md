@@ -35,14 +35,14 @@ To start using:
 
 Available scripts:
 
-`npm run dev` - start the dev server
-`nom run build` - build project
-`npm run lint` - check errors with eslint
-`npm run lint-fix` - fix errors with eslint
-`npm run prettier` - check errors with prettier
-`npm run prettier-fix` - fix errors with prettier
-`npm run preview` - starts the dev server with files in the dist folder
-`npm run prepare` - install huskie
-`npm run test` - run tests
+1. `npm run dev` - start the dev server
+2. `nom run build` - build project
+3. `npm run lint` - check errors with eslint
+4. `npm run lint-fix` - fix errors with eslint
+5. `npm run prettier` - check errors with prettier
+6. `npm run prettier-fix` - fix errors with prettier
+7. `npm run preview` - starts the dev server with files in the dist folder
+8. `npm run prepare` - install huskie
+9. `npm run test` - run tests
 
 
