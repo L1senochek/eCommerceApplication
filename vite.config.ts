@@ -11,4 +11,11 @@ const testConfig: vitest.InlineConfig = {
 export default defineConfig({
   plugins: [react()],
   test: testConfig,
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/styles/variables.scss";`,
+      },
+    },
+  },
 });
