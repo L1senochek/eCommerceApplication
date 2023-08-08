@@ -1,4 +1,5 @@
 import React, { ReactElement, useState, ChangeEvent, FormEvent } from 'react';
+import './login-form.scss';
 
 const Username = (): ReactElement => {
   const [username, setUsername] = useState('');
