@@ -35,15 +35,12 @@
     border-color: $fivefold-color;
 
     outline: none;
-
   }
   &__input::placeholder {
     color: $tetiary-color;
-
   }
   &__submit {
     margin: $padding-secondary 0;
-    
   }
 }
 
