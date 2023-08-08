@@ -23,21 +23,29 @@ const Username = (): ReactElement => {
 
 const Password = (): ReactElement => {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const passwordChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setPassword(event.target.value);
     console.log(event.target.value);
   };
 
+  const passwordVisibility = (): void => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <input
-      type="password"
-      className="login-form__input password"
-      placeholder="password"
-      id="password"
-      value={password}
-      onChange={passwordChange}
-    />
+    <div className="login-form__input">
+      <input
+        type={showPassword ? 'text' : 'password'}
+        className="login-form__input_form password"
+        placeholder="password"
+        id="password"
+        value={password}
+        onChange={passwordChange}
+      />
+      <button type="button" className="login-form__input_btn" onClick={passwordVisibility}></button>
+    </div>
   );
 };
 

@@ -24,16 +24,31 @@
     color: $primary-color;
   }
   &__input {
+    display: flex;
+    justify-content: space-between;
     width: $width;
     padding: $padding-primary;
     background-image: $background-image;
     border-radius: $border-radius;
     border-color: $primary-color;
     color: $fivefold-color;
+    border-width: $border-width;
+    border-style: $border-style;
+    &_form {
+      width: $width;
+      background-image: $background-image;
+      color: $fivefold-color;
+      border: none;
+      outline: none;
+    }
+    &_btn {
+      width: 17px;
+      height: 17px;
+    }
   }
-  &__input:focus {
+  &__input:focus,
+  &__input:hover {
     border-color: $fivefold-color;
-
     outline: none;
   }
   &__input::placeholder {
