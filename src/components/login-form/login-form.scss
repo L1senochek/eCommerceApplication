@@ -41,6 +41,9 @@
       border: none;
       outline: none;
     }
+    &_form::placeholder {
+      color: $tetiary-color;
+    }
     &_btn {
       border-color: $fivefold-color;
       background: transparent;

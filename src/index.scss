@@ -1,0 +1,19 @@
+@import './styles/variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.body {
+  color: $primary-color;
+  font-size: $font-size;
+  // background-image: radial-gradient(ellipse at 30% 10%, #002423, #050505);
+  // background-image: $background-image;
+  background-color: $background-color;
+  // background-size: cover;
+  height: 100vh;
+}
