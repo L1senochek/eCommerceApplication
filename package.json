@@ -11,7 +11,7 @@
     "prettier": "npx prettier src --check",
     "prettier-fix": "npm run prettier -- --write",
     "preview": "vite preview",
-    "prepare": "cd .. && husky install eCommerceApplication/.husky",
+    "prepare": "husky install ./husky",
     "test": "vitest"
   },
   "dependencies": {
