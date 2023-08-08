@@ -42,6 +42,8 @@
       outline: none;
     }
     &_btn {
+      border-color: $fivefold-color;
+      background: transparent;
       width: 17px;
       height: 17px;
     }
