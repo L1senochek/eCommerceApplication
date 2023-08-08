@@ -12,7 +12,7 @@ const Username = (): ReactElement => {
   return (
     <input
       type="text"
-      className="login-form__username"
+      className="login-form__input username"
       placeholder="username"
       id="username"
       value={username}
@@ -32,7 +32,7 @@ const Password = (): ReactElement => {
   return (
     <input
       type="password"
-      className="login-form__password"
+      className="login-form__input password"
       placeholder="password"
       id="password"
       value={password}
@@ -49,18 +49,20 @@ const submit = (event: FormEvent<HTMLFormElement>): void => {
 
 const LoginForm = (): ReactElement => {
   return (
-    <form className="login-form__wrapper" onSubmit={submit}>
-      <h2 className="login-form__title">Login</h2>
-      <label className="login-form__label" htmlFor="username">
-        Username
-      </label>
-      <Username />
-      <label className="login-form__label">Username</label>
-      <Password />
-      <button className="login-form__submit" type="submit">
-        Login
-      </button>
-    </form>
+    <div className="login-form">
+      <form className="login-form__wrapper" onSubmit={submit}>
+        <h2 className="login-form__title">Login</h2>
+        <label className="login-form__label" htmlFor="username">
+          Username
+        </label>
+        <Username />
+        <label className="login-form__label">Password</label>
+        <Password />
+        <button className="login-form__submit btn" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 

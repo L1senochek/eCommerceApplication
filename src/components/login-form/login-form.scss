@@ -1,5 +1,58 @@
 @import '../../styles/variables.scss';
 
-.login-form__wrapper {
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: $background-color;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $padding-secondary;
+    border-radius: $border-radius;
+    border: $border-width $border-style $primary-color;
+    color: $font-color;
+    background-image: $background-image;
+  }
+  &__title {
+    color: $secondary-color;
+    font-size: $font-size-title;
+  }
+  &__label {
+    padding: $padding-secondary;
+    color: $primary-color;
+  }
+  &__input {
+    width: $width;
+    padding: $padding-primary;
+    background-image: $background-image;
+    border-radius: $border-radius;
+    border-color: $primary-color;
+    color: $fivefold-color;
+  }
+  &__input:focus {
+    border-color: $fivefold-color;
+
+    outline: none;
+
+  }
+  &__input::placeholder {
+    color: $tetiary-color;
+
+  }
+  &__submit {
+    margin: $padding-secondary 0;
+    
+  }
+}
+
+.btn {
+  width: $width-btn;
+  padding: $padding-primary;
+  background: $background-image;
+  border-radius: $border-radius;
+  border-color: $fivefold-color;
+  color: $fivefold-color;
+  cursor: pointer;
 }
