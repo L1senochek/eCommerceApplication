@@ -62,10 +62,14 @@
   &__submit {
     margin: $padding-secondary 0;
   }
+  &__submit.btn {
+    
+  width: $width-btn;
+  }
 }
 
 .btn {
-  width: $width-btn;
+  // width: 50px;
   padding: $padding-primary;
   background: $background-image;
   border-radius: $border-radius;
