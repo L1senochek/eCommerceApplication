@@ -26,20 +26,23 @@
   &__input {
     display: flex;
     justify-content: space-between;
-    width: $width;
-    padding: $padding-primary;
-    background-image: $background-image;
-    border-radius: $border-radius;
-    border-color: $primary-color;
-    color: $fivefold-color;
-    border-width: $border-width;
-    border-style: $border-style;
+    // width: $width;
+    // padding: $padding-primary;
+    // background-image: $background-image;
+    // border-radius: $border-radius;
+    // border-color: $primary-color;
+    // color: $fivefold-color;
+    // border-width: $border-width;
+    // border-style: $border-style;
     &_form {
       width: $width;
       background-image: $background-image;
       color: $fivefold-color;
       border: none;
       outline: none;
+    }
+    &_form::placeholder {
+      color: $tetiary-color;
     }
     &_btn {
       border-color: $fivefold-color;
@@ -59,14 +62,28 @@
   &__submit {
     margin: $padding-secondary 0;
   }
+  &__submit.btn {
+    width: $width-btn;
+  }
 }
 
 .btn {
-  width: $width-btn;
+  // width: 50px;
   padding: $padding-primary;
   background: $background-image;
   border-radius: $border-radius;
   border-color: $fivefold-color;
   color: $fivefold-color;
   cursor: pointer;
+}
+
+.input {
+  width: $width;
+  padding: $padding-primary;
+  background-image: $background-image;
+  border-radius: $border-radius;
+  border-color: $primary-color;
+  color: $fivefold-color;
+  border-width: $border-width;
+  border-style: $border-style;
 }

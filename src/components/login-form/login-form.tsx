@@ -12,8 +12,8 @@ const Username = (): ReactElement => {
   return (
     <input
       type="text"
-      className="login-form__input username"
-      placeholder="username"
+      className="login-form__input input username"
+      placeholder="Username"
       id="username"
       value={username}
       onChange={usernameChange}
@@ -35,11 +35,11 @@ const Password = (): ReactElement => {
   };
 
   return (
-    <div className="login-form__input">
+    <div className="login-form__input input">
       <input
         type={showPassword ? 'text' : 'password'}
         className="login-form__input_form password"
-        placeholder="password"
+        placeholder="Password"
         id="password"
         value={password}
         onChange={passwordChange}
