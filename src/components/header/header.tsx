@@ -39,6 +39,9 @@ const Header = (): ReactElement => {
           about
         </Link>
         <Search />
+        <Link className="basket link" to="/basket">
+          basket
+        </Link>
         <Link className="login link" to="/loginForm">
           login
         </Link>
