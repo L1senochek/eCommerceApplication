@@ -26,14 +26,14 @@
   &__input {
     display: flex;
     justify-content: space-between;
-    width: $width;
-    padding: $padding-primary;
-    background-image: $background-image;
-    border-radius: $border-radius;
-    border-color: $primary-color;
-    color: $fivefold-color;
-    border-width: $border-width;
-    border-style: $border-style;
+    // width: $width;
+    // padding: $padding-primary;
+    // background-image: $background-image;
+    // border-radius: $border-radius;
+    // border-color: $primary-color;
+    // color: $fivefold-color;
+    // border-width: $border-width;
+    // border-style: $border-style;
     &_form {
       width: $width;
       background-image: $background-image;
@@ -75,4 +75,15 @@
   border-color: $fivefold-color;
   color: $fivefold-color;
   cursor: pointer;
+}
+
+.input {
+  width: $width;
+  padding: $padding-primary;
+  background-image: $background-image;
+  border-radius: $border-radius;
+  border-color: $primary-color;
+  color: $fivefold-color;
+  border-width: $border-width;
+  border-style: $border-style;
 }

@@ -1,1 +1,31 @@
 @import '../../styles/variables.scss';
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  padding: $padding-secondary;
+}
+
+.link {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+.search {
+  display: flex;
+  &__loupe {
+    margin-right: $padding-primary;
+    border-color: $fivefold-color;
+    background: transparent;
+    width: 17px;
+    height: 17px;
+  }
+  &__input {
+    width: 100%;
+    padding-left: $padding-primary;
+    background-image: $background-image;
+    color: $fivefold-color;
+    border: none;
+    outline: none;
+  }
+}
