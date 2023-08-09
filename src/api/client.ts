@@ -5,10 +5,10 @@ import {
   createApiBuilderFromCtpClient,
 } from '@commercetools/platform-sdk';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const { CTP_PROJECT_KEY } = process.env;
-
 const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
   projectKey: `${CTP_PROJECT_KEY}`,
 });
