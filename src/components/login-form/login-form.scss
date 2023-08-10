@@ -16,9 +16,10 @@
     background-image: $background-image;
   }
   &__img {
-    background: $secondary-color;
-    width: 17px;
-    height: 17px;
+    background-image: url('../../assets/img/logo.png');
+    width: 8vw;
+    height: 8vw;
+    background-size: cover;
   }
   &__title {
     color: $secondary-color;
@@ -41,7 +42,7 @@
     display: flex;
     justify-content: space-between;
     &_form {
-      width: $width;
+      width: 100%;
       background-image: $background-image;
       color: $fivefold-color;
       border: none;
@@ -68,24 +69,10 @@
   &__user-actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
     padding: $padding-secondary 0;
     color: $secondary-color;
-    > .checkbox-remember {
-      display: flex;
-      &__input {
-        color: black;
-        &:checked {
-          //
-          color: $primary-color;
-        }
-      }
-      &__hint {
-        color: $primary-color;
-        color: black;
-      }
-    }
     > .password-reset {
       color: $primary-color;
     }

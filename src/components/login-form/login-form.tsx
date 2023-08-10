@@ -2,22 +2,22 @@ import React, { ReactElement, useState, ChangeEvent, FormEvent } from 'react';
 import './login-form.scss';
 import { Link } from 'react-router-dom';
 
-const Username = (): ReactElement => {
-  const [username, setUsername] = useState('');
+const UserEmail = (): ReactElement => {
+  const [userEmail, setUserEmail] = useState('');
 
-  const usernameChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setUsername(event.target.value);
+  const userEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserEmail(event.target.value);
     console.log(event.target.value);
   };
 
   return (
     <input
       type="text"
-      className="login-form__input input username"
-      placeholder="Username"
-      id="username"
-      value={username}
-      onChange={usernameChange}
+      className="login-form__input input useremail"
+      placeholder="Email"
+      id="userEmail"
+      value={userEmail}
+      onChange={userEmailChange}
     />
   );
 };
@@ -72,49 +72,27 @@ const ForgotPasswordLink = (): ReactElement => {
   );
 };
 
-const RememberMeCheckbox = (): ReactElement => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setIsChecked(event.target.checked);
-  };
-
-  return (
-    <label htmlFor="remember-me" className="checkbox-remember">
-      <input
-        type="checkbox"
-        id="remember-me"
-        className="checkbox-remember__input"
-        checked={isChecked}
-        onChange={handleCheckboxChange}
-      />
-      <span className="checkbox-remember__hint">Remember me</span>
-    </label>
-  );
-};
-
 const LoginForm = (): ReactElement => {
   return (
     <div className="login-form">
       <form className="login-form__wrapper" onSubmit={submit}>
-        <div className="login-form__img">logoimg</div>
+        <Link className="login-form__img" to="/main"></Link>
         <h2 className="login-form__title">Sign in your account</h2>
-        <h3 className="login-form__link-to-register">
-          Don`n have an account? <RegistrationLink />
-        </h3>
-        <label className="login-form__label" htmlFor="username">
-          Username
+        <label className="login-form__label" htmlFor="userEmail">
+          Email
         </label>
-        <Username />
+        <UserEmail />
         <label className="login-form__label">Password</label>
         <Password />
         <div className="login-form__user-actions">
-          <RememberMeCheckbox />
           <ForgotPasswordLink />
         </div>
         <button className="login-form__submit btn" type="submit">
           Login
         </button>
+        <h4 className="login-form__link-to-register">
+          Dont`n have an account? <RegistrationLink />
+        </h4>
       </form>
     </div>
   );
