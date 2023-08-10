@@ -1,3 +1,4 @@
+import { getApiPassRoot } from './buildAutorizationClient';
 import { ctpClient } from './buildClient';
 import {
   ClientResponse,
@@ -5,17 +6,23 @@ import {
   createApiBuilderFromCtpClient,
 } from '@commercetools/platform-sdk';
 
+const projectKey = `${import.meta.env.VITE_CTP_PROJECT_KEY}`;
+
 const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
-  projectKey: `${import.meta.env.VITE_CTP_PROJECT_KEY}`,
+  projectKey: projectKey,
 });
 
 export const getEndPoint = async (): Promise<ClientResponse<ProductPagedQueryResponse>> => {
   return await apiRoot.products().get().execute();
 };
 
-try {
-  const response = await getEndPoint();
-  console.log('results Api!!!!!!', response?.body.results);
-} catch (error) {
-  console.error(error);
-}
+console.log('results Api!!!!!!', (await getEndPoint())?.body.results);
+
+export const getProjectPass = await getApiPassRoot()
+  .withProjectKey({ projectKey: projectKey })
+  .me()
+  .get()
+  .execute()
+  .catch(console.error);
+
+console.log('Test now user', getProjectPass);
