@@ -1,5 +1,6 @@
 import React, { ReactElement, useState, ChangeEvent, FormEvent } from 'react';
 import './login-form.scss';
+import { Link } from 'react-router-dom';
 
 const Username = (): ReactElement => {
   const [username, setUsername] = useState('');
@@ -55,6 +56,14 @@ const submit = (event: FormEvent<HTMLFormElement>): void => {
   // отправка данных на сервер для аутентификации
 };
 
+const RegistrationLink = (): ReactElement => {
+  return (
+    <Link className="menu link" to="/registrationForm">
+      registrationForm
+    </Link>
+  );
+};
+
 const LoginForm = (): ReactElement => {
   return (
     <div className="login-form">
@@ -66,6 +75,7 @@ const LoginForm = (): ReactElement => {
         <Username />
         <label className="login-form__label">Password</label>
         <Password />
+        <RegistrationLink />
         <button className="login-form__submit btn" type="submit">
           Login
         </button>

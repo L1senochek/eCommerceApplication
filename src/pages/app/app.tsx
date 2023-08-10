@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import LoginForm from '../../components/login-form/login-form';
 import Header from '../../components/header/header';
 import Main from '../main/main';
+import RegistrationForm from '../../components/registration-form/registration-form';
 
 const App = (): ReactElement => {
   return (
@@ -12,6 +13,7 @@ const App = (): ReactElement => {
         <main>
           <Routes>
             <Route path="/loginForm" element={<LoginForm />} />
+            <Route path="/registrationForm" element={<RegistrationForm />} />
             <Route path="/main" element={<Main />} />
           </Routes>
         </main>
