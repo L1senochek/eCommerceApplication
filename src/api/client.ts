@@ -4,34 +4,18 @@ import {
   ProductPagedQueryResponse,
   createApiBuilderFromCtpClient,
 } from '@commercetools/platform-sdk';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-const { CTP_PROJECT_KEY } = process.env;
 const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
-  projectKey: `${CTP_PROJECT_KEY}`,
+  projectKey: `${import.meta.env.VITE_CTP_PROJECT_KEY}`,
 });
 
-const getEndPoint = async (): Promise<ClientResponse<ProductPagedQueryResponse> | undefined> => {
-  try {
-    return await apiRoot.products().get().execute();
-  } catch (error) {
-    console.error(error);
-  }
+export const getEndPoint = async (): Promise<ClientResponse<ProductPagedQueryResponse>> => {
+  return await apiRoot.products().get().execute();
 };
 
 try {
   const response = await getEndPoint();
-  console.log(response?.body.results);
-
-  // console.log(response.body.results[3].masterData.current.name);
-  // console.log(response.body.results[0].masterData.current.categories);
-  // console.log(response.body.results[0].masterData.current.categoryOrderHints);
-  // console.log(response.body.results[0].masterData.current.slug);
-  // console.log(response.body.results[0].masterData.current.masterVariant);
-  // console.log(11111, response.body.results[0].masterData.current.variants[0].assets);
-  // console.log(response.body.results[0].masterData.current.searchKeywords);
+  console.log('results Api!!!!!!', response?.body.results);
 } catch (error) {
   console.error(error);
 }

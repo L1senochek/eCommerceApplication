@@ -43,7 +43,7 @@ const Header = (): ReactElement => {
           basket
         </Link>
         <Link className="login link" to="/loginForm">
-          login
+          Sign in
         </Link>
       </nav>
     </header>
