@@ -58,9 +58,38 @@ const submit = (event: FormEvent<HTMLFormElement>): void => {
 
 const RegistrationLink = (): ReactElement => {
   return (
-    <Link className="menu link" to="/registrationForm">
-      registrationForm
+    <Link className="link" to="/registrationForm">
+      Register here
     </Link>
+  );
+};
+
+const ForgotPasswordLink = (): ReactElement => {
+  return (
+    <Link className="password-reset link" to="/passwordReset">
+      Forgot your passord?
+    </Link>
+  );
+};
+
+const RememberMeCheckbox = (): ReactElement => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setIsChecked(event.target.checked);
+  };
+
+  return (
+    <label htmlFor="remember-me" className="checkbox-remember">
+      <input
+        type="checkbox"
+        id="remember-me"
+        className="checkbox-remember__input"
+        checked={isChecked}
+        onChange={handleCheckboxChange}
+      />
+      <span className="checkbox-remember__hint">Remember me</span>
+    </label>
   );
 };
 
@@ -68,14 +97,21 @@ const LoginForm = (): ReactElement => {
   return (
     <div className="login-form">
       <form className="login-form__wrapper" onSubmit={submit}>
-        <h2 className="login-form__title">Login</h2>
+        <div className="login-form__img">logoimg</div>
+        <h2 className="login-form__title">Sign in your account</h2>
+        <h3 className="login-form__link-to-register">
+          Don`n have an account? <RegistrationLink />
+        </h3>
         <label className="login-form__label" htmlFor="username">
           Username
         </label>
         <Username />
         <label className="login-form__label">Password</label>
         <Password />
-        <RegistrationLink />
+        <div className="login-form__user-actions">
+          <RememberMeCheckbox />
+          <ForgotPasswordLink />
+        </div>
         <button className="login-form__submit btn" type="submit">
           Login
         </button>
