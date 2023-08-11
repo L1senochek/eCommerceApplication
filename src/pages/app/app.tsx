@@ -13,29 +13,33 @@ const App = (): ReactElement => {
         <Route
           path="/loginForm"
           element={
-            <div className="wrapper">
-              <LoginForm />
+            <>
+              <main className="main">
+                <LoginForm />
+              </main>
               <Footer />
-            </div>
+            </>
           }
         />
         <Route
           path="/registrationForm"
           element={
-            <div className="wrapper">
-              <RegistrationForm />
+            <>
+              <main className="main">
+                <RegistrationForm />
+              </main>
               <Footer />
-            </div>
+            </>
           }
         />
         <Route
           path="/main"
           element={
-            <div className="wrapper">
+            <>
               <Header />
               <Main />
               <Footer />
-            </div>
+            </>
           }
         />
       </Routes>

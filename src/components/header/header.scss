@@ -3,7 +3,21 @@
 .nav {
   display: flex;
   justify-content: space-around;
-  padding: $padding-secondary;
+  align-items: center;
+  padding: $padding-primary $padding-secondary;
+}
+
+.main-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__img {
+    width: 4vw;
+    height: 4vw;
+  }
+  &__title {
+    font-size: $font-size-title;
+  }
 }
 
 .link {
@@ -28,4 +42,9 @@
     border: none;
     outline: none;
   }
+}
+
+.logo {
+  background-image: url('../../assets/img/logo.png');
+  background-size: cover;
 }

@@ -16,10 +16,8 @@
     background-image: $background-image;
   }
   &__img {
-    background-image: url('../../assets/img/logo.png');
     width: 8vw;
     height: 8vw;
-    background-size: cover;
   }
   &__title {
     color: $secondary-color;
