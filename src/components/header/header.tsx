@@ -29,8 +29,7 @@ const Header = (): ReactElement => {
     <header className="header">
       <nav className="nav">
         <Link className="main-logo link" to="/main">
-          <span className="main-logo__img logo"></span>
-          <span className="main-logo__title">logo</span>
+          <span className="main-logo__img logo"></span>logo
         </Link>
         <Link className="menu link" to="/menu">
           Menu

@@ -93,6 +93,11 @@
   cursor: pointer;
 }
 
+.btn:hover {
+  box-shadow: $box-shadow;
+  text-shadow: $text-shadow;
+}
+
 .input {
   width: $width;
   padding: $padding-primary;

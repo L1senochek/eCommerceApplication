@@ -17,3 +17,7 @@
   // background-size: cover;
   height: 100vh;
 }
+
+*:hover {
+  transition: $transitionAll;
+}

@@ -5,6 +5,7 @@
   justify-content: space-around;
   align-items: center;
   padding: $padding-primary $padding-secondary;
+  font-size: $font-size-header;
 }
 
 .main-logo {
@@ -16,13 +17,19 @@
     height: 4vw;
   }
   &__title {
-    font-size: $font-size-title;
+    color: $secondary-color;
   }
 }
 
 .link {
   color: $primary-color;
   text-decoration: none;
+}
+
+.link:hover {
+  color: $fivefold-color;
+  text-decoration: underline;
+  text-shadow: $text-shadow;
 }
 
 .search {
