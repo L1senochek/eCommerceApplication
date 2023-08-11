@@ -3,7 +3,7 @@ import TestApi from './testApi';
 
 const Main = (): ReactElement => {
   return (
-    <main>
+    <main className="main">
       <h1>App</h1>
       <TestApi />
     </main>
