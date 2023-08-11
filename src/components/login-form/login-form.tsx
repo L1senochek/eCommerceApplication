@@ -1,8 +1,8 @@
-import React, { ReactElement, useState, ChangeEvent, FormEvent } from 'react';
+import React, { ReactElement, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import './login-form.scss';
 import { Link } from 'react-router-dom';
 
-const UserEmail = (): ReactElement => {
+const UserEmail = ({ showError }: { showError: boolean }): ReactElement => {
   const [userEmail, setUserEmail] = useState('');
   const [emailError, setEmailError] = useState('');
 
@@ -19,10 +19,19 @@ const UserEmail = (): ReactElement => {
   const userEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const valueEmail = event.target.value;
     console.log(valueEmail);
-    const error = validateEmail(valueEmail);
-    setEmailError(error);
     setUserEmail(valueEmail);
+    if (showError) {
+      const error = validateEmail(valueEmail);
+      setEmailError(error);
+    }
   };
+
+  useEffect(() => {
+    if (showError) {
+      const error = validateEmail(userEmail);
+      setEmailError(error);
+    }
+  }, [showError, userEmail]);
 
   return (
     <>
@@ -34,7 +43,7 @@ const UserEmail = (): ReactElement => {
         value={userEmail}
         onChange={userEmailChange}
       />
-      {emailError && <p className="error-message_email">{emailError}</p>}
+      {showError && emailError && <p className="error-message_email">{emailError}</p>}
     </>
   );
 };
@@ -67,29 +76,27 @@ const Password = (): ReactElement => {
   );
 };
 
-const submit = (event: FormEvent<HTMLFormElement>): void => {
-  event.preventDefault();
-  console.log(event);
-  // отправка данных на сервер для аутентификации
-};
+const RegistrationLink = (): ReactElement => (
+  <Link className="link" to="/registrationForm">
+    Register here
+  </Link>
+);
 
-const RegistrationLink = (): ReactElement => {
-  return (
-    <Link className="link" to="/registrationForm">
-      Register here
-    </Link>
-  );
-};
-
-const ForgotPasswordLink = (): ReactElement => {
-  return (
-    <Link className="password-reset link" to="/passwordReset">
-      Forgot your passord?
-    </Link>
-  );
-};
+const ForgotPasswordLink = (): ReactElement => (
+  <Link className="password-reset link" to="/passwordReset">
+    Forgot your passord?
+  </Link>
+);
 
 const LoginForm = (): ReactElement => {
+  const [showError, setShowError] = useState(false);
+
+  const submit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    console.log(event);
+    setShowError(true);
+  };
+
   return (
     <div className="login-form">
       <form className="login-form__wrapper" onSubmit={submit}>
@@ -98,7 +105,7 @@ const LoginForm = (): ReactElement => {
         <label className="login-form__label" htmlFor="userEmail">
           Email
         </label>
-        <UserEmail />
+        <UserEmail showError={showError} />
         <label className="login-form__label">Password</label>
         <Password />
         <div className="login-form__user-actions">
