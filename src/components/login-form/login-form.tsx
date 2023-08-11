@@ -4,21 +4,38 @@ import { Link } from 'react-router-dom';
 
 const UserEmail = (): ReactElement => {
   const [userEmail, setUserEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const validateEmail = (email: string): string => {
+    if (!email.trim()) {
+      return "Email address can't be empty";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return 'Invalid email format';
+    } else {
+      return '';
+    }
+  };
 
   const userEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setUserEmail(event.target.value);
-    console.log(event.target.value);
+    const valueEmail = event.target.value;
+    console.log(valueEmail);
+    const error = validateEmail(valueEmail);
+    setEmailError(error);
+    setUserEmail(valueEmail);
   };
 
   return (
-    <input
-      type="text"
-      className="login-form__input input useremail"
-      placeholder="Email"
-      id="userEmail"
-      value={userEmail}
-      onChange={userEmailChange}
-    />
+    <>
+      <input
+        type="text"
+        className="login-form__input input useremail"
+        placeholder="User@example.com"
+        id="userEmail"
+        value={userEmail}
+        onChange={userEmailChange}
+      />
+      {emailError && <p className="error-message_email">{emailError}</p>}
+    </>
   );
 };
 
