@@ -1,22 +1,23 @@
 import React, { ReactElement, useState, ChangeEvent, FormEvent } from 'react';
 import './login-form.scss';
+import { Link } from 'react-router-dom';
 
-const Username = (): ReactElement => {
-  const [username, setUsername] = useState('');
+const UserEmail = (): ReactElement => {
+  const [userEmail, setUserEmail] = useState('');
 
-  const usernameChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setUsername(event.target.value);
+  const userEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserEmail(event.target.value);
     console.log(event.target.value);
   };
 
   return (
     <input
       type="text"
-      className="login-form__input input username"
-      placeholder="Username"
-      id="username"
-      value={username}
-      onChange={usernameChange}
+      className="login-form__input input useremail"
+      placeholder="Email"
+      id="userEmail"
+      value={userEmail}
+      onChange={userEmailChange}
     />
   );
 };
@@ -55,20 +56,43 @@ const submit = (event: FormEvent<HTMLFormElement>): void => {
   // отправка данных на сервер для аутентификации
 };
 
+const RegistrationLink = (): ReactElement => {
+  return (
+    <Link className="link" to="/registrationForm">
+      Register here
+    </Link>
+  );
+};
+
+const ForgotPasswordLink = (): ReactElement => {
+  return (
+    <Link className="password-reset link" to="/passwordReset">
+      Forgot your passord?
+    </Link>
+  );
+};
+
 const LoginForm = (): ReactElement => {
   return (
     <div className="login-form">
       <form className="login-form__wrapper" onSubmit={submit}>
-        <h2 className="login-form__title">Login</h2>
-        <label className="login-form__label" htmlFor="username">
-          Username
+        <Link className="login-form__img logo" to="/main"></Link>
+        <h2 className="login-form__title">Sign in your account</h2>
+        <label className="login-form__label" htmlFor="userEmail">
+          Email
         </label>
-        <Username />
+        <UserEmail />
         <label className="login-form__label">Password</label>
         <Password />
+        <div className="login-form__user-actions">
+          <ForgotPasswordLink />
+        </div>
         <button className="login-form__submit btn" type="submit">
           Login
         </button>
+        <h4 className="login-form__link-to-register">
+          Dont`n have an account? <RegistrationLink />
+        </h4>
       </form>
     </div>
   );

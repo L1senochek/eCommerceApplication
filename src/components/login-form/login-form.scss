@@ -15,9 +15,22 @@
     color: $font-color;
     background-image: $background-image;
   }
+  &__img {
+    width: 8vw;
+    height: 8vw;
+  }
   &__title {
     color: $secondary-color;
     font-size: $font-size-title;
+    padding: $padding-secondary 0;
+    color: $fivefold-color;
+  }
+  &__link-to-register {
+    padding: $padding-secondary 0;
+    color: $secondary-color;
+    > .link {
+      text-decoration: underline;
+    }
   }
   &__label {
     padding: $padding-secondary;
@@ -26,16 +39,8 @@
   &__input {
     display: flex;
     justify-content: space-between;
-    // width: $width;
-    // padding: $padding-primary;
-    // background-image: $background-image;
-    // border-radius: $border-radius;
-    // border-color: $primary-color;
-    // color: $fivefold-color;
-    // border-width: $border-width;
-    // border-style: $border-style;
     &_form {
-      width: $width;
+      width: 100%;
       background-image: $background-image;
       color: $fivefold-color;
       border: none;
@@ -59,6 +64,17 @@
   &__input::placeholder {
     color: $tetiary-color;
   }
+  &__user-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: $padding-secondary 0;
+    color: $secondary-color;
+    > .password-reset {
+      color: $primary-color;
+    }
+  }
   &__submit {
     margin: $padding-secondary 0;
   }
@@ -75,6 +91,11 @@
   border-color: $fivefold-color;
   color: $fivefold-color;
   cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: $box-shadow;
+  text-shadow: $text-shadow;
 }
 
 .input {

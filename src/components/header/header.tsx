@@ -28,9 +28,8 @@ const Header = (): ReactElement => {
   return (
     <header className="header">
       <nav className="nav">
-        <Link className="logo link" to="/main">
-          <span className="logo__img"></span>
-          <span className="logo__title">logo</span>
+        <Link className="main-logo link" to="/main">
+          <span className="main-logo__img logo"></span>logo
         </Link>
         <Link className="menu link" to="/menu">
           Menu
@@ -43,7 +42,7 @@ const Header = (): ReactElement => {
           basket
         </Link>
         <Link className="login link" to="/loginForm">
-          login
+          Sign in
         </Link>
       </nav>
     </header>

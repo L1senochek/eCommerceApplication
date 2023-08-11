@@ -3,12 +3,33 @@
 .nav {
   display: flex;
   justify-content: space-around;
-  padding: $padding-secondary;
+  align-items: center;
+  padding: $padding-primary $padding-secondary;
+  font-size: $font-size-header;
+}
+
+.main-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__img {
+    width: 4vw;
+    height: 4vw;
+  }
+  &__title {
+    color: $secondary-color;
+  }
 }
 
 .link {
   color: $primary-color;
   text-decoration: none;
+}
+
+.link:hover {
+  color: $fivefold-color;
+  text-decoration: underline;
+  text-shadow: $text-shadow;
 }
 
 .search {
@@ -28,4 +49,9 @@
     border: none;
     outline: none;
   }
+}
+
+.logo {
+  background-image: url('../../assets/img/logo.png');
+  background-size: cover;
 }

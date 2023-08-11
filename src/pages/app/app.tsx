@@ -3,20 +3,46 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import LoginForm from '../../components/login-form/login-form';
 import Header from '../../components/header/header';
 import Main from '../main/main';
+import RegistrationForm from '../../components/registration-form/registration-form';
+import Footer from '../../components/footer/footer';
 
 const App = (): ReactElement => {
   return (
     <Router>
-      <div className="wrapper">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/loginForm" element={<LoginForm />} />
-            <Route path="/main" element={<Main />} />
-          </Routes>
-        </main>
-        <footer>footer</footer>
-      </div>
+      <Routes>
+        <Route
+          path="/loginForm"
+          element={
+            <>
+              <main className="main">
+                <LoginForm />
+              </main>
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/registrationForm"
+          element={
+            <>
+              <main className="main">
+                <RegistrationForm />
+              </main>
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/main"
+          element={
+            <>
+              <Header />
+              <Main />
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
     </Router>
   );
 };

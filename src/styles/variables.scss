@@ -16,11 +16,13 @@ $font-size: 1rem;
 $border-radius: 5px;
 $border-width: 2px;
 $border-style: solid;
-$box-shadow: 0 0 10px 1px #00fffb;
-$text-shadow: 0 0 10px #ff00fe;
+$box-shadow: 0 0 10px 1px $fivefold-color;
+$text-shadow: 0 0 10px $fivefold-color;
 
 $padding-primary: 5px;
 $padding-secondary: 15px;
 
 $width-btn: 10vw;
 $width: 20vw;
+
+$transitionAll: all 1s ease;
