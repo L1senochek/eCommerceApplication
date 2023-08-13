@@ -100,7 +100,7 @@ const LoginForm = (): ReactElement => {
   return (
     <div className="login-form">
       <form className="login-form__wrapper" onSubmit={submit}>
-        <Link className="login-form__img logo" to="/main"></Link>
+        <Link className="login-form__img logo" to="/"></Link>
         <h2 className="login-form__title">Sign in your account</h2>
         <label className="login-form__label" htmlFor="userEmail">
           Email
