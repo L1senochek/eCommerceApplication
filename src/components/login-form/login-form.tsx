@@ -8,7 +8,7 @@ const UserEmail = ({ showError }: { showError: boolean }): ReactElement => {
 
   const validateEmail = (email: string): string => {
     if (!email.trim()) {
-      return "Email address can't be empty";
+      return "Can't be empty";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return 'Invalid email format';
     } else {
@@ -43,7 +43,7 @@ const UserEmail = ({ showError }: { showError: boolean }): ReactElement => {
         value={userEmail}
         onChange={userEmailChange}
       />
-      {showError && emailError && <p className="error-message_email">{emailError}</p>}
+      {showError && emailError && <p className="login-form__error-message email">{emailError}</p>}
     </>
   );
 };
@@ -51,28 +51,62 @@ const UserEmail = ({ showError }: { showError: boolean }): ReactElement => {
 const Password = (): ReactElement => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+
+  const validatePassword = (password: string): string => {
+    if (!password.trim()) {
+      return "Shouldn't be empty";
+    } else if (password.length < 8) {
+      return 'Should be at least 8 characters long';
+    } else if (!/[A-Z]/.test(password)) {
+      return 'Should contain at least one capital letter';
+    } else if (!/[a-z]/.test(password)) {
+      return 'Should contain at least one lowercase letter';
+    } else if (!/[0-9]/.test(password)) {
+      return 'Should contain at least one digit';
+    } else {
+      return '';
+    }
+  };
 
   const passwordChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setPassword(event.target.value);
-    console.log(event.target.value);
+    const valuePassword = event.target.value;
+    setPassword(valuePassword);
+
+    const error = validatePassword(valuePassword);
+    setPasswordError(error);
   };
+
+  useEffect(() => {
+    if (showPassword) {
+      const error = validatePassword(password);
+      setPasswordError(error);
+    }
+  }, [showPassword, password]);
 
   const passwordVisibility = (): void => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <div className="login-form__input input">
-      <input
-        type={showPassword ? 'text' : 'password'}
-        className="login-form__input_form password"
-        placeholder="Password"
-        id="password"
-        value={password}
-        onChange={passwordChange}
-      />
-      <button type="button" className="login-form__input_btn" onClick={passwordVisibility}></button>
-    </div>
+    <>
+      <div className="login-form__input input">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          className="login-form__input_form password"
+          placeholder="Password"
+          id="password"
+          value={password}
+          onChange={passwordChange}
+        />
+        <button
+          type="button"
+          className="login-form__input_btn"
+          onClick={passwordVisibility}
+        ></button>
+      </div>
+      {passwordError && <p className="login-form__error-message password">{passwordError}</p>}
+    </>
   );
 };
 
@@ -86,6 +120,12 @@ const ForgotPasswordLink = (): ReactElement => (
   <Link className="password-reset link" to="/passwordReset">
     Forgot your passord?
   </Link>
+);
+
+const SubmitBtn = (): ReactElement => (
+  <button className="login-form__submit btn" type="submit">
+    Login
+  </button>
 );
 
 const LoginForm = (): ReactElement => {
@@ -111,9 +151,7 @@ const LoginForm = (): ReactElement => {
         <div className="login-form__user-actions">
           <ForgotPasswordLink />
         </div>
-        <button className="login-form__submit btn" type="submit">
-          Login
-        </button>
+        <SubmitBtn />
         <h4 className="login-form__link-to-register">
           Dont`n have an account? <RegistrationLink />
         </h4>
