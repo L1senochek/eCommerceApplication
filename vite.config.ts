@@ -21,6 +21,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       'node-fetch': 'isomorphic-fetch',
       stream: 'rollup-plugin-node-polyfills/polyfills/stream',
+      process: 'rollup-plugin-node-polyfills/polyfills/process-es6',
     },
   },
   css: {
