@@ -124,7 +124,7 @@ const ForgotPasswordLink = (): ReactElement => (
 
 const SubmitBtn = (): ReactElement => (
   <button className="login-form__submit btn" type="submit">
-    Login
+    Sign in
   </button>
 );
 
@@ -140,7 +140,7 @@ const LoginForm = (): ReactElement => {
   return (
     <div className="login-form">
       <form className="login-form__wrapper" onSubmit={submit}>
-        <Link className="login-form__img logo" to="/"></Link>
+        <Link className="login-form__logo logo" to="/"></Link>
         <h2 className="login-form__title">Sign in your account</h2>
         <label className="login-form__label" htmlFor="userEmail">
           Email
