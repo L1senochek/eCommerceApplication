@@ -2,7 +2,7 @@ import React, { ReactElement, useState, ChangeEvent, FormEvent, useEffect } from
 import './login-form.scss';
 import { Link } from 'react-router-dom';
 
-const UserEmail = ({ showError }: { showError: boolean }): ReactElement => {
+export const UserEmail = ({ showError }: { showError: boolean }): ReactElement => {
   const [userEmail, setUserEmail] = useState('');
   const [emailError, setEmailError] = useState('');
 
@@ -43,12 +43,14 @@ const UserEmail = ({ showError }: { showError: boolean }): ReactElement => {
         value={userEmail}
         onChange={userEmailChange}
       />
-      {showError && emailError && <p className="login-form__error-message email">{emailError}</p>}
+      {showError && emailError && (
+        <p className="login-form__error-message error-message email">{emailError}</p>
+      )}
     </>
   );
 };
 
-const Password = (): ReactElement => {
+export const Password = ({ showError }: { showError: boolean }): ReactElement => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
@@ -73,20 +75,22 @@ const Password = (): ReactElement => {
     const valuePassword = event.target.value;
     setPassword(valuePassword);
 
-    const error = validatePassword(valuePassword);
-    setPasswordError(error);
-  };
-
-  useEffect(() => {
-    if (showPassword) {
-      const error = validatePassword(password);
+    if (showError && showPassword) {
+      const error = validatePassword(valuePassword);
       setPasswordError(error);
     }
-  }, [showPassword, password]);
+  };
 
   const passwordVisibility = (): void => {
     setShowPassword(!showPassword);
   };
+
+  useEffect(() => {
+    if (showError) {
+      const error = validatePassword(password);
+      setPasswordError(error);
+    }
+  }, [showError, showPassword, password]);
 
   return (
     <>
@@ -105,7 +109,9 @@ const Password = (): ReactElement => {
           onClick={passwordVisibility}
         ></button>
       </div>
-      {passwordError && <p className="login-form__error-message password">{passwordError}</p>}
+      {showError && passwordError && (
+        <p className="login-form__error-message error-message password">{passwordError}</p>
+      )}
     </>
   );
 };
@@ -147,7 +153,7 @@ const LoginForm = (): ReactElement => {
         </label>
         <UserEmail showError={showError} />
         <label className="login-form__label">Password</label>
-        <Password />
+        <Password showError={showError} />
         <div className="login-form__user-actions">
           <ForgotPasswordLink />
         </div>

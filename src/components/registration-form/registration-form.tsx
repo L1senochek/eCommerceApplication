@@ -1,11 +1,12 @@
-import { ReactElement } from 'react';
+import { FormEvent, ReactElement, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Password, UserEmail } from '../login-form/login-form';
 
-const UserEmailRegister = (): ReactElement => <></>;
+// const UserEmailRegister = (): ReactElement => <></>;
 
-const PasswordRegister = (): ReactElement => <></>;
+// const PasswordRegister = (): ReactElement => <></>;
 
-const ConfirmPasswordRegister = (): ReactElement => <></>;
+// const ConfirmPasswordRegister = (): ReactElement => <></>;
 
 const ForgotPasswordLink = (): ReactElement => (
   <Link className="relocation-login-form link" to="/loginForm">
@@ -20,19 +21,27 @@ const SubmitBtnRegister = (): ReactElement => (
 );
 
 const RegistrationForm = (): ReactElement => {
+  const [showError, setShowError] = useState(false);
+
+  const submit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    console.log(event);
+    setShowError(true);
+  };
+
   return (
     <div className="registration-form">
-      <form className="registration-form__wrapper">
+      <form className="registration-form__wrapper" onSubmit={submit}>
         <Link className="registration-form__logo logo" to="/"></Link>
         <h2 className="registration-form__title">Create a new account</h2>
         <label className="registration-form__label" htmlFor="userEmailRegister">
           Email
         </label>
-        <UserEmailRegister />
+        <UserEmail showError={showError} />
         <label className="registration-form__label">Password</label>
-        <PasswordRegister />
+        <Password showError={showError} />
         <label className="registration-form__label">Confirm Password</label>
-        <ConfirmPasswordRegister />
+        <Password showError={showError} />
         <div className="registration-form__user-actions">
           <ForgotPasswordLink />
         </div>
