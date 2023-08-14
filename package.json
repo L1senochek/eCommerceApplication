@@ -11,7 +11,7 @@
     "prettier": "npx prettier src --check",
     "prettier-fix": "npm run prettier -- --write",
     "preview": "vite preview",
-    "prepare": "husky install ./husky",
+    "prepare": "husky install",
     "test": "vitest"
   },
   "dependencies": {
@@ -26,6 +26,7 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "dotenv": "^16.3.1",
+    "isomorphic-fetch": "^3.0.0",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

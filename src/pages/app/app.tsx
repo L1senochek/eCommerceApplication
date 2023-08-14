@@ -33,7 +33,7 @@ const App = (): ReactElement => {
           }
         />
         <Route
-          path="/main"
+          path="/"
           element={
             <>
               <Header />
