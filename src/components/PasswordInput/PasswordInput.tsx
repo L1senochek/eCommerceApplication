@@ -5,17 +5,19 @@ interface PasswordInputProps {
   placeholder: string;
   showError: boolean;
   confirmPassword?: boolean;
+  onChange: (value: string) => void;
+  passwordValue: string;
 }
 
 const PasswordInput = ({
   placeholder,
   showError,
   confirmPassword = false,
+  passwordValue,
+  onChange,
 }: PasswordInputProps): JSX.Element => {
-  const [password, setPasswordInState] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const validatePassword = (password: string): string => {
     if (!password.trim()) {
@@ -35,26 +37,21 @@ const PasswordInput = ({
 
   const passwordChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const valuePassword = event.target.value;
-    setPasswordInState(valuePassword);
-    console.log(valuePassword);
+    console.log('valuePassword', valuePassword);
+    onChange(valuePassword);
 
     if (showError && showPassword) {
       const error = validatePassword(valuePassword);
       setPasswordError(error);
     }
-
-    if (confirmPassword) {
-      const confirmPasswordError = password !== valuePassword ? "Passwords don't match" : '';
-      setConfirmPasswordError(confirmPasswordError);
-    }
   };
 
   useEffect(() => {
     if (showError) {
-      const error = validatePassword(password);
+      const error = validatePassword(passwordValue);
       setPasswordError(error);
     }
-  }, [showError, password]);
+  }, [showError, passwordValue]);
 
   const passwordVisibility = (): void => {
     setShowPassword(!showPassword);
@@ -67,7 +64,7 @@ const PasswordInput = ({
           type={showPassword ? 'text' : 'password'}
           className="authentication-form__input_form password"
           placeholder={placeholder}
-          value={password}
+          value={passwordValue}
           onChange={passwordChange}
         />
         <button
@@ -76,13 +73,8 @@ const PasswordInput = ({
           onClick={passwordVisibility}
         ></button>
       </div>
-      {showError && passwordError && (
+      {showError && passwordError && !confirmPassword && (
         <p className="authentication-form__error-message error-message password">{passwordError}</p>
-      )}
-      {showError && confirmPasswordError && (
-        <p className="error-message__error-message error-message confirm-password">
-          {confirmPasswordError}
-        </p>
       )}
     </>
   );
