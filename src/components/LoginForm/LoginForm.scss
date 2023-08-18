@@ -61,6 +61,10 @@
     border-color: $fivefold-color;
     outline: none;
   }
+  &__input:hover.input-error {
+    border-color: red;
+    outline: none;
+  }
   &__input::placeholder {
     color: $tetiary-color;
   }
