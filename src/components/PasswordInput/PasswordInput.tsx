@@ -7,14 +7,16 @@ interface PasswordInputProps {
   confirmPassword?: boolean;
   onChange?: (value: string) => void;
   passwordValue?: string;
+  passwordsMatch?: boolean;
 }
 
 const PasswordInput = ({
   placeholder,
   showError,
   confirmPassword = false,
-  passwordValue,
   onChange,
+  passwordValue,
+  passwordsMatch,
 }: PasswordInputProps): JSX.Element => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
@@ -49,7 +51,9 @@ const PasswordInput = ({
   };
 
   useEffect(() => {
-    showError && passwordValue !== undefined && setPasswordError(validatePassword(passwordValue));
+    if (showError && passwordValue !== undefined) {
+      setPasswordError(validatePassword(passwordValue));
+    }
   }, [showError, passwordValue]);
 
   const passwordVisibility = (): void => {
@@ -58,7 +62,11 @@ const PasswordInput = ({
 
   return (
     <>
-      <div className="authentication-form__input input">
+      <div
+        className={`authentication-form__input input ${
+          (passwordsMatch || passwordError) && !confirmPassword ? 'input-error' : ''
+        }`}
+      >
         <input
           type={showPassword ? 'text' : 'password'}
           className="authentication-form__input_form password"

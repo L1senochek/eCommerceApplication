@@ -45,6 +45,7 @@ const RegistrationForm = (): JSX.Element => {
         confirmPassword={true}
         onChange={handleConfirmPasswordChange}
         passwordValue={confirmPassword}
+        passwordsMatch={showError && password !== confirmPassword}
       />
       {showError && password !== confirmPassword && (
         <p className="authentication-form__error-message error-message confirm-password">
