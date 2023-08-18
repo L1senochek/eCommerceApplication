@@ -5,8 +5,8 @@ interface PasswordInputProps {
   placeholder: string;
   showError: boolean;
   confirmPassword?: boolean;
-  onChange: (value: string) => void;
-  passwordValue: string;
+  onChange?: (value: string) => void;
+  passwordValue?: string;
 }
 
 const PasswordInput = ({
@@ -38,7 +38,9 @@ const PasswordInput = ({
   const passwordChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const valuePassword = event.target.value;
     console.log('valuePassword', valuePassword);
-    onChange(valuePassword);
+    if (onChange) {
+      onChange(valuePassword);
+    }
 
     if (showError && showPassword) {
       const error = validatePassword(valuePassword);
@@ -47,10 +49,7 @@ const PasswordInput = ({
   };
 
   useEffect(() => {
-    if (showError) {
-      const error = validatePassword(passwordValue);
-      setPasswordError(error);
-    }
+    showError && passwordValue !== undefined && setPasswordError(validatePassword(passwordValue));
   }, [showError, passwordValue]);
 
   const passwordVisibility = (): void => {

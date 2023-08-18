@@ -11,6 +11,7 @@ import './LoginForm.scss';
 
 const LoginForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
+  const [password, setPassword] = useState('');
 
   const submit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -18,12 +19,21 @@ const LoginForm = (): JSX.Element => {
     setShowError(true);
   };
 
+  const handlePasswordChange = (newPassword: string): void => {
+    setPassword(newPassword);
+  };
+
   return (
     <AuthenticationForm onSubmit={submit} titleText="Sign in your account">
       <LabelInput htmlFor="userEmail">Email</LabelInput>
       <UserEmailInput showError={showError} />
       <LabelInput htmlFor="password">Password</LabelInput>
-      <PasswordInput placeholder="Password" showError={showError} />
+      <PasswordInput
+        placeholder="Password"
+        showError={showError}
+        onChange={handlePasswordChange}
+        passwordValue={password}
+      />
       <ForgotPasswordLink />
       <Button type="submit" text="Sign in" className="authentication-form__submit btn" />
       <LinkToWithTextInWrapper text="Dont`n have an account? ">
