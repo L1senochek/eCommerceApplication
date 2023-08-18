@@ -35,7 +35,9 @@ export const UserEmailInput = ({ showError }: { showError: boolean }): JSX.Eleme
     <>
       <input
         type="text"
-        className="authentication-form__input input useremail"
+        className={`authentication-form__input input useremail ${
+          showError && emailError ? 'input-error' : ''
+        }`}
         placeholder="User@example.com"
         id="userEmail"
         value={userEmail}
