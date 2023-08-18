@@ -1,38 +1,5 @@
-.registration-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: $padding-secondary;
-    border-radius: $border-radius;
-    border: $border-width $border-style $primary-color;
-    color: $font-color;
-    background-image: $background-image;
-  }
-  &__logo {
-    width: 8vw;
-    height: 8vw;
-  }
-  &__title {
-    color: $secondary-color;
-    font-size: $font-size-title;
-    padding: $padding-secondary 0;
-    color: $fivefold-color;
-  }
-  &__label {
-    padding: $padding-secondary;
-    color: $primary-color;
-  }
+.authentication-form {
   &__user-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    padding: $padding-secondary 0;
-    color: $secondary-color;
     > .relocation-login-form {
       color: $primary-color;
     }

@@ -76,9 +76,13 @@ const PasswordInput = ({
           onClick={passwordVisibility}
         ></button>
       </div>
-      {showError && passwordError && <p className="error-message password">{passwordError}</p>}
+      {showError && passwordError && (
+        <p className="authentication-form__error-message error-message password">{passwordError}</p>
+      )}
       {showError && confirmPasswordError && (
-        <p className="error-message password">{confirmPasswordError}</p>
+        <p className="error-message__error-message error-message confirm-password">
+          {confirmPasswordError}
+        </p>
       )}
     </>
   );

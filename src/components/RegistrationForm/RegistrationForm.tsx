@@ -24,8 +24,8 @@ const RegistrationForm = (): JSX.Element => {
       <LabelInput htmlFor="password">Password</LabelInput>
       <PasswordInput placeholder="Password" showError={showError} />
       <LabelInput htmlFor="confirmPassword">Confirm Password</LabelInput>
-      <PasswordInput placeholder="Password" showError={showError} confirmPassword={true} />
-      <Button type="submit" text="Sign in" className="authentication-form__submit btn" />
+      <PasswordInput placeholder="Confirm Password" showError={showError} confirmPassword={true} />
+      <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
       <LinkToWithTextInWrapper text="Already have an account? ">
         <LinkTo to={'/loginForm'} text={'Login here'} />
       </LinkToWithTextInWrapper>

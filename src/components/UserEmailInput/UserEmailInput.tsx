@@ -42,7 +42,7 @@ export const UserEmailInput = ({ showError }: { showError: boolean }): JSX.Eleme
         onChange={userEmailChange}
       />
       {showError && emailError && (
-        <p className="login-form__error-message error-message email">{emailError}</p>
+        <p className="authentication-form__error-message error-message email">{emailError}</p>
       )}
     </>
   );
