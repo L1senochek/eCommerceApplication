@@ -65,7 +65,7 @@ const PasswordInput = ({
       <div
         className={`authentication-form__input input ${
           (passwordsMatch || passwordError) && !confirmPassword ? 'input-error' : ''
-        }`}
+        } ${confirmPassword ? 'confirm-password' : ''}`}
       >
         <input
           type={showPassword ? 'text' : 'password'}
