@@ -1,0 +1,14 @@
+.btn {
+  // width: 50px;
+  padding: $padding-primary;
+  background: $background-image;
+  border-radius: $border-radius;
+  border-color: $fivefold-color;
+  color: $fivefold-color;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: $box-shadow;
+  text-shadow: $text-shadow;
+}
