@@ -8,6 +8,7 @@ import LinkTo from '../LinkTo/LinkTo';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
 import './RegistrationForm.scss';
 import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
+import AddressInput, { Address } from '../AddressInput/AddressInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -15,12 +16,13 @@ const RegistrationForm = (): JSX.Element => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [isFormFilled, setIsFormFilled] = useState(false);
+  const [address, setAddress] = useState<Address>({
+    country: '',
+    city: '',
+    streetName: '',
+    postalCode: '',
+  });
 
-  const submit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    console.log(event);
-    setShowError(true);
-  };
   const handlePasswordChange = (newPassword: string): void => {
     setPassword(newPassword);
   };
@@ -30,12 +32,34 @@ const RegistrationForm = (): JSX.Element => {
   };
 
   const handleDateOfBirthChange = (newDate: string): void => {
-    if (newDate) {
-      setIsFormFilled(true);
-    } else {
-      setIsFormFilled(false);
-    }
+    newDate ? setIsFormFilled(true) : setIsFormFilled(false);
+    // if (newDate) {
+    //   setIsFormFilled(true);
+    // } else {
+    //   setIsFormFilled(false);
+    // }
     setDateOfBirth(newDate);
+  };
+
+  const handleAddressChange = (newAddress: Address): void => {
+    setAddress(newAddress);
+
+    console.log(newAddress);
+  };
+
+  const submit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    console.log(event);
+    const formData = {
+      email: '', // Get value from UserEmailInput component
+      password: password,
+      confirmPassword: confirmPassword,
+      dateOfBirth: dateOfBirth,
+      address: address, // Get value from AddressInput component
+    };
+
+    console.log('Form Data:', formData);
+    setShowError(true);
   };
 
   return (
@@ -70,6 +94,7 @@ const RegistrationForm = (): JSX.Element => {
         dateValue={dateOfBirth}
         isFormFilled={isFormFilled}
       />
+      <AddressInput onChange={handleAddressChange} />
       <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
       <LinkToWithTextInWrapper text="Already have an account? ">
         <LinkTo to={'/loginForm'} text={'Login here'} />

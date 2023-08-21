@@ -33,7 +33,7 @@
     }
   }
   &__label {
-    padding: $padding-secondary;
+    padding: $padding-tetiary;
     color: $primary-color;
   }
   &__input {
@@ -60,6 +60,7 @@
   &__input:hover {
     border-color: $fivefold-color;
     outline: none;
+    box-shadow: $box-shadow;
   }
   &__input:hover.input-error {
     border-color: red;
