@@ -1,6 +1,11 @@
 import { useState, ChangeEvent, useEffect } from 'react';
 
-export const UserEmailInput = ({ showError }: { showError: boolean }): JSX.Element => {
+interface UserEmailInputProps {
+  showError: boolean;
+  onEmailChange: (email: string) => void;
+}
+
+export const UserEmailInput = ({ showError, onEmailChange }: UserEmailInputProps): JSX.Element => {
   const [userEmail, setUserEmail] = useState('');
   const [emailError, setEmailError] = useState('');
 
@@ -29,7 +34,8 @@ export const UserEmailInput = ({ showError }: { showError: boolean }): JSX.Eleme
       const error = validateEmail(userEmail);
       setEmailError(error);
     }
-  }, [showError, userEmail]);
+    onEmailChange(userEmail);
+  }, [showError, userEmail, onEmailChange]);
 
   return (
     <>

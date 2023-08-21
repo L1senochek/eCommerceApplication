@@ -12,6 +12,7 @@ import AddressInput, { Address } from '../AddressInput/AddressInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
+  const [userEmail, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -23,6 +24,10 @@ const RegistrationForm = (): JSX.Element => {
     postalCode: '',
   });
 
+  const handleEmailChange = (newEmail: string): void => {
+    setEmail(newEmail);
+  };
+
   const handlePasswordChange = (newPassword: string): void => {
     setPassword(newPassword);
   };
@@ -33,11 +38,6 @@ const RegistrationForm = (): JSX.Element => {
 
   const handleDateOfBirthChange = (newDate: string): void => {
     newDate ? setIsFormFilled(true) : setIsFormFilled(false);
-    // if (newDate) {
-    //   setIsFormFilled(true);
-    // } else {
-    //   setIsFormFilled(false);
-    // }
     setDateOfBirth(newDate);
   };
 
@@ -51,11 +51,11 @@ const RegistrationForm = (): JSX.Element => {
     event.preventDefault();
     console.log(event);
     const formData = {
-      email: '', // Get value from UserEmailInput component
+      email: userEmail,
       password: password,
       confirmPassword: confirmPassword,
       dateOfBirth: dateOfBirth,
-      address: address, // Get value from AddressInput component
+      address: address,
     };
 
     console.log('Form Data:', formData);
@@ -65,7 +65,7 @@ const RegistrationForm = (): JSX.Element => {
   return (
     <AuthenticationForm onSubmit={submit} titleText="Create a new account">
       <LabelInput htmlFor="userEmail">Email</LabelInput>
-      <UserEmailInput showError={showError} />
+      <UserEmailInput showError={showError} onEmailChange={handleEmailChange} />
       <LabelInput htmlFor="password">Password</LabelInput>
       <PasswordInput
         placeholder="Password"

@@ -11,22 +11,31 @@ import './LoginForm.scss';
 
 const LoginForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
+  const [userEmail, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const submit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    console.log(event);
-    setShowError(true);
+  const handleEmailChange = (newEmail: string): void => {
+    setEmail(newEmail);
   };
 
   const handlePasswordChange = (newPassword: string): void => {
     setPassword(newPassword);
   };
 
+  const submit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    const LoginFormData = {
+      email: userEmail,
+      password: password,
+    };
+    console.log(event, LoginFormData);
+    setShowError(true);
+  };
+
   return (
     <AuthenticationForm onSubmit={submit} titleText="Sign in your account">
       <LabelInput htmlFor="userEmail">Email</LabelInput>
-      <UserEmailInput showError={showError} />
+      <UserEmailInput showError={showError} onEmailChange={handleEmailChange} />
       <LabelInput htmlFor="password">Password</LabelInput>
       <PasswordInput
         placeholder="Password"
