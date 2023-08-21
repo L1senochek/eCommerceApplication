@@ -7,24 +7,35 @@ import Button from '../Button/Button';
 import LinkTo from '../LinkTo/LinkTo';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
 import './RegistrationForm.scss';
+import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [isFormFilled, setIsFormFilled] = useState(false);
 
   const submit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     console.log(event);
     setShowError(true);
   };
-
   const handlePasswordChange = (newPassword: string): void => {
     setPassword(newPassword);
   };
 
   const handleConfirmPasswordChange = (newConfirmPassword: string): void => {
     setConfirmPassword(newConfirmPassword);
+  };
+
+  const handleDateOfBirthChange = (newDate: string): void => {
+    if (newDate) {
+      setIsFormFilled(true);
+    } else {
+      setIsFormFilled(false);
+    }
+    setDateOfBirth(newDate);
   };
 
   return (
@@ -52,6 +63,13 @@ const RegistrationForm = (): JSX.Element => {
           Passwords don`t match
         </p>
       )}
+      <LabelInput htmlFor="dateOfBirth">Date of Birth</LabelInput>
+      <DateOfBirthInput
+        showError={showError}
+        onChange={handleDateOfBirthChange}
+        dateValue={dateOfBirth}
+        isFormFilled={isFormFilled}
+      />
       <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
       <LinkToWithTextInWrapper text="Already have an account? ">
         <LinkTo to={'/loginForm'} text={'Login here'} />

@@ -1,7 +1,12 @@
+@import '../../styles/variables.scss';
+
 .authentication-form {
   &__user-actions {
     > .relocation-login-form {
       color: $primary-color;
     }
+  }
+  &__date-of-birth {
+    width: 50%;
   }
 }
