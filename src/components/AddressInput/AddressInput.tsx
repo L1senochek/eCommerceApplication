@@ -14,12 +14,11 @@ export interface Address {
 
 const AddressInput: React.FC<AddressInputProps> = ({ onChange }) => {
   const [address, setAddress] = useState<Address>({
-    country: '',
+    country: 'US',
     city: '',
     streetName: '',
     postalCode: '',
   });
-  const [countryError, setCountryError] = useState(false);
   const [cityError, setCityError] = useState(false);
   const [streetNameError, setStreetNameError] = useState(false);
   const [postalCodeError, setPostalCodeError] = useState(false);
@@ -32,9 +31,6 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange }) => {
     console.log(`Input "${field}" changed to: ${value}`);
 
     switch (field) {
-      case 'country':
-        setCountryError(false);
-        break;
       case 'city':
         setCityError(false);
         break;
@@ -50,34 +46,32 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange }) => {
   };
 
   const handleValidation = (): void => {
-    setCountryError(address.country === '');
     setCityError(address.city === '');
     setStreetNameError(address.streetName === '');
     setPostalCodeError(address.postalCode === '');
   };
 
   return (
-    <>
+    <fieldset className="authentication-form__address">
+      <legend className="authentication-form__address-header">Shipping</legend>
       <LabelInput classLabel="authentication-form__address-label country" htmlFor="country">
         Country
       </LabelInput>
-      <input
-        type="text"
-        className={`authentication-form__input address-input input country ${
-          countryError ? 'input-error' : ''
-        }`}
-        placeholder="Country"
+      <select
+        className={`authentication-form__input address-input input country`}
         value={address.country}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>): void =>
           handleChange('country', e.target.value)
         }
         onBlur={handleValidation}
-      />
-      {countryError && (
-        <p className="authentication-form__error-message error-message address-input country">
-          Please fill a country
-        </p>
-      )}
+      >
+        <option value="US" className="input_option">
+          USA
+        </option>
+        <option value="CA" className="input_option">
+          Canada
+        </option>
+      </select>
       <LabelInput classLabel="authentication-form__address-label city" htmlFor="city">
         City
       </LabelInput>
@@ -138,7 +132,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange }) => {
           Please fill a postal code
         </p>
       )}
-    </>
+    </fieldset>
   );
 };
 
