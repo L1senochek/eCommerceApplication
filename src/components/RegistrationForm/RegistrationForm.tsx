@@ -29,6 +29,7 @@ const RegistrationForm = (): JSX.Element => {
     },
   ]);
   const [showSecondForm, setShowSecondForm] = useState(false);
+  const [useAsDefaultChecked, setUseAsDefaultChecked] = useState(false);
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -46,16 +47,6 @@ const RegistrationForm = (): JSX.Element => {
     newDate ? setIsFormFilled(true) : setIsFormFilled(false);
     setDateOfBirth(newDate);
   };
-
-  // const handleAddressChange = (newAddress: Address): void => {
-  //   setAddresses((prevAddresses) => {
-  //     const updatedAddresses = [...prevAddresses];
-  //     updatedAddresses[0] = newAddress;
-  //     return updatedAddresses;
-  //   });
-
-  //   console.log(newAddress);
-  // };
 
   const handleAddressChange = (newAddress: Address, index: number): void => {
     setAddresses((prevAddresses) => {
@@ -75,7 +66,7 @@ const RegistrationForm = (): JSX.Element => {
     if (!showSecondForm) {
       setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
     }
-  }, [showSecondForm]);
+  }, [showSecondForm, useAsDefaultChecked]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -88,22 +79,23 @@ const RegistrationForm = (): JSX.Element => {
       addresses: addresses,
     };
 
-    // const newAddress = {
-    //   country: '',
-    //   city: '',
-    //   streetName: '',
-    //   postalCode: '',
-    // };
-
-    // // setAddresses((prevAddresses) => [...prevAddresses, newAddress]);
-    // setAddresses((prevAddresses) => [...prevAddresses]);
-    if (!showSecondForm) {
+    if (useAsDefaultChecked && addresses.length < 2) {
+      const newAddress = { ...addresses[0] };
+      setAddresses((prevAddresses) => [newAddress, ...prevAddresses]);
+      console.log(1);
+    } else if (!showSecondForm && !useAsDefaultChecked) {
       setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
+      console.log(2);
     } else {
       setAddresses((prevAddresses) => [...prevAddresses]);
+      console.log(3);
     }
     console.log('Form Data:', formData);
     setShowError(true);
+  };
+
+  const handleUseAsDefaultChange = (): void => {
+    setUseAsDefaultChecked(!useAsDefaultChecked);
   };
 
   return (
@@ -143,12 +135,8 @@ const RegistrationForm = (): JSX.Element => {
         onChange={(newAddress: Address): void => handleAddressChange(newAddress, 0)}
         index={0}
       />
-      {/* <label>
-        <input type="checkbox" checked={showSecondForm} onChange={handleCheckboxChange} />
-        Add Billing Address
-      </label> */}
       <div className="authentication-form__checkboxes">
-        <CheckboxUseAsDefault checked={showSecondForm} onChange={handleCheckboxChange} />
+        <CheckboxUseAsDefault checked={useAsDefaultChecked} onChange={handleUseAsDefaultChange} />
         <CheckboxAddBilling checked={showSecondForm} onChange={handleCheckboxChange} />
       </div>
       {showSecondForm && (
