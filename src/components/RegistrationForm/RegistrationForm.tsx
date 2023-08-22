@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
 import LabelInput from '../LabelInput/LabelInput';
 import PasswordInput from '../PasswordInput/PasswordInput';
@@ -9,6 +9,9 @@ import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextIn
 import './RegistrationForm.scss';
 import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
 import AddressInput, { Address } from '../AddressInput/AddressInput';
+import React from 'react';
+import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
+import CheckboxUseAsDefault from '../CheckboxUseDefault/CheckboxUseDefault';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -17,12 +20,15 @@ const RegistrationForm = (): JSX.Element => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [isFormFilled, setIsFormFilled] = useState(false);
-  const [address, setAddress] = useState<Address>({
-    country: '',
-    city: '',
-    streetName: '',
-    postalCode: '',
-  });
+  const [addresses, setAddresses] = useState<Address[]>([
+    {
+      country: '',
+      city: '',
+      streetName: '',
+      postalCode: '',
+    },
+  ]);
+  const [showSecondForm, setShowSecondForm] = useState(false);
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -41,13 +47,37 @@ const RegistrationForm = (): JSX.Element => {
     setDateOfBirth(newDate);
   };
 
-  const handleAddressChange = (newAddress: Address): void => {
-    setAddress(newAddress);
+  // const handleAddressChange = (newAddress: Address): void => {
+  //   setAddresses((prevAddresses) => {
+  //     const updatedAddresses = [...prevAddresses];
+  //     updatedAddresses[0] = newAddress;
+  //     return updatedAddresses;
+  //   });
+
+  //   console.log(newAddress);
+  // };
+
+  const handleAddressChange = (newAddress: Address, index: number): void => {
+    setAddresses((prevAddresses) => {
+      const updatedAddresses = [...prevAddresses];
+      updatedAddresses[index] = newAddress;
+      return updatedAddresses;
+    });
 
     console.log(newAddress);
   };
 
-  const submit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleCheckboxChange = (): void => {
+    setShowSecondForm(!showSecondForm);
+  };
+
+  useEffect(() => {
+    if (!showSecondForm) {
+      setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
+    }
+  }, [showSecondForm]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     console.log(event);
     const formData = {
@@ -55,15 +85,29 @@ const RegistrationForm = (): JSX.Element => {
       password: password,
       confirmPassword: confirmPassword,
       dateOfBirth: dateOfBirth,
-      address: address,
+      addresses: addresses,
     };
 
+    // const newAddress = {
+    //   country: '',
+    //   city: '',
+    //   streetName: '',
+    //   postalCode: '',
+    // };
+
+    // // setAddresses((prevAddresses) => [...prevAddresses, newAddress]);
+    // setAddresses((prevAddresses) => [...prevAddresses]);
+    if (!showSecondForm) {
+      setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
+    } else {
+      setAddresses((prevAddresses) => [...prevAddresses]);
+    }
     console.log('Form Data:', formData);
     setShowError(true);
   };
 
   return (
-    <AuthenticationForm onSubmit={submit} titleText="Create a new account">
+    <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
       <LabelInput htmlFor="userEmail">Email</LabelInput>
       <UserEmailInput showError={showError} onEmailChange={handleEmailChange} />
       <LabelInput htmlFor="password">Password</LabelInput>
@@ -94,7 +138,26 @@ const RegistrationForm = (): JSX.Element => {
         dateValue={dateOfBirth}
         isFormFilled={isFormFilled}
       />
-      <AddressInput onChange={handleAddressChange} />
+      <AddressInput
+        fieldsetLegend="Shipping"
+        onChange={(newAddress: Address): void => handleAddressChange(newAddress, 0)}
+        index={0}
+      />
+      {/* <label>
+        <input type="checkbox" checked={showSecondForm} onChange={handleCheckboxChange} />
+        Add Billing Address
+      </label> */}
+      <div className="authentication-form__checkboxes">
+        <CheckboxUseAsDefault checked={showSecondForm} onChange={handleCheckboxChange} />
+        <CheckboxAddBilling checked={showSecondForm} onChange={handleCheckboxChange} />
+      </div>
+      {showSecondForm && (
+        <AddressInput
+          fieldsetLegend="Billing"
+          onChange={(newAddress: Address): void => handleAddressChange(newAddress, 1)}
+          index={1}
+        />
+      )}
       <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
       <LinkToWithTextInWrapper text="Already have an account? ">
         <LinkTo to={'/loginForm'} text={'Login here'} />

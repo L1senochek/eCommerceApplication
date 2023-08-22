@@ -22,4 +22,10 @@
       padding: 0 $padding-secondary;
     }
   }
+  &__checkboxes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
 }

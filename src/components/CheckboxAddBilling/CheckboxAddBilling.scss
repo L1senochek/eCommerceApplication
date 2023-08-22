@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $padding-primary 0;
+  color: $primary-color;
+}

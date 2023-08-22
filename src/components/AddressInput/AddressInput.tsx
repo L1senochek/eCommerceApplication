@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
 
 interface AddressInputProps {
-  onChange: (address: Address) => void;
+  onChange: (address: Address, index: number) => void;
+  index: number;
+  fieldsetLegend: string;
 }
 
 export interface Address {
@@ -12,7 +14,7 @@ export interface Address {
   postalCode: string;
 }
 
-const AddressInput: React.FC<AddressInputProps> = ({ onChange }) => {
+const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLegend }) => {
   const [address, setAddress] = useState<Address>({
     country: 'US',
     city: '',
@@ -25,7 +27,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange }) => {
 
   const handleChange = (field: keyof Address, value: string): void => {
     const updatedAddress = { ...address, [field]: value };
-    onChange(updatedAddress);
+    onChange(updatedAddress, index);
     setAddress(updatedAddress);
 
     console.log(`Input "${field}" changed to: ${value}`);
@@ -53,7 +55,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange }) => {
 
   return (
     <fieldset className="authentication-form__address">
-      <legend className="authentication-form__address-header">Shipping</legend>
+      <legend className="authentication-form__address-header">{fieldsetLegend}</legend>
       <LabelInput classLabel="authentication-form__address-label country" htmlFor="country">
         Country
       </LabelInput>
