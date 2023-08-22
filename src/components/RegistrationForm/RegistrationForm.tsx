@@ -11,7 +11,7 @@ import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
 import AddressInput, { Address } from '../AddressInput/AddressInput';
 import React from 'react';
 import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
-import CheckboxUseAsDefault from '../CheckboxUseDefault/CheckboxUseDefault';
+import CheckboxUseShippingAsBilling from '../CheckboxUseShippingAsBilling/CheckboxUseShippingAsBilling';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -29,7 +29,7 @@ const RegistrationForm = (): JSX.Element => {
     },
   ]);
   const [showSecondForm, setShowSecondForm] = useState(false);
-  const [useAsDefaultChecked, setUseAsDefaultChecked] = useState(false);
+  const [useShippingAsBillingChecked, setUseShippingAsBillingChecked] = useState(false);
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -62,15 +62,15 @@ const RegistrationForm = (): JSX.Element => {
     setShowSecondForm(!showSecondForm);
   };
 
-  const handleUseAsDefaultChange = (): void => {
-    setUseAsDefaultChecked(!useAsDefaultChecked);
+  const handleUseShippingAsBillingChange = (): void => {
+    setUseShippingAsBillingChecked(!useShippingAsBillingChecked);
   };
 
   useEffect(() => {
     if (!showSecondForm) {
       setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
     }
-  }, [showSecondForm, useAsDefaultChecked]);
+  }, [showSecondForm, useShippingAsBillingChecked]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -83,11 +83,11 @@ const RegistrationForm = (): JSX.Element => {
       addresses: addresses,
     };
 
-    if (useAsDefaultChecked && addresses.length < 2) {
+    if (useShippingAsBillingChecked && addresses.length < 2) {
       const newAddress = { ...addresses[0] };
       setAddresses((prevAddresses) => [newAddress, ...prevAddresses]);
       console.log(1);
-    } else if (!showSecondForm && !useAsDefaultChecked) {
+    } else if (!showSecondForm && !useShippingAsBillingChecked) {
       setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
       console.log(2);
     } else {
@@ -137,7 +137,10 @@ const RegistrationForm = (): JSX.Element => {
         showError={showError}
       />
       <div className="authentication-form__checkboxes">
-        <CheckboxUseAsDefault checked={useAsDefaultChecked} onChange={handleUseAsDefaultChange} />
+        <CheckboxUseShippingAsBilling
+          checked={useShippingAsBillingChecked}
+          onChange={handleUseShippingAsBillingChange}
+        />
         <CheckboxAddBilling checked={showSecondForm} onChange={handleCheckboxChange} />
       </div>
       {showSecondForm && (

@@ -1,17 +1,20 @@
 import React from 'react';
 
-interface CheckboxUseAsDefaultProps {
+interface CheckboxUseShippingAsBillingProps {
   checked: boolean;
   onChange: () => void;
 }
 
-const CheckboxUseAsDefault: React.FC<CheckboxUseAsDefaultProps> = ({ checked, onChange }) => {
+const CheckboxUseShippingAsBilling: React.FC<CheckboxUseShippingAsBillingProps> = ({
+  checked,
+  onChange,
+}) => {
   return (
     <label className="authentication-form__checkbox checkbox default">
       <input type="checkbox" checked={checked} onChange={onChange} />
-      Use as default
+      Use Shipping as Billing
     </label>
   );
 };
 
-export default CheckboxUseAsDefault;
+export default CheckboxUseShippingAsBilling;
