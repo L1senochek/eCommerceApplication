@@ -1,5 +1,5 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
-import './header.scss';
+import './Header.scss';
 import { Link } from 'react-router-dom';
 
 const Search = (): ReactElement => {

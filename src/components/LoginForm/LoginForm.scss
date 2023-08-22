@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-.login-form {
+.authentication-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@
     color: $font-color;
     background-image: $background-image;
   }
-  &__img {
+  &__logo {
     width: 8vw;
     height: 8vw;
   }
@@ -33,7 +33,7 @@
     }
   }
   &__label {
-    padding: $padding-secondary;
+    padding: $padding-tetiary;
     color: $primary-color;
   }
   &__input {
@@ -60,6 +60,11 @@
   &__input:hover {
     border-color: $fivefold-color;
     outline: none;
+    box-shadow: $box-shadow;
+  }
+  &__input:hover.input-error {
+    border-color: red;
+    outline: none;
   }
   &__input::placeholder {
     color: $tetiary-color;
@@ -81,30 +86,4 @@
   &__submit.btn {
     width: $width-btn;
   }
-}
-
-.btn {
-  // width: 50px;
-  padding: $padding-primary;
-  background: $background-image;
-  border-radius: $border-radius;
-  border-color: $fivefold-color;
-  color: $fivefold-color;
-  cursor: pointer;
-}
-
-.btn:hover {
-  box-shadow: $box-shadow;
-  text-shadow: $text-shadow;
-}
-
-.input {
-  width: $width;
-  padding: $padding-primary;
-  background-image: $background-image;
-  border-radius: $border-radius;
-  border-color: $primary-color;
-  color: $fivefold-color;
-  border-width: $border-width;
-  border-style: $border-style;
 }

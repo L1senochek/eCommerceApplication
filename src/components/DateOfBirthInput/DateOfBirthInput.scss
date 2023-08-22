@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.date-of-birth[type='date'] {
+  outline: none;
+}
+
+.date-of-birth::-webkit-calendar-picker-indicator {
+  background: transparent;
+  padding: $padding-primary;
+  border-color: $fivefold-color;
+  // border-radius: $border-radius;
+  border-style: $border-style;
+  border-width: $border-width;
+  width: $width-btn-date-of-biirth;
+  height: $width-btn-date-of-biirth;
+  cursor: pointer;
+}
+
+.date-of-birth:active,
+.date-of-birth:hover {
+  border-color: $fivefold-color;
+  outline: none;
+}
+
+.date-of-birth.input-error:hover {
+  border-color: red;
+}
