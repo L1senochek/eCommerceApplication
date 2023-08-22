@@ -5,6 +5,7 @@ interface AddressInputProps {
   onChange: (address: Address, index: number) => void;
   index: number;
   fieldsetLegend: string;
+  showError: boolean;
 }
 
 export interface Address {
@@ -14,7 +15,12 @@ export interface Address {
   postalCode: string;
 }
 
-const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLegend }) => {
+const AddressInput: React.FC<AddressInputProps> = ({
+  onChange,
+  index,
+  fieldsetLegend,
+  showError,
+}) => {
   const [address, setAddress] = useState<Address>({
     country: 'US',
     city: '',
@@ -48,9 +54,12 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLe
   };
 
   const handleValidation = (): void => {
-    setCityError(address.city === '');
-    setStreetNameError(address.streetName === '');
-    setPostalCodeError(address.postalCode === '');
+    // setCityError(address.city === '');
+    // setStreetNameError(address.streetName === '');
+    // setPostalCodeError(address.postalCode === '');
+    setCityError(!address.city);
+    setStreetNameError(!address.streetName);
+    setPostalCodeError(!address.postalCode);
   };
 
   return (
@@ -80,7 +89,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLe
       <input
         type="text"
         className={`authentication-form__input address-input input city ${
-          cityError ? 'input-error' : ''
+          showError && cityError ? 'input-error' : ''
         }`}
         placeholder="City"
         value={address.city}
@@ -89,7 +98,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLe
         }
         onBlur={handleValidation}
       />
-      {cityError && (
+      {showError && cityError && (
         <p className="authentication-form__error-message error-message address-input city">
           Please fill a city
         </p>
@@ -100,7 +109,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLe
       <input
         type="text"
         className={`authentication-form__input address-input input street-name ${
-          streetNameError ? 'input-error' : ''
+          showError && streetNameError ? 'input-error' : ''
         }`}
         placeholder="Street Name"
         value={address.streetName}
@@ -109,7 +118,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLe
         }
         onBlur={handleValidation}
       />
-      {streetNameError && (
+      {showError && streetNameError && (
         <p className="authentication-form__error-message error-message address-input street-name">
           Please fill a street name
         </p>
@@ -120,7 +129,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLe
       <input
         type="text"
         className={`authentication-form__input address-input input postal-code ${
-          postalCodeError ? 'input-error' : ''
+          showError && postalCodeError ? 'input-error' : ''
         }`}
         placeholder="Postal Code"
         value={address.postalCode}
@@ -129,7 +138,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ onChange, index, fieldsetLe
         }
         onBlur={handleValidation}
       />
-      {postalCodeError && (
+      {showError && postalCodeError && (
         <p className="authentication-form__error-message error-message address-input postal-code">
           Please fill a postal code
         </p>

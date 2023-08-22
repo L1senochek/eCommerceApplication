@@ -22,7 +22,7 @@ const RegistrationForm = (): JSX.Element => {
   const [isFormFilled, setIsFormFilled] = useState(false);
   const [addresses, setAddresses] = useState<Address[]>([
     {
-      country: '',
+      country: 'US',
       city: '',
       streetName: '',
       postalCode: '',
@@ -62,6 +62,10 @@ const RegistrationForm = (): JSX.Element => {
     setShowSecondForm(!showSecondForm);
   };
 
+  const handleUseAsDefaultChange = (): void => {
+    setUseAsDefaultChecked(!useAsDefaultChecked);
+  };
+
   useEffect(() => {
     if (!showSecondForm) {
       setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
@@ -92,10 +96,6 @@ const RegistrationForm = (): JSX.Element => {
     }
     console.log('Form Data:', formData);
     setShowError(true);
-  };
-
-  const handleUseAsDefaultChange = (): void => {
-    setUseAsDefaultChecked(!useAsDefaultChecked);
   };
 
   return (
@@ -134,6 +134,7 @@ const RegistrationForm = (): JSX.Element => {
         fieldsetLegend="Shipping"
         onChange={(newAddress: Address): void => handleAddressChange(newAddress, 0)}
         index={0}
+        showError={showError}
       />
       <div className="authentication-form__checkboxes">
         <CheckboxUseAsDefault checked={useAsDefaultChecked} onChange={handleUseAsDefaultChange} />
@@ -144,6 +145,7 @@ const RegistrationForm = (): JSX.Element => {
           fieldsetLegend="Billing"
           onChange={(newAddress: Address): void => handleAddressChange(newAddress, 1)}
           index={1}
+          showError={showError}
         />
       )}
       <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
