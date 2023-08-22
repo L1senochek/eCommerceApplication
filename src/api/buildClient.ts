@@ -5,16 +5,16 @@ import {
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient, ApiRoot } from '@commercetools/platform-sdk';
 
-const projectKey = `${import.meta.env.VITE_CTP_PROJECT_KEY}`;
-const scopes = [`${import.meta.env.VITE_CTP_SCOPES}`];
+const projectKey = `${import.meta.env.VITE_CTP_PROJECT_KEY} || ''`;
+const scopes = [`${import.meta.env.VITE_CTP_SCOPES || ''}`];
 
 // Configure authMiddlewareOptions
 const authMiddlewareOptions: AuthMiddlewareOptions = {
-  host: `${import.meta.env.VITE_CTP_AUTH_URL}`,
+  host: `${import.meta.env.VITE_CTP_AUTH_URL || ''}`,
   projectKey: projectKey,
   credentials: {
-    clientId: `${import.meta.env.VITE_CTP_CLIENT_ID}`,
-    clientSecret: `${import.meta.env.VITE_CTP_CLIENT_SECRET}`,
+    clientId: `${import.meta.env.VITE_CTP_CLIENT_ID || ''}`,
+    clientSecret: `${import.meta.env.VITE_CTP_CLIENT_SECRET || ''}`,
   },
   scopes,
   fetch,
@@ -22,7 +22,7 @@ const authMiddlewareOptions: AuthMiddlewareOptions = {
 
 // Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
-  host: `${import.meta.env.VITE_CTP_API_URL}`,
+  host: `${import.meta.env.VITE_CTP_API_URL || ''}`,
   fetch,
 };
 
