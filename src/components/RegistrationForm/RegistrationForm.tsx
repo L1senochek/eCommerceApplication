@@ -14,6 +14,8 @@ import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
 // import CheckboxUseShippingAsBilling from '../CheckboxUseShippingAsBilling/CheckboxUseShippingAsBilling';
 // import { executeCustomerRequest } from '../../api/clientApi';
 import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
+import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
+import SelectCountry from '../SelectCountry/SelectCountry';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -33,6 +35,7 @@ const RegistrationForm = (): JSX.Element => {
   const [showSecondForm, setShowSecondForm] = useState(false);
   // const [useShippingAsBillingChecked, setUseShippingAsBillingChecked] = useState(false);
   const [useAsDefault, setUseAsDefaultChecked] = useState(false);
+  const [selectedCountryShipping, setSelectedCountryShipping] = useState('US');
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -119,6 +122,7 @@ const RegistrationForm = (): JSX.Element => {
     setShowError(true);
   };
 
+  console.log(selectedCountryShipping);
   return (
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
       <LabelInput htmlFor="userEmail">Email</LabelInput>
@@ -151,6 +155,21 @@ const RegistrationForm = (): JSX.Element => {
         dateValue={dateOfBirth}
         isFormFilled={isFormFilled}
       />
+      {/* /////////////// */}
+      <FieldsetLegendForm
+        classNameFieldset="authentication-form__address shipping"
+        classNameLegend="authentication-form__address-header shipping"
+        fieldsetLegendTitle="Shipping"
+      >
+        <LabelInput classLabel="authentication-form__address-label country" htmlFor="country">
+          Country
+        </LabelInput>
+        <SelectCountry
+          value={selectedCountryShipping}
+          setValueSelect={setSelectedCountryShipping}
+        />
+      </FieldsetLegendForm>
+      {/* /////////////// */}
       <AddressInput
         fieldsetLegend="Shipping"
         onChange={(newAddress: Address): void => handleAddressChange(newAddress, 0)}
