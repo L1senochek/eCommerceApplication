@@ -82,6 +82,8 @@ const RegistrationForm = (): JSX.Element => {
       confirmPassword: confirmPassword,
       dateOfBirth: dateOfBirth,
       addresses: addresses,
+      shippingAddresses: [0],
+      billingAddresses: [1],
     };
 
     if (useShippingAsBillingChecked && addresses.length < 2) {

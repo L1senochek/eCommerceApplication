@@ -6,7 +6,8 @@ export const executeCustomerRequest = async (bodyObj: CustomerSignin): Promise<C
     .withProjectKey({ projectKey })
     .customers()
     .post({ body: bodyObj })
-    .execute();
+    .execute()
+    .catch();
 
   if (response.statusCode === 201 && response.body) {
     return response.body.customer;
