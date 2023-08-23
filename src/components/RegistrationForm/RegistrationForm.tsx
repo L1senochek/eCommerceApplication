@@ -11,8 +11,9 @@ import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
 import AddressInput, { Address } from '../AddressInput/AddressInput';
 import React from 'react';
 import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
-import CheckboxUseShippingAsBilling from '../CheckboxUseShippingAsBilling/CheckboxUseShippingAsBilling';
-import { executeCustomerRequest } from '../../api/clientApi';
+// import CheckboxUseShippingAsBilling from '../CheckboxUseShippingAsBilling/CheckboxUseShippingAsBilling';
+// import { executeCustomerRequest } from '../../api/clientApi';
+import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -30,7 +31,8 @@ const RegistrationForm = (): JSX.Element => {
     },
   ]);
   const [showSecondForm, setShowSecondForm] = useState(false);
-  const [useShippingAsBillingChecked, setUseShippingAsBillingChecked] = useState(false);
+  // const [useShippingAsBillingChecked, setUseShippingAsBillingChecked] = useState(false);
+  const [useAsDefault, setUseAsDefaultChecked] = useState(false);
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -63,34 +65,47 @@ const RegistrationForm = (): JSX.Element => {
     setShowSecondForm(!showSecondForm);
   };
 
-  const handleUseShippingAsBillingChange = (): void => {
-    setUseShippingAsBillingChecked(!useShippingAsBillingChecked);
+  // const handleShippingAddress = (): void => {
+  //   setShipping(shipping);
+  // };
+
+  const handleUseAsDefaultChange = (): void => {
+    setUseAsDefaultChecked(!useAsDefault);
   };
+  // const handleUseShippingAsBillingChange = (): void => {
+  //   setUseShippingAsBillingChecked(!useShippingAsBillingChecked);
+  // };
 
   useEffect(() => {
     if (!showSecondForm) {
       setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
     }
-  }, [showSecondForm, useShippingAsBillingChecked]);
+  }, [showSecondForm]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     console.log(event);
+    const dataAddresses = showSecondForm
+      ? { ...addresses[0], ...addresses[1] }
+      : { ...addresses[0], ...addresses[0] };
+    const defaultAddresses = useAsDefault ? { defaultShippingAddress: 0 } : {};
     const formData = {
       email: `${userEmail}`,
       password: password,
       confirmPassword: confirmPassword,
       dateOfBirth: dateOfBirth,
-      addresses: addresses,
+      addresses: dataAddresses,
       shippingAddresses: [0],
       billingAddresses: [1],
+      ...defaultAddresses,
     };
 
-    if (useShippingAsBillingChecked && addresses.length < 2) {
-      const newAddress = { ...addresses[0] };
-      setAddresses((prevAddresses) => [newAddress, ...prevAddresses]);
-      console.log(1);
-    } else if (!showSecondForm && !useShippingAsBillingChecked) {
+    // if (addresses.length < 2) {
+    //   const newAddress = { ...addresses[0] };
+    //   setAddresses((prevAddresses) => [newAddress, ...prevAddresses]);
+    //   console.log(1);
+    // } else
+    if (!showSecondForm) {
       setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
       console.log(2);
     } else {
@@ -99,8 +114,8 @@ const RegistrationForm = (): JSX.Element => {
     }
     console.log('Form Data:', formData);
 
-    const response = await executeCustomerRequest(formData);
-    console.log('Response registr:', response);
+    // const response = await executeCustomerRequest(formData);
+    // console.log('Response registr:', response);
     setShowError(true);
   };
 
@@ -143,11 +158,12 @@ const RegistrationForm = (): JSX.Element => {
         showError={showError}
       />
       <div className="authentication-form__checkboxes">
-        <CheckboxUseShippingAsBilling
+        {/* <CheckboxUseShippingAsBilling
           checked={useShippingAsBillingChecked}
           onChange={handleUseShippingAsBillingChange}
-        />
+        /> */}
         <CheckboxAddBilling checked={showSecondForm} onChange={handleCheckboxChange} />
+        <CheckboxUseAsDefault checked={useAsDefault} onChange={handleUseAsDefaultChange} />
       </div>
       {showSecondForm && (
         <AddressInput

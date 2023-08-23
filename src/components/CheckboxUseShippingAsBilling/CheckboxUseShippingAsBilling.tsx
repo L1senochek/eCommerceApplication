@@ -10,7 +10,7 @@ const CheckboxUseShippingAsBilling: React.FC<CheckboxUseShippingAsBillingProps> 
   onChange,
 }) => {
   return (
-    <label className="authentication-form__checkbox checkbox default">
+    <label className="authentication-form__checkbox checkbox use-shipping-as-billing">
       <input type="checkbox" checked={checked} onChange={onChange} />
       Use Shipping as Billing
     </label>
