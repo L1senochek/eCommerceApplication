@@ -1,28 +1,16 @@
-import { getApiPassRoot } from './buildAutorizationClient';
-import { ctpClient } from './buildClient';
-import {
-  ClientResponse,
-  ProductPagedQueryResponse,
-  createApiBuilderFromCtpClient,
-} from '@commercetools/platform-sdk';
+import { getApiRoot, projectKey } from './buildClient';
+import { Customer, CustomerSignin } from '@commercetools/platform-sdk';
 
-const projectKey = `${import.meta.env.VITE_CTP_PROJECT_KEY}`;
+export const executeCustomerRequest = async (bodyObj: CustomerSignin): Promise<Customer> => {
+  const response = await getApiRoot()
+    .withProjectKey({ projectKey })
+    .customers()
+    .post({ body: bodyObj })
+    .execute();
 
-const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
-  projectKey: projectKey,
-});
-
-export const getEndPoint = async (): Promise<ClientResponse<ProductPagedQueryResponse>> => {
-  return await apiRoot.products().get().execute();
+  if (response.statusCode === 201 && response.body) {
+    return response.body.customer;
+  } else {
+    throw new Error('Failed to create customer');
+  }
 };
-
-console.log('results Api!!!!!!', (await getEndPoint())?.body.results);
-
-export const getProjectPass = await getApiPassRoot()
-  .withProjectKey({ projectKey: projectKey })
-  .me()
-  .get()
-  .execute()
-  .catch(console.error);
-
-console.log('Test now user', getProjectPass);

@@ -5,7 +5,7 @@ import {
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient, ApiRoot } from '@commercetools/platform-sdk';
 
-const projectKey = `${import.meta.env.VITE_CTP_PROJECT_KEY} || ''`;
+export const projectKey = `${import.meta.env.VITE_CTP_PROJECT_KEY || ''}`;
 const scopes = [`${import.meta.env.VITE_CTP_SCOPES || ''}`];
 
 // Configure authMiddlewareOptions

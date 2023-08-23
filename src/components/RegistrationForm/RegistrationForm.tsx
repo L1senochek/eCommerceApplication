@@ -12,6 +12,7 @@ import AddressInput, { Address } from '../AddressInput/AddressInput';
 import React from 'react';
 import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
 import CheckboxUseShippingAsBilling from '../CheckboxUseShippingAsBilling/CheckboxUseShippingAsBilling';
+import { executeCustomerRequest } from '../../api/clientApi';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -72,11 +73,11 @@ const RegistrationForm = (): JSX.Element => {
     }
   }, [showSecondForm, useShippingAsBillingChecked]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     console.log(event);
     const formData = {
-      email: userEmail,
+      email: `${userEmail}`,
       password: password,
       confirmPassword: confirmPassword,
       dateOfBirth: dateOfBirth,
@@ -95,6 +96,9 @@ const RegistrationForm = (): JSX.Element => {
       console.log(3);
     }
     console.log('Form Data:', formData);
+
+    const response = await executeCustomerRequest(formData);
+    console.log('Response registr:', response);
     setShowError(true);
   };
 
