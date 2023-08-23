@@ -16,6 +16,7 @@ import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
 import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
 import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
 import SelectCountry from '../SelectCountry/SelectCountry';
+import InputAddres from '../InputAddres/InputAddres';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -36,6 +37,9 @@ const RegistrationForm = (): JSX.Element => {
   // const [useShippingAsBillingChecked, setUseShippingAsBillingChecked] = useState(false);
   const [useAsDefault, setUseAsDefaultChecked] = useState(false);
   const [selectedCountryShipping, setSelectedCountryShipping] = useState('US');
+  const [addressValueShippingCountry, setAddressValueShippingCountry] = useState('');
+  // const [addressValueShippingStreetName, setAddressValueShippingStreetName] = useState('');
+  // const [addressValueShippingPostalCode, setAddressValueShippingPostalCode] = useState('');
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -115,6 +119,8 @@ const RegistrationForm = (): JSX.Element => {
       setAddresses((prevAddresses) => [...prevAddresses]);
       console.log(3);
     }
+
+    console.log(selectedCountryShipping, addressValueShippingCountry);
     console.log('Form Data:', formData);
 
     // const response = await executeCustomerRequest(formData);
@@ -122,7 +128,6 @@ const RegistrationForm = (): JSX.Element => {
     setShowError(true);
   };
 
-  console.log(selectedCountryShipping);
   return (
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
       <LabelInput htmlFor="userEmail">Email</LabelInput>
@@ -167,6 +172,16 @@ const RegistrationForm = (): JSX.Element => {
         <SelectCountry
           value={selectedCountryShipping}
           setValueSelect={setSelectedCountryShipping}
+        />
+        <LabelInput classLabel="authentication-form__address-label city" htmlFor="city">
+          City
+        </LabelInput>
+        <InputAddres
+          showError={showError}
+          value={addressValueShippingCountry}
+          setValueAddres={setAddressValueShippingCountry}
+          classNameInput="city"
+          placeholderInput="City"
         />
       </FieldsetLegendForm>
       {/* /////////////// */}
