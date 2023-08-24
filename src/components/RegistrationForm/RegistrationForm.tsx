@@ -15,10 +15,12 @@ import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
 import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
 import { executeCustomerRequest } from '../../api/clientApi';
 import FirstnameInput from '../FirstnameInput/FirstnameInput';
+import LastnameInput from '../LastnameInput/LastnameInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
   const [userFirstname, setUserFirstname] = useState('');
+  const [userLastname, setUserLastname] = useState('');
   const [userEmail, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -45,6 +47,10 @@ const RegistrationForm = (): JSX.Element => {
 
   const handleFirstNameChange = (newFistname: string): void => {
     setUserFirstname(newFistname);
+  };
+
+  const handleLastNameChange = (newLastname: string): void => {
+    setUserLastname(newLastname);
   };
 
   const handleEmailChange = (newEmail: string): void => {
@@ -116,6 +122,7 @@ const RegistrationForm = (): JSX.Element => {
         showError={showError}
         value={userFirstname}
       />
+      <LastnameInput onChange={handleLastNameChange} showError={showError} value={userLastname} />
       <LabelInput htmlFor="userEmail">Email</LabelInput>
       <UserEmailInput showError={showError} onEmailChange={handleEmailChange} />
       <LabelInput htmlFor="password">Password</LabelInput>

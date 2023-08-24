@@ -11,7 +11,7 @@ const FirstnameInput = ({ onChange, showError, value }: IFirstnameInputProps): J
   const [firstnameError, setFirstnameError] = useState('');
 
   const validateFirstnameInput = (value: string): string => {
-    return value.length ? 'Should`t be empty' : '';
+    return !value.length ? 'Should`t be empty' : '';
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
