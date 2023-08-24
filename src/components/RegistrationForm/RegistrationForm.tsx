@@ -45,6 +45,11 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
 
+  const updateError = (error: boolean): void => {
+    console.log(error);
+    setShowError(error);
+  };
+
   const handleFirstNameChange = (newFistname: string): void => {
     setUserFirstname(newFistname);
   };
@@ -119,6 +124,7 @@ const RegistrationForm = (): JSX.Element => {
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
       <FirstnameInput
         onChange={handleFirstNameChange}
+        changeError={updateError}
         showError={showError}
         value={userFirstname}
       />

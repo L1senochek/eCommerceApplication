@@ -3,11 +3,17 @@ import LabelInput from '../LabelInput/LabelInput';
 
 interface IFirstnameInputProps {
   onChange: (value: string) => void;
+  changeError: (error: boolean) => void;
   showError: boolean;
   value: string;
 }
 
-const FirstnameInput = ({ onChange, showError, value }: IFirstnameInputProps): JSX.Element => {
+const FirstnameInput = ({
+  onChange,
+  changeError,
+  showError,
+  value,
+}: IFirstnameInputProps): JSX.Element => {
   const [firstnameError, setFirstnameError] = useState('');
 
   const validateFirstnameInput = (value: string): string => {
@@ -17,10 +23,17 @@ const FirstnameInput = ({ onChange, showError, value }: IFirstnameInputProps): J
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const fistNameValue = event.target.value;
     onChange(fistNameValue);
-
+    console.log(showError);
     if (showError) {
       const error = validateFirstnameInput(fistNameValue);
       setFirstnameError(error);
+    }
+    if (validateFirstnameInput(fistNameValue) === '') {
+      showError = false;
+      changeError(showError);
+    } else {
+      showError = true;
+      changeError(showError);
     }
   };
 
