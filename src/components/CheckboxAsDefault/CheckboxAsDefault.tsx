@@ -8,7 +8,7 @@ interface CheckboxUseAsDefaultProps {
 const CheckboxUseAsDefault: React.FC<CheckboxUseAsDefaultProps> = ({ checked, onChange }) => {
   return (
     <label className="authentication-form__checkbox checkbox default">
-      <input type="checkbox" checked={checked} onChange={onChange} />
+      <input className="checkbox__input" type="checkbox" checked={checked} onChange={onChange} />
       Use As Default
     </label>
   );

@@ -9,7 +9,7 @@ interface CheckboxAddBillingProps {
 const CheckboxAddBilling: React.FC<CheckboxAddBillingProps> = ({ checked, onChange }) => {
   return (
     <label className="authentication-form__checkbox checkbox add-billing">
-      <input type="checkbox" checked={checked} onChange={onChange} />
+      <input className="checkbox__input" type="checkbox" checked={checked} onChange={onChange} />
       Add Billing Address
     </label>
   );

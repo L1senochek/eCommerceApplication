@@ -2,8 +2,11 @@
 
 .checkbox {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   padding: $padding-primary 0;
   color: $primary-color;
+  &__input {
+    margin-right: $padding-primary;
+  }
 }

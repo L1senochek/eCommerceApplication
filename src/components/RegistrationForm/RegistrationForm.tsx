@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent } from 'react';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
 import LabelInput from '../LabelInput/LabelInput';
 import PasswordInput from '../PasswordInput/PasswordInput';
@@ -8,15 +8,12 @@ import LinkTo from '../LinkTo/LinkTo';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
 import './RegistrationForm.scss';
 import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
-import { Address } from '../AddressInput/AddressInput';
+// import { Address } from '../AddressInput/AddressInput';
 import React from 'react';
 import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
-// import CheckboxUseShippingAsBilling from '../CheckboxUseShippingAsBilling/CheckboxUseShippingAsBilling';
-// import { executeCustomerRequest } from '../../api/clientApi';
 import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
 import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
-// import SelectCountry from '../SelectCountry/SelectCountry';
-// import InputAddres from '../InputAddres/InputAddres';
+import { executeCustomerRequest } from '../../api/clientApi';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -25,25 +22,24 @@ const RegistrationForm = (): JSX.Element => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [isFormFilled, setIsFormFilled] = useState(false);
-  const [addresses, setAddresses] = useState<Address[]>([
-    {
-      country: 'US',
-      city: '',
-      streetName: '',
-      postalCode: '',
-    },
-  ]);
+  // const [addresses, setAddresses] = useState<Address[]>([
+  //   {
+  //     country: 'US',
+  //     city: '',
+  //     streetName: '',
+  //     postalCode: '',
+  //   },
+  // ]);
   const [showSecondForm, setShowSecondForm] = useState(false);
-  // const [useShippingAsBillingChecked, setUseShippingAsBillingChecked] = useState(false);
   const [useAsDefault, setUseAsDefaultChecked] = useState(false);
   const [selectedCountryShipping, setSelectedCountryShipping] = useState('US');
-  const [addressValueShippingCountry, setAddressValueShippingCountry] = useState('');
-  const [addressValueShippingStreetName, setAddressValueShippingStreetName] = useState('');
-  const [addressValueShippingPostalCode, setAddressValueShippingPostalCode] = useState('');
+  const [addressValueCountryShipping, setAddressValueCountryShipping] = useState('');
+  const [addressValueStreetNameShipping, setAddressValueStreetNameShipping] = useState('');
+  const [addressValuePostalCodeShipping, setAddressValuePostalCodeShipping] = useState('');
   const [selectedCountryBilling, setSelectedCountryBilling] = useState('US');
-  const [addressValueBillingCountry, setAddressValueBillingCountry] = useState('');
-  const [addressValueBillingStreetName, setAddressValueBillingStreetName] = useState('');
-  const [addressValueBillingPostalCode, setAddressValueBillingPostalCode] = useState('');
+  const [addressValueCountryBilling, setAddressValueCountryBilling] = useState('');
+  const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
+  const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -62,43 +58,32 @@ const RegistrationForm = (): JSX.Element => {
     setDateOfBirth(newDate);
   };
 
-  // const handleAddressChange = (newAddress: Address, index: number): void => {
-  //   setAddresses((prevAddresses) => {
-  //     const updatedAddresses = [...prevAddresses];
-  //     updatedAddresses[index] = newAddress;
-  //     return updatedAddresses;
-  //   });
-
-  //   console.log(newAddress);
-  // };
-
   const handleCheckboxChange = (): void => {
     setShowSecondForm(!showSecondForm);
   };
 
-  // const handleShippingAddress = (): void => {
-  //   setShipping(shipping);
-  // };
-
   const handleUseAsDefaultChange = (): void => {
     setUseAsDefaultChecked(!useAsDefault);
   };
-  // const handleUseShippingAsBillingChange = (): void => {
-  //   setUseShippingAsBillingChecked(!useShippingAsBillingChecked);
-  // };
-
-  useEffect(() => {
-    if (!showSecondForm) {
-      setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
-    }
-  }, [showSecondForm]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     console.log(event);
+    const shippingAddres = {
+      country: selectedCountryShipping,
+      city: addressValueCountryShipping,
+      streetName: addressValueStreetNameShipping,
+      postalCode: addressValuePostalCodeShipping,
+    };
+    const billingAddres = {
+      country: selectedCountryBilling,
+      city: addressValueCountryBilling,
+      streetName: addressValueStreetNameBilling,
+      postalCode: addressValuePostalCodeBilling,
+    };
     const dataAddresses = showSecondForm
-      ? { ...addresses[0], ...addresses[1] }
-      : { ...addresses[0], ...addresses[0] };
+      ? [shippingAddres, billingAddres]
+      : [shippingAddres, shippingAddres];
     const defaultAddresses = useAsDefault ? { defaultShippingAddress: 0 } : {};
     const formData = {
       email: `${userEmail}`,
@@ -111,35 +96,10 @@ const RegistrationForm = (): JSX.Element => {
       ...defaultAddresses,
     };
 
-    // if (addresses.length < 2) {
-    //   const newAddress = { ...addresses[0] };
-    //   setAddresses((prevAddresses) => [newAddress, ...prevAddresses]);
-    //   console.log(1);
-    // } else
-    if (!showSecondForm) {
-      setAddresses((prevAddresses) => prevAddresses.slice(0, 1));
-      console.log(2);
-    } else {
-      setAddresses((prevAddresses) => [...prevAddresses]);
-      console.log(3);
-    }
-
-    console.group(
-      'shipping',
-      selectedCountryShipping,
-      addressValueShippingCountry,
-      addressValueShippingStreetName,
-      addressValueShippingPostalCode,
-      'builling',
-      selectedCountryBilling,
-      addressValueBillingCountry,
-      addressValueBillingStreetName,
-      addressValueBillingPostalCode
-    );
     console.log('Form Data:', formData);
 
-    // const response = await executeCustomerRequest(formData);
-    // console.log('Response registr:', response);
+    const response = await executeCustomerRequest(formData);
+    console.log('Response registr:', response);
     setShowError(true);
   };
 
@@ -183,57 +143,13 @@ const RegistrationForm = (): JSX.Element => {
         showError={showError}
         selectedCountry={selectedCountryShipping}
         setSelectedCountry={setSelectedCountryShipping}
-        addressValueCountry={addressValueShippingCountry}
-        setAddressValueCountry={setAddressValueShippingCountry}
-        addressValueStreetName={addressValueShippingStreetName}
-        setAddressValueStreetName={setAddressValueShippingStreetName}
-        addressValuePostalCode={addressValueShippingPostalCode}
-        setAddressValuePostalCode={setAddressValueShippingPostalCode}
+        addressValueCountry={addressValueCountryShipping}
+        setAddressValueCountry={setAddressValueCountryShipping}
+        addressValueStreetName={addressValueStreetNameShipping}
+        setAddressValueStreetName={setAddressValueStreetNameShipping}
+        addressValuePostalCode={addressValuePostalCodeShipping}
+        setAddressValuePostalCode={setAddressValuePostalCodeShipping}
       />
-      {/* <LabelInput classLabel="authentication-form__address-label country" htmlFor="country">
-          Country
-        </LabelInput>
-        <SelectCountry
-          value={selectedCountryShipping}
-          setValueSelect={setSelectedCountryShipping}
-        />
-        <LabelInput classLabel="authentication-form__address-label city" htmlFor="city">
-          City
-        </LabelInput>
-        <InputAddres
-          showError={showError}
-          value={addressValueShippingCountry}
-          setValueAddres={setAddressValueShippingCountry}
-          classNameInput="city"
-          placeholderInput="City"
-        />
-        <LabelInput
-          classLabel="authentication-form__address-label street-name"
-          htmlFor="street-name"
-        >
-          Street Name
-        </LabelInput>
-        <InputAddres
-          showError={showError}
-          value={addressValueShippingStreetName}
-          setValueAddres={setAddressValueShippingStreetName}
-          classNameInput="street-name"
-          placeholderInput="Street Name"
-        />
-        <LabelInput
-          classLabel="authentication-form__address-label postal-code"
-          htmlFor="postal-code"
-        >
-          Postal Code
-        </LabelInput>
-        <InputAddres
-          showError={showError}
-          value={addressValueShippingPostalCode}
-          setValueAddres={setAddressValueShippingPostalCode}
-          classNameInput="postal-code"
-          placeholderInput="Postal Code"
-        />
-      </FieldsetLegendForm> */}
       {/* /////////////// */}
       {/* <AddressInput
         fieldsetLegend="Shipping"
@@ -246,8 +162,8 @@ const RegistrationForm = (): JSX.Element => {
           checked={useShippingAsBillingChecked}
           onChange={handleUseShippingAsBillingChange}
         /> */}
-        <CheckboxAddBilling checked={showSecondForm} onChange={handleCheckboxChange} />
         <CheckboxUseAsDefault checked={useAsDefault} onChange={handleUseAsDefaultChange} />
+        <CheckboxAddBilling checked={showSecondForm} onChange={handleCheckboxChange} />
       </div>
       {showSecondForm && (
         // <AddressInput
@@ -263,12 +179,12 @@ const RegistrationForm = (): JSX.Element => {
           showError={showError}
           selectedCountry={selectedCountryBilling}
           setSelectedCountry={setSelectedCountryBilling}
-          addressValueCountry={addressValueBillingCountry}
-          setAddressValueCountry={setAddressValueBillingCountry}
-          addressValueStreetName={addressValueBillingStreetName}
-          setAddressValueStreetName={setAddressValueBillingStreetName}
-          addressValuePostalCode={addressValueBillingPostalCode}
-          setAddressValuePostalCode={setAddressValueBillingPostalCode}
+          addressValueCountry={addressValueCountryBilling}
+          setAddressValueCountry={setAddressValueCountryBilling}
+          addressValueStreetName={addressValueStreetNameBilling}
+          setAddressValueStreetName={setAddressValueStreetNameBilling}
+          addressValuePostalCode={addressValuePostalCodeBilling}
+          setAddressValuePostalCode={setAddressValuePostalCodeBilling}
         />
       )}
       <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
