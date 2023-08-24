@@ -14,9 +14,11 @@ import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
 import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
 import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
 import { executeCustomerRequest } from '../../api/clientApi';
+import FirstnameInput from '../FirstnameInput/FirstnameInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
+  const [userFirstname, setUserFirstname] = useState('');
   const [userEmail, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -40,6 +42,10 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValueCountryBilling, setAddressValueCountryBilling] = useState('');
   const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
+
+  const handleFirstNameChange = (newFistname: string): void => {
+    setUserFirstname(newFistname);
+  };
 
   const handleEmailChange = (newEmail: string): void => {
     setEmail(newEmail);
@@ -95,7 +101,7 @@ const RegistrationForm = (): JSX.Element => {
       billingAddresses: [1],
       ...defaultAddresses,
     };
-
+    console.log('fistname', userFirstname);
     console.log('Form Data:', formData);
 
     const response = await executeCustomerRequest(formData);
@@ -105,6 +111,11 @@ const RegistrationForm = (): JSX.Element => {
 
   return (
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
+      <FirstnameInput
+        onChange={handleFirstNameChange}
+        showError={showError}
+        value={userFirstname}
+      />
       <LabelInput htmlFor="userEmail">Email</LabelInput>
       <UserEmailInput showError={showError} onEmailChange={handleEmailChange} />
       <LabelInput htmlFor="password">Password</LabelInput>
