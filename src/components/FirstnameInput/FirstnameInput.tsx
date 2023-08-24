@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
+import isNotEmptyValidation from '../../utils/validationFunctions/isNotEmptyValidation';
 
 interface IFirstnameInputProps {
   onChange: (value: string) => void;
@@ -16,8 +17,9 @@ const FirstnameInput = ({
 }: IFirstnameInputProps): JSX.Element => {
   const [firstnameError, setFirstnameError] = useState('');
 
-  const validateFirstnameInput = (value: string): string => {
-    return !value.length ? 'Should`t be empty' : '';
+  const changeErrorText = (value: string): string => {
+    const status = isNotEmptyValidation(value);
+    return !status ? 'Should`t be empty' : '';
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -25,10 +27,9 @@ const FirstnameInput = ({
     onChange(fistNameValue);
     console.log(showError);
     if (showError) {
-      const error = validateFirstnameInput(fistNameValue);
-      setFirstnameError(error);
+      setFirstnameError(changeErrorText(fistNameValue));
     }
-    if (validateFirstnameInput(fistNameValue) === '') {
+    if (isNotEmptyValidation(fistNameValue)) {
       showError = false;
       changeError(showError);
     } else {
@@ -39,7 +40,7 @@ const FirstnameInput = ({
 
   useEffect(() => {
     if (showError) {
-      setFirstnameError(validateFirstnameInput(value));
+      setFirstnameError(changeErrorText(value));
     }
   }, [value, showError]);
 
