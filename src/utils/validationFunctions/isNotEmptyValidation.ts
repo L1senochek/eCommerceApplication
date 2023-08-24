@@ -1,10 +1,24 @@
-const isNotEmptyValidation = (value: string): boolean => {
+const isNotEmptyValidation = (
+  value: string
+): {
+  status: boolean;
+  text: string;
+} => {
   if (!value) {
-    return false;
+    return {
+      status: false,
+      text: 'Shouldn`t be Empty',
+    };
   } else if (value.trim() === value) {
-    return true;
+    return {
+      status: false,
+      text: '',
+    };
   } else {
-    return false;
+    return {
+      status: false,
+      text: 'Shouldn`t contain trailing spaces',
+    };
   }
 };
 

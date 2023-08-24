@@ -23,11 +23,9 @@ const FirstnameInput = ({
     onChange(fistNameValue);
     console.log(showError);
     if (showError) {
-      setFirstnameError(
-        changeTooltipText(fistNameValue, isNotEmptyValidation, 'Shouldn`t be Empty')
-      );
+      setFirstnameError(changeTooltipText(fistNameValue, isNotEmptyValidation));
     }
-    if (isNotEmptyValidation(fistNameValue)) {
+    if (isNotEmptyValidation(fistNameValue).status) {
       showError = false;
       changeError(showError);
     } else {
@@ -38,7 +36,7 @@ const FirstnameInput = ({
 
   useEffect(() => {
     if (showError) {
-      setFirstnameError(changeTooltipText(value, isNotEmptyValidation, 'Shouldn`t be Empty'));
+      setFirstnameError(changeTooltipText(value, isNotEmptyValidation));
     }
   }, [value, showError]);
 

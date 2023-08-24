@@ -1,10 +1,12 @@
 const changeTooltipText = (
   value: string,
-  validationFunc: (value: string) => boolean,
-  tooltipErrorText: string
+  validationFunc: (value: string) => {
+    status: boolean;
+    text: string;
+  }
 ): string => {
-  const status = validationFunc(value);
-  return !status ? `${tooltipErrorText}` : '';
+  const result = validationFunc(value);
+  return !result.status ? `${result.text}` : '';
 };
 
 export default changeTooltipText;
