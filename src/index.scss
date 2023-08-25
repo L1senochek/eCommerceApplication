@@ -8,6 +8,10 @@
   -moz-box-sizing: border-box;
 }
 
+html {
+  font-size: $font-size-px;
+}
+
 .body {
   color: $primary-color;
   font-size: $font-size;

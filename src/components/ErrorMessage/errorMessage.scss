@@ -1,7 +1,11 @@
 @import '../../styles/variables.scss';
 
 .error-message {
+  padding: calc(($font-size + 2px + $padding-primary* 2) / 2);
   color: $error-color;
+}
+
+.error-message.active {
   padding: $padding-primary;
 }
 

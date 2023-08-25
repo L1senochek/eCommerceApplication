@@ -71,12 +71,13 @@ const UniversalInputWithError = ({
             onChange={handleChange}
             value={value}
           />
-          {showError && (
+          <ErrorMessage conditionError={showError} valueTag={`${validationFunction(value).text}`} />
+          {/* {showError && (
             // <p className={`authentication-form__error-message error-message`}>
             //   {validationFunction(value).text}
             // </p>
-            <ErrorMessage valueTag={`${validationFunction(value).text}`} />
-          )}
+            
+          )} */}
         </>
       )}
       {(isPassword || isConfirmPassword) && (
@@ -99,18 +100,33 @@ const UniversalInputWithError = ({
               onClick={(): void => setShowPassword(!showPassword)}
             ></button>
           </div>
-          {showError && !isConfirmPassword && (
+          {isPassword && (
+            <ErrorMessage
+              conditionError={showError}
+              valueTag={`${validationFunction(value).text}`}
+            />
+          )}
+          {/* {showError && !isConfirmPassword && (
             // <p className="authentication-form__error-message error-message password">
             //   {validationFunction(value).text}
             // </p>
-            <ErrorMessage valueTag={`${validationFunction(value).text}`} />
+            <ErrorMessage
+              conditionError={showError && !isConfirmPassword}
+              valueTag={`${validationFunction(value).text}`}
+            />
+          )} */}
+          {isConfirmPassword && (
+            <ErrorMessage
+              conditionError={!isPasswordsMatch && isConfirmPassword}
+              valueTag={'Passwords don`t match'}
+            />
           )}
-          {!isPasswordsMatch && isConfirmPassword && (
+          {/* {!isPasswordsMatch && isConfirmPassword && (
             // <p className="authentication-form__error-message error-message confirm-password">
             //   Passwords don`t match
             // </p>
             <ErrorMessage valueTag={'Passwords don`t match'} />
-          )}
+          )} */}
         </>
       )}
     </>

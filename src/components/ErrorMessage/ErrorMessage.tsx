@@ -1,13 +1,20 @@
 import './errorMessage.scss';
 
 interface ErrorMessageProps {
+  conditionError: boolean;
   valueTag: React.ReactNode;
 }
 
-const ErrorMessage = ({ valueTag }: ErrorMessageProps): JSX.Element => {
+const ErrorMessage = ({ conditionError, valueTag }: ErrorMessageProps): JSX.Element => {
   return (
     <>
-      <p className={`authentication-form__error-message error-message`}>{valueTag}</p>
+      <p
+        className={`authentication-form__error-message error-message ${
+          conditionError ? 'active' : ''
+        }`}
+      >
+        {conditionError ? valueTag : ''}
+      </p>
     </>
   );
 };
