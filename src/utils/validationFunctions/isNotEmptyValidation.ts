@@ -9,9 +9,14 @@ const isNotEmptyValidation = (
       status: false,
       text: 'Shouldn`t be Empty',
     };
-  } else if (value.trim() === value) {
+  } else if (value.match(/[0-9]/g)) {
     return {
       status: false,
+      text: 'Shouldn`t contain numbers',
+    };
+  } else if (value.trim() === value) {
+    return {
+      status: true,
       text: '',
     };
   } else {
