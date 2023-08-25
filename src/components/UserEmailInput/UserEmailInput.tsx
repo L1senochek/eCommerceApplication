@@ -3,10 +3,15 @@ import { useState, ChangeEvent, useEffect } from 'react';
 interface UserEmailInputProps {
   showError: boolean;
   onEmailChange: (email: string) => void;
+  value: string;
 }
 
-export const UserEmailInput = ({ showError, onEmailChange }: UserEmailInputProps): JSX.Element => {
-  const [userEmail, setUserEmail] = useState('');
+export const UserEmailInput = ({
+  showError,
+  onEmailChange,
+  value,
+}: UserEmailInputProps): JSX.Element => {
+  // const [userEmail, setUserEmail] = useState('');
   const [emailError, setEmailError] = useState('');
 
   const validateEmail = (email: string): string => {
@@ -22,7 +27,8 @@ export const UserEmailInput = ({ showError, onEmailChange }: UserEmailInputProps
   const userEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const valueEmail = event.target.value;
     console.log(valueEmail);
-    setUserEmail(valueEmail);
+    onEmailChange(valueEmail);
+    // setUserEmail(valueEmail);
     if (showError) {
       const error = validateEmail(valueEmail);
       setEmailError(error);
@@ -31,11 +37,11 @@ export const UserEmailInput = ({ showError, onEmailChange }: UserEmailInputProps
 
   useEffect(() => {
     if (showError) {
-      const error = validateEmail(userEmail);
-      setEmailError(error);
+      // const error = validateEmail(value);
+      setEmailError(validateEmail(value));
     }
-    onEmailChange(userEmail);
-  }, [showError, userEmail, onEmailChange]);
+    // onEmailChange(value);
+  }, [showError, value]);
 
   return (
     <>
@@ -46,7 +52,7 @@ export const UserEmailInput = ({ showError, onEmailChange }: UserEmailInputProps
         }`}
         placeholder="User@example.com"
         id="userEmail"
-        value={userEmail}
+        value={value}
         onChange={userEmailChange}
       />
       {showError && emailError && (

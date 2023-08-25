@@ -130,7 +130,7 @@ const RegistrationForm = (): JSX.Element => {
       />
       <LastnameInput onChange={handleLastNameChange} showError={showError} value={userLastname} />
       <LabelInput htmlFor="userEmail">Email</LabelInput>
-      <UserEmailInput showError={showError} onEmailChange={handleEmailChange} />
+      <UserEmailInput showError={showError} onEmailChange={handleEmailChange} value={userEmail} />
       <LabelInput htmlFor="password">Password</LabelInput>
       <PasswordInput
         placeholder="Password"
