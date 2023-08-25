@@ -8,7 +8,6 @@ import LinkTo from '../LinkTo/LinkTo';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
 import './RegistrationForm.scss';
 import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
-// import { Address } from '../AddressInput/AddressInput';
 import React from 'react';
 import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
 import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
@@ -20,6 +19,7 @@ import LastnameInput from '../LastnameInput/LastnameInput';
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
+  const [showErrorLastname, setShowErrorLastname] = useState(false);
   const [userFirstname, setUserFirstname] = useState('');
   const [userLastname, setUserLastname] = useState('');
   const [userEmail, setEmail] = useState('');
@@ -37,10 +37,6 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValueCountryBilling, setAddressValueCountryBilling] = useState('');
   const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
-
-  const updateErrorFitstname = (error: boolean): void => {
-    setShowErrorFirstname(error);
-  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
@@ -84,11 +80,16 @@ const RegistrationForm = (): JSX.Element => {
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
       <FirstnameInput
         onChange={setUserFirstname}
-        changeError={updateErrorFitstname}
+        changeError={setShowErrorFirstname}
         showError={showErrorFirstname}
         value={userFirstname}
       />
-      <LastnameInput onChange={setUserLastname} showError={showError} value={userLastname} />
+      <LastnameInput
+        onChange={setUserLastname}
+        changeError={setShowErrorLastname}
+        showError={showErrorLastname}
+        value={userLastname}
+      />
       <LabelInput htmlFor="userEmail">Email</LabelInput>
       <UserEmailInput showError={showError} onEmailChange={setEmail} value={userEmail} />
       <LabelInput htmlFor="password">Password</LabelInput>

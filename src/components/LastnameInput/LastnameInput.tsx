@@ -1,28 +1,31 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
+import isTextInputValidation from '../../utils/isTextInputValidation/isTextInputValidation';
 
 interface ILastnameInputProps {
   onChange: (value: string) => void;
+  changeError: (error: boolean) => void;
   showError: boolean;
   value: string;
 }
 
-const LastnameInput = ({ onChange, showError, value }: ILastnameInputProps): JSX.Element => {
-  const [lastnameError, setLastnameError] = useState('');
-
-  const validateLastnameInput = (value: string): string => {
-    return !value.length ? 'Should`t be empty' : '';
-  };
-
+const LastnameInput = ({
+  onChange,
+  changeError,
+  showError,
+  value,
+}: ILastnameInputProps): JSX.Element => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    onChange(event.target.value);
-  };
-
-  useEffect(() => {
-    if (showError) {
-      setLastnameError(validateLastnameInput(value));
+    const lastNameValue = event.target.value;
+    onChange(lastNameValue);
+    if (isTextInputValidation(lastNameValue).status) {
+      showError = false;
+      changeError(showError);
+    } else {
+      showError = true;
+      changeError(showError);
     }
-  }, [value, showError]);
+  };
 
   return (
     <>
@@ -36,8 +39,10 @@ const LastnameInput = ({ onChange, showError, value }: ILastnameInputProps): JSX
         onChange={handleChange}
         value={value}
       />
-      {showError && lastnameError && (
-        <p className={`authentication-form__error-message error-message`}>{lastnameError}</p>
+      {showError && (
+        <p className={`authentication-form__error-message error-message`}>
+          {isTextInputValidation(value).text}
+        </p>
       )}
     </>
   );
