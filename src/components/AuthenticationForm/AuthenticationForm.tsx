@@ -3,15 +3,15 @@ import { FormEvent, ReactNode } from 'react';
 import LinkTo from '../LinkTo/LinkTo';
 
 interface AuthenticationFormProps {
-  children: ReactNode;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   titleText: string;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  children: ReactNode;
 }
 
 const AuthenticationForm = ({
-  children,
-  onSubmit,
   titleText,
+  onSubmit,
+  children,
 }: AuthenticationFormProps): JSX.Element => {
   return (
     <div className="authentication-form">
