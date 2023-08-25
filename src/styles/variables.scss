@@ -6,6 +6,7 @@ $secondary-color: #e877ff;
 $tetiary-color: #6200ee;
 $quaternary-color: #6200b3;
 $fivefold-color: #ff00fe;
+$error-color: #ff0000;
 $background-image: radial-gradient(ellipse at 30% 10%, #26003c, #050505);
 
 $font-family: 'Arial', sans-serif;
@@ -19,6 +20,9 @@ $border-style: solid;
 $box-shadow: 0 0 10px 1px $fivefold-color;
 $text-shadow: 0 0 10px $fivefold-color;
 
+$box-shadow-error: 0 0 10px 1px $error-color;
+$text-shadow-error: 0 0 10px $error-color;
+
 $padding-primary: 5px;
 $padding-secondary: 15px;
 $padding-tetiary: 10px;
@@ -26,5 +30,9 @@ $padding-tetiary: 10px;
 $width-btn-date-of-biirth: 5px;
 $width-btn: 10vw;
 $width: 20vw;
+$width-logo-main-page: 8vw;
+$height-logo-main-page: 8vw;
+$width-input-btn: 17px;
+$height-input-btn: 17px;
 
 $transitionAll: all 1s ease;

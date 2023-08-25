@@ -1,3 +1,5 @@
+import './errorMessage.scss';
+
 interface ErrorMessageProps {
   valueTag: React.ReactNode;
 }

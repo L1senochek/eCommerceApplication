@@ -38,8 +38,8 @@
     margin-right: $padding-primary;
     border-color: $fivefold-color;
     background: transparent;
-    width: 17px;
-    height: 17px;
+    width: $width-input-btn;
+    height: $height-input-btn;
   }
   &__input {
     width: 100%;
