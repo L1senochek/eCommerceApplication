@@ -27,4 +27,7 @@
     justify-content: space-between;
     width: 100%;
   }
+  &__input.country {
+    margin-bottom: calc($padding-error-tag * 2);
+  }
 }
