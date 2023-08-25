@@ -33,11 +33,11 @@ const FieldsetLegendForm = ({
 }: FieldsetLegendFormProps): JSX.Element => (
   <fieldset className={classNameFieldset}>
     <legend className={classNameLegend}>{fieldsetLegendTitle}</legend>
-    <LabelInput classLabel="authentication-form__address-label country" htmlFor="country">
+    <LabelInput classNameLabel="authentication-form__address-label country" htmlFor="country">
       Country
     </LabelInput>
     <SelectCountry value={selectedCountry} setValueSelect={setSelectedCountry} />
-    <LabelInput classLabel="authentication-form__address-label city" htmlFor="city">
+    <LabelInput classNameLabel="authentication-form__address-label city" htmlFor="city">
       City
     </LabelInput>
     <InputAddres
@@ -47,7 +47,10 @@ const FieldsetLegendForm = ({
       classNameInput="city"
       placeholderInput="City"
     />
-    <LabelInput classLabel="authentication-form__address-label street-name" htmlFor="street-name">
+    <LabelInput
+      classNameLabel="authentication-form__address-label street-name"
+      htmlFor="street-name"
+    >
       Street Name
     </LabelInput>
     <InputAddres
@@ -57,7 +60,10 @@ const FieldsetLegendForm = ({
       classNameInput="street-name"
       placeholderInput="Street Name"
     />
-    <LabelInput classLabel="authentication-form__address-label postal-code" htmlFor="postal-code">
+    <LabelInput
+      classNameLabel="authentication-form__address-label postal-code"
+      htmlFor="postal-code"
+    >
       Postal Code
     </LabelInput>
     <InputAddres

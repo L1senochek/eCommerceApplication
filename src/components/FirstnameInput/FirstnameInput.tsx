@@ -30,7 +30,7 @@ const FirstnameInput = ({
 
   return (
     <>
-      <LabelInput classLabel="first-name-input" htmlFor="first-name-input">
+      <LabelInput classNameLabel="first-name-input" htmlFor="first-name-input">
         Firstname
       </LabelInput>
       <input

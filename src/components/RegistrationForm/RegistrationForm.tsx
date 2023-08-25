@@ -11,10 +11,13 @@ import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
 import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
 import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
 import { executeCustomerRequest } from '../../api/clientApi';
-import FirstnameInput from '../FirstnameInput/FirstnameInput';
+// import FirstnameInput from '../FirstnameInput/FirstnameInput';
 import LastnameInput from '../LastnameInput/LastnameInput';
 import EmailInput from '../EmailInput/EmailInput';
 import PasswordInput from '../UniversalPasswordInput/UniversalPasswordInput';
+import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
+import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
+import isPasswordValid from '../../utils/validationFunctions/isPasswordValid/isPasswordValid';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
@@ -83,12 +86,24 @@ const RegistrationForm = (): JSX.Element => {
 
   return (
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
-      <FirstnameInput
+      <UniversalInputWithError
         onChange={setUserFirstname}
         changeError={setShowErrorFirstname}
         showError={showErrorFirstname}
         value={userFirstname}
+        validationFunction={isTextInputValid}
+        placeholder="Firstname"
+        labelText="Firstname"
+        labelFor="first-name-input"
+        type="text"
+        classNameInput="authentication-form__input input first-name-input"
       />
+      {/* <FirstnameInput
+        onChange={setUserFirstname}
+        changeError={setShowErrorFirstname}
+        showError={showErrorFirstname}
+        value={userFirstname}
+      /> */}
       <LastnameInput
         onChange={setUserLastname}
         changeError={setShowErrorLastname}
@@ -101,7 +116,22 @@ const RegistrationForm = (): JSX.Element => {
         showError={showErrorEmail}
         value={userEmail}
       />
-      <PasswordInput
+      <UniversalInputWithError
+        onChange={setPassword}
+        changeError={setShowErrorPassword}
+        showError={showErrorPassword}
+        value={password}
+        validationFunction={isPasswordValid}
+        placeholder="Password"
+        labelText="Password"
+        labelFor="password"
+        type="password"
+        isPassword={true}
+        classNameWrapperPass="authentication-form__input input"
+        classNameInputPass="authentication-form__input_form password"
+        classNameBtnPass="authentication-form__input_btn"
+      />
+      {/* <PasswordInput
         onChange={setPassword}
         changeError={setShowErrorPassword}
         showError={showErrorPassword}
@@ -109,7 +139,7 @@ const RegistrationForm = (): JSX.Element => {
         placeholder="Password"
         labelText={'Password'}
         labelFor={'password'}
-      />
+      /> */}
       <PasswordInput
         onChange={setConfirmPassword}
         changeError={setShowErrorConfirmPassword}

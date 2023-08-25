@@ -29,7 +29,7 @@ const LastnameInput = ({
 
   return (
     <>
-      <LabelInput classLabel="last-name-input" htmlFor="last-name-input">
+      <LabelInput classNameLabel="last-name-input" htmlFor="last-name-input">
         Lastname
       </LabelInput>
       <input
