@@ -4,15 +4,15 @@ import { IIsValidationFunction } from '../../model/utils/validationFunctions/isV
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 interface IUniversalInputWithErrorProps {
-  onChange: (value: string) => void;
-  changeError: (error: boolean) => void;
-  showError: boolean;
   value: string;
+  onChange: (value: string) => void;
+  showError: boolean;
+  changeError: (error: boolean) => void;
   validationFunction: IIsValidationFunction;
-  placeholder: string;
   labelText: string;
   labelFor: string;
   type: string;
+  placeholder?: string;
   classNameLabel?: string;
   classNameInput?: string;
   classNameWrapperPass?: string;
@@ -24,10 +24,10 @@ interface IUniversalInputWithErrorProps {
 }
 
 const UniversalInputWithError = ({
-  onChange,
-  changeError,
-  showError,
   value,
+  onChange,
+  showError,
+  changeError,
   validationFunction,
   placeholder,
   labelText,
@@ -62,9 +62,10 @@ const UniversalInputWithError = ({
       <LabelInput htmlFor={labelFor} classNameLabel={classNameLabel}>
         {labelText}
       </LabelInput>
-      {!isPassword && (
+      {!isPassword && !isConfirmPassword && (
         <>
           <input
+            id={labelFor}
             type={type}
             placeholder={placeholder}
             className={`${classNameInput} ${showError ? 'input-error' : ''}`}
@@ -84,10 +85,13 @@ const UniversalInputWithError = ({
         <>
           <div
             className={`${classNameWrapperPass} ${
-              (isPasswordsMatch || showError) && !isConfirmPassword ? 'input-error' : ''
+              (!isPasswordsMatch && isConfirmPassword) || (isPassword && showError)
+                ? 'input-error'
+                : ''
             } ${isConfirmPassword ? 'confirm-password' : ''}`}
           >
             <input
+              id={labelFor}
               type={showPassword ? 'text' : `${type}`}
               className={`${classNameInputPass}`}
               placeholder={placeholder}
