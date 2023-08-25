@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
 import LabelInput from '../LabelInput/LabelInput';
-import PasswordInput from '../PasswordInput/PasswordInput';
+
 import Button from '../Button/Button';
 import LinkTo from '../LinkTo/LinkTo';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
@@ -15,12 +15,16 @@ import { executeCustomerRequest } from '../../api/clientApi';
 import FirstnameInput from '../FirstnameInput/FirstnameInput';
 import LastnameInput from '../LastnameInput/LastnameInput';
 import EmailInput from '../EmailInput/EmailInput';
+import PasswordInput from '../UniversalPasswordInput/UniversalPasswordInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
   const [showErrorLastname, setShowErrorLastname] = useState(false);
   const [showErrorEmail, setShowErrorEmail] = useState(false);
+  const [showErrorPassword, setShowErrorPassword] = useState(false);
+  const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
+
   const [userFirstname, setUserFirstname] = useState('');
   const [userLastname, setUserLastname] = useState('');
   const [userEmail, setEmail] = useState('');
@@ -92,32 +96,31 @@ const RegistrationForm = (): JSX.Element => {
         value={userLastname}
       />
       <EmailInput
-        showError={showErrorEmail}
-        changeError={setShowErrorEmail}
         onChange={setEmail}
+        changeError={setShowErrorEmail}
+        showError={showErrorEmail}
         value={userEmail}
       />
-      <LabelInput htmlFor="password">Password</LabelInput>
       <PasswordInput
-        placeholder="Password"
-        showError={showError}
         onChange={setPassword}
-        passwordValue={password}
+        changeError={setShowErrorPassword}
+        showError={showErrorPassword}
+        value={password}
+        placeholder="Password"
+        labelText={'Password'}
+        labelFor={'password'}
       />
-      <LabelInput htmlFor="confirmPassword">Confirm Password</LabelInput>
       <PasswordInput
-        placeholder="Confirm Password"
-        showError={showError}
-        confirmPassword={true}
         onChange={setConfirmPassword}
-        passwordValue={confirmPassword}
-        passwordsMatch={showError && password !== confirmPassword}
+        changeError={setShowErrorConfirmPassword}
+        showError={showErrorConfirmPassword}
+        value={confirmPassword}
+        placeholder="Confirm Password"
+        labelText={'Confirm Password'}
+        labelFor={'confirm-password'}
+        isConfirmPassword={true}
+        isPasswordsMatch={password === confirmPassword}
       />
-      {showError && password !== confirmPassword && (
-        <p className="authentication-form__error-message error-message confirm-password">
-          Passwords don`t match
-        </p>
-      )}
       <LabelInput htmlFor="dateOfBirth">Date of Birth</LabelInput>
       <DateOfBirthInput showError={showError} onChange={setDateOfBirth} dateValue={dateOfBirth} />
       {/* /////////////// */}
