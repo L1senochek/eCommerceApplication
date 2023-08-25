@@ -46,7 +46,6 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
 
   const updateError = (error: boolean): void => {
-    console.log(error);
     setShowError(error);
   };
 
@@ -85,7 +84,6 @@ const RegistrationForm = (): JSX.Element => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    console.log(event);
     const shippingAddres = {
       country: selectedCountryShipping,
       city: addressValueCountryShipping,
@@ -112,12 +110,14 @@ const RegistrationForm = (): JSX.Element => {
       billingAddresses: [1],
       ...defaultAddresses,
     };
-    console.log('fistname', userFirstname);
-    console.log('Form Data:', formData);
-
-    const response = await executeCustomerRequest(formData);
-    console.log('Response registr:', response);
-    setShowError(true);
+    // console.log('fistname', userFirstname);
+    // console.log('Form Data:', formData);
+    console.log(showError);
+    if (!showError) {
+      const response = await executeCustomerRequest(formData);
+      console.log('Response registr:', response);
+    }
+    // setShowError(true);
   };
 
   return (

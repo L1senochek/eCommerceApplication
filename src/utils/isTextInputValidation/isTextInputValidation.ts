@@ -1,4 +1,4 @@
-const isNotEmptyValidation = (
+const isTextInputValidation = (
   value: string
 ): {
   status: boolean;
@@ -27,4 +27,4 @@ const isNotEmptyValidation = (
   }
 };
 
-export default isNotEmptyValidation;
+export default isTextInputValidation;

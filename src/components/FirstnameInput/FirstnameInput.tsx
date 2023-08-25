@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
-import isNotEmptyValidation from '../../utils/validationFunctions/isNotEmptyValidation';
+import isTextInputValidation from '../../utils/isTextInputValidation/isTextInputValidation';
 
 interface IFirstnameInputProps {
   onChange: (value: string) => void;
@@ -19,7 +19,7 @@ const FirstnameInput = ({
     const fistNameValue = event.target.value;
     onChange(fistNameValue);
 
-    if (isNotEmptyValidation(fistNameValue).status) {
+    if (isTextInputValidation(fistNameValue).status) {
       showError = false;
       changeError(showError);
     } else {
@@ -44,7 +44,7 @@ const FirstnameInput = ({
       />
       {showError && (
         <p className={`authentication-form__error-message error-message`}>
-          {isNotEmptyValidation(value).text}
+          {isTextInputValidation(value).text}
         </p>
       )}
     </>
