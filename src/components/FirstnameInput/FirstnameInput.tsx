@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
-import isTextInputValid from '../../utils/isTextInputValid/isTextInputValid';
+import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
 
 interface IFirstnameInputProps {
   onChange: (value: string) => void;

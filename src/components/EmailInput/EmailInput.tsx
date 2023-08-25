@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
-import isEmailValid from '../../utils/isEmailValid/isEmailValid';
+import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailValid';
 
 interface IEmailInputProps {
   onChange: (email: string) => void;

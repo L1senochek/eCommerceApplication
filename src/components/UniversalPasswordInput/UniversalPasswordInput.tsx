@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 // import './PasswordInput.scss';
-import isPasswordValid from '../../utils/isPasswordValid/isPasswordValid';
+import isPasswordValid from '../../utils/validationFunctions/isPasswordValid/isPasswordValid';
 import LabelInput from '../LabelInput/LabelInput';
 
 interface IPasswordInputProps {

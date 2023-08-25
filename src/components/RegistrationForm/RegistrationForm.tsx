@@ -1,6 +1,5 @@
 import { useState, FormEvent } from 'react';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
-import LabelInput from '../LabelInput/LabelInput';
 
 import Button from '../Button/Button';
 import LinkTo from '../LinkTo/LinkTo';
@@ -24,6 +23,7 @@ const RegistrationForm = (): JSX.Element => {
   const [showErrorEmail, setShowErrorEmail] = useState(false);
   const [showErrorPassword, setShowErrorPassword] = useState(false);
   const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
+  const [showErrorDateOfBirth, setShowErrorDateOfBirth] = useState(false);
 
   const [userFirstname, setUserFirstname] = useState('');
   const [userLastname, setUserLastname] = useState('');
@@ -121,8 +121,12 @@ const RegistrationForm = (): JSX.Element => {
         isConfirmPassword={true}
         isPasswordsMatch={password === confirmPassword}
       />
-      <LabelInput htmlFor="dateOfBirth">Date of Birth</LabelInput>
-      <DateOfBirthInput showError={showError} onChange={setDateOfBirth} dateValue={dateOfBirth} />
+      <DateOfBirthInput
+        onChange={setDateOfBirth}
+        changeError={setShowErrorDateOfBirth}
+        showError={showErrorDateOfBirth}
+        value={dateOfBirth}
+      />
       {/* /////////////// */}
       <FieldsetLegendForm
         classNameFieldset="authentication-form__address shipping"
