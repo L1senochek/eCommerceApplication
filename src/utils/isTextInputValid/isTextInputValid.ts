@@ -1,4 +1,4 @@
-const isTextInputValidation = (
+const isTextInputValid = (
   value: string
 ): {
   status: boolean;
@@ -7,7 +7,7 @@ const isTextInputValidation = (
   if (!value) {
     return {
       status: false,
-      text: 'Shouldn`t be Empty',
+      text: 'Shouldn`t be empty',
     };
   } else if (value.match(/[0-9]/g)) {
     return {
@@ -27,4 +27,4 @@ const isTextInputValidation = (
   }
 };
 
-export default isTextInputValidation;
+export default isTextInputValid;

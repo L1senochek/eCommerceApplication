@@ -2,7 +2,6 @@ import { useState, FormEvent } from 'react';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
 import LabelInput from '../LabelInput/LabelInput';
 import PasswordInput from '../PasswordInput/PasswordInput';
-import UserEmailInput from '../UserEmailInput/UserEmailInput';
 import Button from '../Button/Button';
 import LinkTo from '../LinkTo/LinkTo';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
@@ -15,11 +14,13 @@ import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
 import { executeCustomerRequest } from '../../api/clientApi';
 import FirstnameInput from '../FirstnameInput/FirstnameInput';
 import LastnameInput from '../LastnameInput/LastnameInput';
+import EmailInput from '../EmailInput/EmailInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
   const [showErrorLastname, setShowErrorLastname] = useState(false);
+  const [showErrorEmail, setShowErrorEmail] = useState(false);
   const [userFirstname, setUserFirstname] = useState('');
   const [userLastname, setUserLastname] = useState('');
   const [userEmail, setEmail] = useState('');
@@ -90,8 +91,12 @@ const RegistrationForm = (): JSX.Element => {
         showError={showErrorLastname}
         value={userLastname}
       />
-      <LabelInput htmlFor="userEmail">Email</LabelInput>
-      <UserEmailInput showError={showError} onEmailChange={setEmail} value={userEmail} />
+      <EmailInput
+        showError={showErrorEmail}
+        changeError={setShowErrorEmail}
+        onChange={setEmail}
+        value={userEmail}
+      />
       <LabelInput htmlFor="password">Password</LabelInput>
       <PasswordInput
         placeholder="Password"

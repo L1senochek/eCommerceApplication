@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
-import isTextInputValidation from '../../utils/isTextInputValidation/isTextInputValidation';
+import isTextInputValid from '../../utils/isTextInputValid/isTextInputValid';
 
 interface IFirstnameInputProps {
   onChange: (value: string) => void;
@@ -19,7 +19,7 @@ const FirstnameInput = ({
     const fistNameValue = event.target.value;
     onChange(fistNameValue);
 
-    if (isTextInputValidation(fistNameValue).status) {
+    if (isTextInputValid(fistNameValue).status) {
       showError = false;
       changeError(showError);
     } else {
@@ -44,7 +44,7 @@ const FirstnameInput = ({
       />
       {showError && (
         <p className={`authentication-form__error-message error-message`}>
-          {isTextInputValidation(value).text}
+          {isTextInputValid(value).text}
         </p>
       )}
     </>
