@@ -19,21 +19,14 @@ import LastnameInput from '../LastnameInput/LastnameInput';
 
 const RegistrationForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);
+  const [showErrorFirstname, setShowErrorFirstname] = useState(false);
   const [userFirstname, setUserFirstname] = useState('');
   const [userLastname, setUserLastname] = useState('');
   const [userEmail, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [isFormFilled, setIsFormFilled] = useState(false);
-  // const [addresses, setAddresses] = useState<Address[]>([
-  //   {
-  //     country: 'US',
-  //     city: '',
-  //     streetName: '',
-  //     postalCode: '',
-  //   },
-  // ]);
+
   const [showSecondForm, setShowSecondForm] = useState(false);
   const [useAsDefault, setUseAsDefaultChecked] = useState(false);
   const [selectedCountryShipping, setSelectedCountryShipping] = useState('US');
@@ -45,41 +38,8 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
 
-  const updateError = (error: boolean): void => {
-    setShowError(error);
-  };
-
-  const handleFirstNameChange = (newFistname: string): void => {
-    setUserFirstname(newFistname);
-  };
-
-  const handleLastNameChange = (newLastname: string): void => {
-    setUserLastname(newLastname);
-  };
-
-  const handleEmailChange = (newEmail: string): void => {
-    setEmail(newEmail);
-  };
-
-  const handlePasswordChange = (newPassword: string): void => {
-    setPassword(newPassword);
-  };
-
-  const handleConfirmPasswordChange = (newConfirmPassword: string): void => {
-    setConfirmPassword(newConfirmPassword);
-  };
-
-  const handleDateOfBirthChange = (newDate: string): void => {
-    newDate ? setIsFormFilled(true) : setIsFormFilled(false);
-    setDateOfBirth(newDate);
-  };
-
-  const handleCheckboxChange = (): void => {
-    setShowSecondForm(!showSecondForm);
-  };
-
-  const handleUseAsDefaultChange = (): void => {
-    setUseAsDefaultChecked(!useAsDefault);
+  const updateErrorFitstname = (error: boolean): void => {
+    setShowErrorFirstname(error);
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -112,30 +72,30 @@ const RegistrationForm = (): JSX.Element => {
     };
     // console.log('fistname', userFirstname);
     // console.log('Form Data:', formData);
-    console.log(showError);
-    if (!showError) {
+    console.log(showErrorFirstname);
+    if (!showErrorFirstname) {
       const response = await executeCustomerRequest(formData);
       console.log('Response registr:', response);
+      console.log(setShowError);
     }
-    // setShowError(true);
   };
 
   return (
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
       <FirstnameInput
-        onChange={handleFirstNameChange}
-        changeError={updateError}
-        showError={showError}
+        onChange={setUserFirstname}
+        changeError={updateErrorFitstname}
+        showError={showErrorFirstname}
         value={userFirstname}
       />
-      <LastnameInput onChange={handleLastNameChange} showError={showError} value={userLastname} />
+      <LastnameInput onChange={setUserLastname} showError={showError} value={userLastname} />
       <LabelInput htmlFor="userEmail">Email</LabelInput>
-      <UserEmailInput showError={showError} onEmailChange={handleEmailChange} value={userEmail} />
+      <UserEmailInput showError={showError} onEmailChange={setEmail} value={userEmail} />
       <LabelInput htmlFor="password">Password</LabelInput>
       <PasswordInput
         placeholder="Password"
         showError={showError}
-        onChange={handlePasswordChange}
+        onChange={setPassword}
         passwordValue={password}
       />
       <LabelInput htmlFor="confirmPassword">Confirm Password</LabelInput>
@@ -143,7 +103,7 @@ const RegistrationForm = (): JSX.Element => {
         placeholder="Confirm Password"
         showError={showError}
         confirmPassword={true}
-        onChange={handleConfirmPasswordChange}
+        onChange={setConfirmPassword}
         passwordValue={confirmPassword}
         passwordsMatch={showError && password !== confirmPassword}
       />
@@ -153,12 +113,7 @@ const RegistrationForm = (): JSX.Element => {
         </p>
       )}
       <LabelInput htmlFor="dateOfBirth">Date of Birth</LabelInput>
-      <DateOfBirthInput
-        showError={showError}
-        onChange={handleDateOfBirthChange}
-        dateValue={dateOfBirth}
-        isFormFilled={isFormFilled}
-      />
+      <DateOfBirthInput showError={showError} onChange={setDateOfBirth} dateValue={dateOfBirth} />
       {/* /////////////// */}
       <FieldsetLegendForm
         classNameFieldset="authentication-form__address shipping"
@@ -186,8 +141,14 @@ const RegistrationForm = (): JSX.Element => {
           checked={useShippingAsBillingChecked}
           onChange={handleUseShippingAsBillingChange}
         /> */}
-        <CheckboxUseAsDefault checked={useAsDefault} onChange={handleUseAsDefaultChange} />
-        <CheckboxAddBilling checked={showSecondForm} onChange={handleCheckboxChange} />
+        <CheckboxUseAsDefault
+          checked={useAsDefault}
+          onChange={(): void => setUseAsDefaultChecked(!useAsDefault)}
+        />
+        <CheckboxAddBilling
+          checked={showSecondForm}
+          onChange={(): void => setShowSecondForm(!showSecondForm)}
+        />
       </div>
       {showSecondForm && (
         // <AddressInput

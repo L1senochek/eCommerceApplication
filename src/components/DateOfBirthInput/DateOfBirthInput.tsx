@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import './DateOfBirthInput.scss';
 
-interface DateOfBirthInputProps {
+interface IDateOfBirthInputProps {
   showError: boolean;
   onChange: (newDate: string) => void;
   dateValue: string;
-  isFormFilled: boolean;
 }
 
-const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
-  showError,
-  onChange,
-  dateValue,
-  isFormFilled,
-}) => {
+const DateOfBirthInput: React.FC<IDateOfBirthInputProps> = ({ showError, onChange, dateValue }) => {
   const [inputErrorClass, setInputErrorClass] = useState('');
 
   useEffect(() => {
-    if (showError && !isFormFilled && dateValue === '') {
+    if (showError && dateValue === '') {
       setInputErrorClass('input-error');
     } else {
       setInputErrorClass('');
     }
-  }, [showError, isFormFilled, dateValue]);
+  }, [showError, dateValue]);
   return (
     <>
       <input
@@ -31,7 +25,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
         value={dateValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>): void => onChange(e.target.value)}
       />
-      {showError && !isFormFilled && dateValue === '' && (
+      {showError && dateValue === '' && (
         <p className="authentication-form__error-message error-message date-of-birth">
           Please enter your date of birth
         </p>
