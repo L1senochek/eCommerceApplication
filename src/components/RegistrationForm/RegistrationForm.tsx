@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
 
 import Button from '../Button/Button';
@@ -22,7 +22,7 @@ import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailVa
 import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid';
 
 const RegistrationForm = (): JSX.Element => {
-  // const [showError, setShowError] = useState(false);
+  const [showErrors, setShowErrors] = useState(true);
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
   const [showErrorLastname, setShowErrorLastname] = useState(false);
   const [showErrorEmail, setShowErrorEmail] = useState(false);
@@ -87,15 +87,95 @@ const RegistrationForm = (): JSX.Element => {
       billingAddresses: [1],
       ...defaultAddresses,
     };
-    // console.log('fistname', userFirstname);
-    // console.log('Form Data:', formData);
-    console.log(showErrorFirstname);
-    if (!showErrorFirstname) {
+    setShowErrors(false);
+
+    if (
+      !showErrorFirstname &&
+      !showErrorLastname &&
+      !showErrorEmail &&
+      !showErrorPassword &&
+      !showErrorConfirmPassword &&
+      !showErrorDateOfBirth &&
+      !showErrorAddressCountryShipping &&
+      !showErrorAddressStreetNameShipping &&
+      !showErrorAddressPostalCodeShipping &&
+      userLastname &&
+      userEmail &&
+      password &&
+      confirmPassword &&
+      dateOfBirth &&
+      addressValueCountryShipping &&
+      addressValueStreetNameShipping &&
+      addressValuePostalCodeShipping
+    ) {
+      console.log('Form Data:', formData);
       const response = await executeCustomerRequest(formData);
       console.log('Response registr:', response);
-      // console.log(setShowError);
     }
   };
+
+  useEffect(() => {
+    if (
+      !showErrors &&
+      !showErrorFirstname &&
+      !showErrorLastname &&
+      !showErrorEmail &&
+      !showErrorPassword &&
+      !showErrorConfirmPassword &&
+      !showErrorDateOfBirth &&
+      !showErrorAddressStreetNameShipping &&
+      !showErrorAddressPostalCodeShipping &&
+      !showErrorAddressStreetNameBilling &&
+      !showErrorAddressPostalCodeBilling &&
+      !userLastname &&
+      !userEmail &&
+      !password &&
+      !confirmPassword &&
+      !dateOfBirth &&
+      !addressValueStreetNameShipping &&
+      !addressValuePostalCodeShipping &&
+      !addressValueCountryBilling &&
+      !addressValueStreetNameBilling &&
+      !addressValuePostalCodeBilling
+    ) {
+      setShowErrorFirstname(true);
+      setShowErrorLastname(true);
+      setShowErrorEmail(true);
+      setShowErrorPassword(true);
+      setShowErrorConfirmPassword(true);
+      setShowErrorDateOfBirth(true);
+      setShowErrorAddressCountryShipping(true);
+      setShowErrorAddressStreetNameShipping(true);
+      setShowErrorAddressPostalCodeShipping(true);
+      setShowErrorAddressCountryBilling(true);
+      setShowErrorAddressStreetNameBilling(true);
+      setShowErrorAddressPostalCodeBilling(true);
+      console.log('showErrorFirstnameuseEffect4', showErrorFirstname);
+    }
+  }, [
+    addressValueCountryBilling,
+    addressValuePostalCodeBilling,
+    addressValuePostalCodeShipping,
+    addressValueStreetNameBilling,
+    addressValueStreetNameShipping,
+    confirmPassword,
+    dateOfBirth,
+    password,
+    showErrors,
+    showErrorAddressPostalCodeBilling,
+    showErrorAddressPostalCodeShipping,
+    showErrorAddressStreetNameBilling,
+    showErrorAddressStreetNameShipping,
+    showErrorConfirmPassword,
+    showErrorDateOfBirth,
+    showErrorEmail,
+    showErrorFirstname,
+    showErrorLastname,
+    showErrorPassword,
+    userEmail,
+    userFirstname,
+    userLastname,
+  ]);
 
   return (
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
@@ -111,12 +191,6 @@ const RegistrationForm = (): JSX.Element => {
         type="text"
         classNameInput="authentication-form__input input first-name-input"
       />
-      {/* <FirstnameInput
-        onChange={setUserFirstname}
-        changeError={setShowErrorFirstname}
-        showError={showErrorFirstname}
-        value={userFirstname}
-      /> */}
       <UniversalInputWithError
         onChange={setUserLastname}
         changeError={setShowErrorLastname}
@@ -129,12 +203,6 @@ const RegistrationForm = (): JSX.Element => {
         type="text"
         classNameInput="authentication-form__input input last-name-input"
       />
-      {/* <LastnameInput
-        onChange={setUserLastname}
-        changeError={setShowErrorLastname}
-        showError={showErrorLastname}
-        value={userLastname}
-      /> */}
       <UniversalInputWithError
         onChange={setEmail}
         changeError={setShowErrorEmail}
@@ -147,12 +215,6 @@ const RegistrationForm = (): JSX.Element => {
         type="text"
         classNameInput="authentication-form__input input useremail"
       />
-      {/* <EmailInput
-        onChange={setEmail}
-        changeError={setShowErrorEmail}
-        showError={showErrorEmail}
-        value={userEmail}
-      /> */}
       <UniversalInputWithError
         onChange={setPassword}
         changeError={setShowErrorPassword}
@@ -168,15 +230,6 @@ const RegistrationForm = (): JSX.Element => {
         classNameInputPass="authentication-form__input_form password"
         classNameBtnPass="authentication-form__input_btn"
       />
-      {/* <PasswordInput
-        onChange={setPassword}
-        changeError={setShowErrorPassword}
-        showError={showErrorPassword}
-        value={password}
-        placeholder="Password"
-        labelText={'Password'}
-        labelFor={'password'}
-      /> */}
       <UniversalInputWithError
         onChange={setConfirmPassword}
         changeError={setShowErrorConfirmPassword}
@@ -193,17 +246,6 @@ const RegistrationForm = (): JSX.Element => {
         isConfirmPassword={true}
         isPasswordsMatch={password === confirmPassword}
       />
-      {/* <PasswordInput
-        onChange={setConfirmPassword}
-        changeError={setShowErrorConfirmPassword}
-        showError={showErrorConfirmPassword}
-        value={confirmPassword}
-        placeholder="Confirm Password"
-        labelText={'Confirm Password'}
-        labelFor={'confirm-password'}
-        isConfirmPassword={true}
-        isPasswordsMatch={password === confirmPassword}
-      /> */}
       <UniversalInputWithError
         onChange={setDateOfBirth}
         changeError={setShowErrorDateOfBirth}
@@ -215,15 +257,7 @@ const RegistrationForm = (): JSX.Element => {
         type="date"
         classNameInput="authentication-form__date-of-birth date-of-birth input"
       />
-      {/* <DateOfBirthInput
-        onChange={setDateOfBirth}
-        changeError={setShowErrorDateOfBirth}
-        showError={showErrorDateOfBirth}
-        value={dateOfBirth}
-      /> */}
-      {/* /////////////// */}
       <FieldsetLegendForm
-        // showError={showError}
         selectedCountry={selectedCountryShipping}
         addressValueCountry={addressValueCountryShipping}
         addressValueStreetName={addressValueStreetNameShipping}
@@ -243,12 +277,6 @@ const RegistrationForm = (): JSX.Element => {
         fieldsetLegendTitle="Shipping"
       />
       {/* /////////////// */}
-      {/* <AddressInput
-        fieldsetLegend="Shipping"
-        onChange={(newAddress: Address): void => handleAddressChange(newAddress, 0)}
-        index={0}
-        showError={showError}
-      /> */}
       <div className="authentication-form__checkboxes">
         {/* <CheckboxUseShippingAsBilling
           checked={useShippingAsBillingChecked}
@@ -264,14 +292,7 @@ const RegistrationForm = (): JSX.Element => {
         />
       </div>
       {showSecondForm && (
-        // <AddressInput
-        //   fieldsetLegend="Billing"
-        //   onChange={(newAddress: Address): void => handleAddressChange(newAddress, 1)}
-        //   index={1}
-        //   showError={showError}
-        // />
         <FieldsetLegendForm
-          // showError={showError}
           selectedCountry={selectedCountryBilling}
           addressValueCountry={addressValueCountryBilling}
           addressValueStreetName={addressValueStreetNameBilling}
@@ -290,20 +311,6 @@ const RegistrationForm = (): JSX.Element => {
           classNameLegend="authentication-form__address-header builling"
           fieldsetLegendTitle="Builling"
         />
-        // <FieldsetLegendForm
-        //   classNameFieldset="authentication-form__address builling"
-        //   classNameLegend="authentication-form__address-header builling"
-        //   fieldsetLegendTitle="Builling"
-        //   showError={showError}
-        //   selectedCountry={selectedCountryBilling}
-        //   setSelectedCountry={setSelectedCountryBilling}
-        //   addressValueCountry={addressValueCountryBilling}
-        //   setAddressValueCountry={setAddressValueCountryBilling}
-        //   addressValueStreetName={addressValueStreetNameBilling}
-        //   setAddressValueStreetName={setAddressValueStreetNameBilling}
-        //   addressValuePostalCode={addressValuePostalCodeBilling}
-        //   setAddressValuePostalCode={setAddressValuePostalCodeBilling}
-        // />
       )}
       <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
       <LinkToWithTextInWrapper text="Already have an account? ">

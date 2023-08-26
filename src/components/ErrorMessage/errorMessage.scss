@@ -14,7 +14,8 @@
 }
 
 .input-error,
-.input-error:hover {
+.input-error:hover,
+.input-error:focus:not(:hover) {
   border-color: $error-color;
   box-shadow: $box-shadow-error;
 }
