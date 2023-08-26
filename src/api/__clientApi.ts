@@ -1,4 +1,4 @@
-import { getApiPassRoot } from './buildAutorizationClient';
+import { getApiPassRoot } from './__buildAutorizationClient';
 import { ctpClient } from './buildClient';
 import {
   ClientResponse,

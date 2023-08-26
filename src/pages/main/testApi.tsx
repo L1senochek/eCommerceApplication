@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from 'react';
-import { getEndPoint } from '../../api/client';
+import { getEndPoint } from '../../api/__clientApi';
 import { Product } from '@commercetools/platform-sdk';
 
 const TestApi = (): ReactElement => {

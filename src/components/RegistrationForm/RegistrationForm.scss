@@ -8,7 +8,6 @@
   }
   &__date-of-birth {
     width: 50%;
-    margin-bottom: $padding-secondary;
   }
   &__address {
     display: flex;
@@ -27,5 +26,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+  }
+  &__input.country {
+    margin-bottom: calc($padding-error-tag * 2);
   }
 }

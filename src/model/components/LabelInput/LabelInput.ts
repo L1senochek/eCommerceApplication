@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
 
-export interface LabelInputProps {
+interface ILabelInputProps {
   htmlFor: string;
   children: ReactNode;
-  classLabel?: string;
+  classNameLabel?: string;
 }
+
+export default ILabelInputProps;

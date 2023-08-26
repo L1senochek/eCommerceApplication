@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 
-export interface LinkToWithTextInWrapperProps {
+interface ILinkToWithTextInWrapperProps {
   text: string;
   children: ReactNode;
 }
+
+export default ILinkToWithTextInWrapperProps;

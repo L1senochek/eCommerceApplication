@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.error-message {
+  padding: $padding-error-tag;
+  color: $error-color;
+}
+
+.error-message.active {
+  padding: $padding-primary;
+}
+
+.input-error>.password {
+  color: $error-color;
+}
+
+.input-error,
+.input-error:hover,
+.input-error:focus:not(:hover) {
+  border-color: $error-color;
+  box-shadow: $box-shadow-error;
+}

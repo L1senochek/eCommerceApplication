@@ -16,8 +16,8 @@
     background-image: $background-image;
   }
   &__logo {
-    width: 8vw;
-    height: 8vw;
+    width: $width-logo-main-page;
+    height: $height-logo-main-page;
   }
   &__title {
     color: $secondary-color;
@@ -33,7 +33,7 @@
     }
   }
   &__label {
-    padding: $padding-tetiary;
+    padding: $padding-primary;
     color: $primary-color;
   }
   &__input {
@@ -52,8 +52,8 @@
     &_btn {
       border-color: $fivefold-color;
       background: transparent;
-      width: 17px;
-      height: 17px;
+      width: $width-input-btn;
+      height: $height-input-btn;
     }
   }
   &__input:focus,
@@ -61,10 +61,6 @@
     border-color: $fivefold-color;
     outline: none;
     box-shadow: $box-shadow;
-  }
-  &__input:hover.input-error {
-    border-color: red;
-    outline: none;
   }
   &__input::placeholder {
     color: $tetiary-color;
