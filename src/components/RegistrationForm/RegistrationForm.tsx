@@ -115,6 +115,7 @@ const RegistrationForm = (): JSX.Element => {
       } else {
         setShowErrorCreate(false);
         console.log(2);
+        //create api function login client
         // router to main page
       }
     }
