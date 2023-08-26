@@ -7,8 +7,8 @@ import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextIn
 import './RegistrationForm.scss';
 // import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
 import React from 'react';
-import CheckboxAddBilling from '../CheckboxAddBilling/CheckboxAddBilling';
-import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
+// import CheckboxAddBilling from '../CheckboxComponent/CheckboxComponent';
+// import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
 import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
 import { executeCustomerRequest } from '../../api/clientApi';
 // import FirstnameInput from '../FirstnameInput/FirstnameInput';
@@ -20,6 +20,7 @@ import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/i
 import isPasswordValid from '../../utils/validationFunctions/isPasswordValid/isPasswordValid';
 import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailValid';
 import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid';
+import CheckboxComponent from '../CheckboxComponent/CheckboxComponent';
 
 const RegistrationForm = (): JSX.Element => {
   const [showErrors, setShowErrors] = useState(true);
@@ -282,13 +283,23 @@ const RegistrationForm = (): JSX.Element => {
           checked={useShippingAsBillingChecked}
           onChange={handleUseShippingAsBillingChange}
         /> */}
-        <CheckboxUseAsDefault
+        {/* <CheckboxUseAsDefault
           checked={useAsDefault}
           onChange={(): void => setUseAsDefaultChecked(!useAsDefault)}
+        /> */}
+        <CheckboxComponent
+          checked={useAsDefault}
+          onChange={(): void => setUseAsDefaultChecked(!useAsDefault)}
+          classNameCheckbox="checkbox__input"
+          classNameLabel="authentication-form__checkbox checkbox use-us-default"
+          titleCheckbox="Use As Default"
         />
-        <CheckboxAddBilling
+        <CheckboxComponent
           checked={showSecondForm}
           onChange={(): void => setShowSecondForm(!showSecondForm)}
+          classNameCheckbox="checkbox__input"
+          classNameLabel="authentication-form__checkbox checkbox add-billing"
+          titleCheckbox="Add Billing Address"
         />
       </div>
       {showSecondForm && (
