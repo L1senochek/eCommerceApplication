@@ -15,6 +15,7 @@ import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid
 import CheckboxComponent from '../CheckboxComponent/CheckboxComponent';
 import { FAILED_TO_CREATE_CUSTOMER } from '../../utils/constants/constants';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { loginUserWithPassApi } from '../../api/loginUserWithPass';
 
 const RegistrationForm = (): JSX.Element => {
   const [showErrorCreate, setShowErrorCreate] = useState(false);
@@ -116,7 +117,10 @@ const RegistrationForm = (): JSX.Element => {
         setShowErrorCreate(false);
         console.log(2);
         //create api function login client
-        // router to main page
+        const responseLoginUser = await loginUserWithPassApi(userEmail, password);
+        if (responseLoginUser) {
+          // router to main page
+        }
       }
     }
   };
