@@ -1,6 +1,6 @@
-import { LabelInputProps } from '../../model/components/LabelInput/LabelInput';
+import ILabelInputProps from '../../model/components/LabelInput/LabelInput';
 
-const LabelInput = ({ htmlFor, children, classNameLabel }: LabelInputProps): JSX.Element => (
+const LabelInput = ({ htmlFor, children, classNameLabel }: ILabelInputProps): JSX.Element => (
   <label
     className={`authentication-form__label ${classNameLabel ? classNameLabel : ''}`}
     htmlFor={htmlFor}

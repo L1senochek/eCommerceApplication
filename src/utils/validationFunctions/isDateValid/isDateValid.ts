@@ -1,9 +1,6 @@
-const isDateValid = (
-  value: string
-): {
-  status: boolean;
-  text: string;
-} => {
+import IIsValidationFunction from '../../../model/utils/validationFunctions/isValidationFunction';
+
+const isDateValid: IIsValidationFunction = (value: string) => {
   const currentDate = new Date();
   const inputDate = new Date(value);
   const minAgeMilliseconds = 13 * 365.25 * 24 * 60 * 60 * 1000;

@@ -1,4 +1,6 @@
-const isPasswordValid = (value: string): { status: boolean; text: string } => {
+import IIsValidationFunction from '../../../model/utils/validationFunctions/isValidationFunction';
+
+const isPasswordValid: IIsValidationFunction = (value: string) => {
   if (!value) {
     return {
       status: false,

@@ -1,11 +1,7 @@
+import IErrorMessageProps from '../../model/components/ErrorMessage/ErrorMessage';
 import './errorMessage.scss';
 
-interface ErrorMessageProps {
-  conditionError: boolean;
-  valueTag: React.ReactNode;
-}
-
-const ErrorMessage = ({ conditionError, valueTag }: ErrorMessageProps): JSX.Element => {
+const ErrorMessage = ({ conditionError, valueTag }: IErrorMessageProps): JSX.Element => {
   return (
     <>
       <p

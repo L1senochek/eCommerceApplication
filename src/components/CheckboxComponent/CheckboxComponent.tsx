@@ -1,23 +1,14 @@
 import React from 'react';
-import './CheckboxComponent.scss';
+import './checkboxComponent.scss';
+import ICheckboxComponentProps from '../../model/components/CheckboxComponent/CheckboxComponent';
 
-interface CheckboxComponentProps {
-  checked: boolean;
-  onChange: () => void;
-  classNameCheckbox?: string;
-  classNameLabel?: string;
-  titleCheckbox?: string;
-}
-//"authentication-form__checkbox checkbox add-billing">
-// "checkbox__input"
-// Add Billing Address
 const CheckboxComponent = ({
   checked,
   onChange,
   classNameCheckbox,
   classNameLabel,
   titleCheckbox,
-}: CheckboxComponentProps): JSX.Element => {
+}: ICheckboxComponentProps): JSX.Element => {
   return (
     <label className={`${classNameLabel}`}>
       <input

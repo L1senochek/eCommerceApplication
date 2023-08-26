@@ -1,16 +1,11 @@
-import React, { ButtonHTMLAttributes } from 'react';
-import './Button.scss';
-
-interface UniversalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
-  additionalClass?: string;
-}
+import IUniversalButtonProps from '../../model/components/Button/Button';
+import './button.scss';
 
 const UniversalButton = ({
   text,
   additionalClass,
   ...props
-}: UniversalButtonProps): JSX.Element => {
+}: IUniversalButtonProps): JSX.Element => {
   return (
     <button className={`btn ${additionalClass}`} {...props}>
       {text}

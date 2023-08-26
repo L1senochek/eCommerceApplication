@@ -4,25 +4,20 @@ import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
 import Button from '../Button/Button';
 import LinkTo from '../LinkTo/LinkTo';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
-import './RegistrationForm.scss';
-// import DateOfBirthInput from '../DateOfBirthInput/DateOfBirthInput';
-import React from 'react';
-// import CheckboxAddBilling from '../CheckboxComponent/CheckboxComponent';
-// import CheckboxUseAsDefault from '../CheckboxAsDefault/CheckboxAsDefault';
+import './registrationForm.scss';
 import FieldsetLegendForm from '../FieldsetLegendForm/FieldsetLegendForm';
 import { executeCustomerRequest } from '../../api/clientApi';
-// import FirstnameInput from '../FirstnameInput/FirstnameInput';
-// import LastnameInput from '../LastnameInput/LastnameInput';
-// import EmailInput from '../EmailInput/EmailInput';
-// import PasswordInput from '../UniversalPasswordInput/UniversalPasswordInput';
 import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
 import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
 import isPasswordValid from '../../utils/validationFunctions/isPasswordValid/isPasswordValid';
 import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailValid';
 import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid';
 import CheckboxComponent from '../CheckboxComponent/CheckboxComponent';
+import { FAILED_TO_CREATE_CUSTOMER } from '../../utils/constants/constants';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const RegistrationForm = (): JSX.Element => {
+  const [showErrorCreate, setShowErrorCreate] = useState(false);
   const [showErrors, setShowErrors] = useState(true);
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
   const [showErrorLastname, setShowErrorLastname] = useState(false);
@@ -30,6 +25,7 @@ const RegistrationForm = (): JSX.Element => {
   const [showErrorPassword, setShowErrorPassword] = useState(false);
   const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
   const [showErrorDateOfBirth, setShowErrorDateOfBirth] = useState(false);
+
   const [showErrorAddressCountryShipping, setShowErrorAddressCountryShipping] = useState(false);
   const [showErrorAddressStreetNameShipping, setShowErrorAddressStreetNameShipping] =
     useState(false);
@@ -112,6 +108,15 @@ const RegistrationForm = (): JSX.Element => {
       console.log('Form Data:', formData);
       const response = await executeCustomerRequest(formData);
       console.log('Response registr:', response);
+
+      if (response === FAILED_TO_CREATE_CUSTOMER) {
+        console.log(1);
+        setShowErrorCreate(true);
+      } else {
+        setShowErrorCreate(false);
+        console.log(2);
+        // router to main page
+      }
     }
   };
 
@@ -277,16 +282,7 @@ const RegistrationForm = (): JSX.Element => {
         classNameLegend="authentication-form__address-header shipping"
         fieldsetLegendTitle="Shipping"
       />
-      {/* /////////////// */}
       <div className="authentication-form__checkboxes">
-        {/* <CheckboxUseShippingAsBilling
-          checked={useShippingAsBillingChecked}
-          onChange={handleUseShippingAsBillingChange}
-        /> */}
-        {/* <CheckboxUseAsDefault
-          checked={useAsDefault}
-          onChange={(): void => setUseAsDefaultChecked(!useAsDefault)}
-        /> */}
         <CheckboxComponent
           checked={useAsDefault}
           onChange={(): void => setUseAsDefaultChecked(!useAsDefault)}
@@ -324,6 +320,9 @@ const RegistrationForm = (): JSX.Element => {
         />
       )}
       <Button type="submit" text="Sign up" className="authentication-form__submit btn" />
+      {showErrorCreate && (
+        <ErrorMessage conditionError={showErrorCreate} valueTag={FAILED_TO_CREATE_CUSTOMER} />
+      )}
       <LinkToWithTextInWrapper text="Already have an account? ">
         <LinkTo to={'/loginForm'} text={'Login here'} />
       </LinkToWithTextInWrapper>

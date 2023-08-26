@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 import LinkToWithTextInWrapper from '../LinkToWithTextInWrapper/LinkToWithTextInWrapper';
 import PasswordInput from '../PasswordInput/PasswordInput';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
-import './LoginForm.scss';
+import './loginForm.scss';
 
 const LoginForm = (): JSX.Element => {
   const [showError, setShowError] = useState(false);

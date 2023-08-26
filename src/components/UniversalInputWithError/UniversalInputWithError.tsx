@@ -1,27 +1,9 @@
 import { ChangeEvent, useState } from 'react';
 import LabelInput from '../LabelInput/LabelInput';
-import { IIsValidationFunction } from '../../model/utils/validationFunctions/isValidationFunction';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-
-interface IUniversalInputWithErrorProps {
-  value: string;
-  onChange: (value: string) => void;
-  showError: boolean;
-  changeError: (error: boolean) => void;
-  validationFunction: IIsValidationFunction;
-  labelText: string;
-  labelFor: string;
-  type: string;
-  placeholder?: string;
-  classNameLabel?: string;
-  classNameInput?: string;
-  classNameWrapperPass?: string;
-  classNameInputPass?: string;
-  classNameBtnPass?: string;
-  isPassword?: boolean;
-  isConfirmPassword?: boolean;
-  isPasswordsMatch?: boolean;
-}
+import './DateOfBirthInput.scss';
+import './PasswordInput.scss';
+import IUniversalInputWithErrorProps from '../../model/components/UniversalInputWithError/UniversalInputWithError';
 
 const UniversalInputWithError = ({
   value,
@@ -73,12 +55,6 @@ const UniversalInputWithError = ({
             value={value}
           />
           <ErrorMessage conditionError={showError} valueTag={`${validationFunction(value).text}`} />
-          {/* {showError && (
-            // <p className={`authentication-form__error-message error-message`}>
-            //   {validationFunction(value).text}
-            // </p>
-            
-          )} */}
         </>
       )}
       {(isPassword || isConfirmPassword) && (
@@ -110,27 +86,12 @@ const UniversalInputWithError = ({
               valueTag={`${validationFunction(value).text}`}
             />
           )}
-          {/* {showError && !isConfirmPassword && (
-            // <p className="authentication-form__error-message error-message password">
-            //   {validationFunction(value).text}
-            // </p>
-            <ErrorMessage
-              conditionError={showError && !isConfirmPassword}
-              valueTag={`${validationFunction(value).text}`}
-            />
-          )} */}
           {isConfirmPassword && (
             <ErrorMessage
               conditionError={!isPasswordsMatch && isConfirmPassword}
               valueTag={'Passwords don`t match'}
             />
           )}
-          {/* {!isPasswordsMatch && isConfirmPassword && (
-            // <p className="authentication-form__error-message error-message confirm-password">
-            //   Passwords don`t match
-            // </p>
-            <ErrorMessage valueTag={'Passwords don`t match'} />
-          )} */}
         </>
       )}
     </>

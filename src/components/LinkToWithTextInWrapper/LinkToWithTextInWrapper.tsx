@@ -1,6 +1,9 @@
-import { LinkToWithTextInWrapperProps } from '../../model/components/LinkToWithTextInWrapper/LinkToWithTextInWrapper';
+import ILinkToWithTextInWrapperProps from '../../model/components/LinkToWithTextInWrapper/LinkToWithTextInWrapper';
 
-const LinkToWithTextInWrapper = ({ text, children }: LinkToWithTextInWrapperProps): JSX.Element => (
+const LinkToWithTextInWrapper = ({
+  text,
+  children,
+}: ILinkToWithTextInWrapperProps): JSX.Element => (
   <h4 className="authentication-form__link-to-register">
     {text}
     {children}

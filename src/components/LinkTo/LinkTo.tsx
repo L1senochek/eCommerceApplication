@@ -1,13 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ILinkToProps from '../../model/components/LinkTo/LinkTo';
 
-interface LinkProps {
-  to: string;
-  text: string;
-  additionalClass?: string;
-}
-
-const LinkTo = ({ to, text, additionalClass }: LinkProps): JSX.Element => (
+const LinkTo = ({ to, text, additionalClass }: ILinkToProps): JSX.Element => (
   <Link className={`${additionalClass} link`} to={to}>
     {text}
   </Link>

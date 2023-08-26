@@ -1,18 +1,12 @@
 import React from 'react';
-import { FormEvent, ReactNode } from 'react';
 import LinkTo from '../LinkTo/LinkTo';
-
-interface AuthenticationFormProps {
-  titleText: string;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  children: ReactNode;
-}
+import IAuthenticationFormProps from '../../model/components/AuthenticationForm/AuthenticationForm';
 
 const AuthenticationForm = ({
   titleText,
   onSubmit,
   children,
-}: AuthenticationFormProps): JSX.Element => {
+}: IAuthenticationFormProps): JSX.Element => {
   return (
     <div className="authentication-form">
       <form className="authentication-form__wrapper" onSubmit={onSubmit}>

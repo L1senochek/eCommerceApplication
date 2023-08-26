@@ -1,9 +1,6 @@
-const isTextInputValid = (
-  value: string
-): {
-  status: boolean;
-  text: string;
-} => {
+import IIsValidationFunction from '../../../model/utils/validationFunctions/isValidationFunction';
+
+const isTextInputValid: IIsValidationFunction = (value: string) => {
   if (!value) {
     return {
       status: false,
