@@ -31,7 +31,6 @@ const LoginForm = (): JSX.Element => {
       console.log('Response LoginUser:', responseLoginUser);
       if (responseLoginUser) {
         setShowErrorSignIn(false);
-        // add token
         navigation('/');
       } else {
         setShowErrorSignIn(true);

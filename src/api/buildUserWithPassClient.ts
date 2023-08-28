@@ -3,11 +3,27 @@ import {
   type HttpMiddlewareOptions,
   PasswordAuthMiddlewareOptions,
   Client,
+  TokenCache,
+  TokenStore,
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient, ApiRoot } from '@commercetools/platform-sdk';
+import { TOKEN_STORAGE_KEY } from '../utils/constants/constants';
 
 export const projectKey = `${import.meta.env.VITE_CTP_PROJECT_KEY || ''}`;
-const scopes = [`${import.meta.env.VITE_CTP_SCOPES || ''}`];
+export const scopes = [`${import.meta.env.VITE_CTP_SCOPES || ''}`];
+
+const MyTokenCache: TokenCache = {
+  get() {
+    return {
+      token: TOKEN_STORAGE_KEY,
+      expirationTime: 172800,
+    };
+  },
+  set(value: TokenStore) {
+    localStorage.setItem(TOKEN_STORAGE_KEY, `${value.token}`);
+    // localStorage.getItem(TOKEN_STORAGE_KEY) // `Bearer ${value.token}`);
+  },
+};
 
 const clientOptionsWitnPass = (email: string, password: string): PasswordAuthMiddlewareOptions => {
   return {
@@ -21,6 +37,7 @@ const clientOptionsWitnPass = (email: string, password: string): PasswordAuthMid
         password: password,
       },
     },
+    tokenCache: MyTokenCache,
     scopes,
     fetch,
   };
@@ -31,7 +48,7 @@ const httpMiddlewareOptions: HttpMiddlewareOptions = {
   fetch,
 };
 
-const createClientWithPassword = (email: string, pass: string): Client => {
+export const createClientWithPassword = (email: string, pass: string): Client => {
   return new ClientBuilder()
     .withProjectKey(projectKey) // .withProjectKey() is not required if the projectKey is included in authMiddlewareOptions
     .withPasswordFlow(clientOptionsWitnPass(email, pass))
