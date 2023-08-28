@@ -5,6 +5,7 @@ import Footer from '../../components/footer/footer';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 import Header from '../../components/Header/Header';
+import NotFound from '../../components/NotFound/NotFound';
 
 const App = (): ReactElement => {
   return (
@@ -38,6 +39,15 @@ const App = (): ReactElement => {
               <RegistrationForm />
             </main>
             <Footer />
+          </>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <>
+            <Header />
+            <NotFound />
           </>
         }
       />
