@@ -28,22 +28,52 @@ const Header = (): ReactElement => {
   return (
     <header className="header">
       <nav className="nav">
-        <Link className="main-logo link" to="/">
+        <ul className="nav__list">
+          <li className="nav__item">
+            <Link className="main-logo link" to="/">
+              <span className="main-logo__img logo"></span>logo
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Link className="menu link" to="/menu">
+              Menu
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Link className="about link" to="/about">
+              about
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Search />
+          </li>
+          <li className="nav__item">
+            <Link className="basket link" to="/basket">
+              basket
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Link className="login link" to="/loginForm">
+              Sign in
+            </Link>
+          </li>
+        </ul>
+        {/* <Link className="main-logo link" to="/">
           <span className="main-logo__img logo"></span>logo
-        </Link>
-        <Link className="menu link" to="/menu">
+        </Link> */}
+        {/* <Link className="menu link" to="/menu">
           Menu
-        </Link>
-        <Link className="about link" to="/about">
+        </Link> */}
+        {/* <Link className="about link" to="/about">
           about
-        </Link>
-        <Search />
-        <Link className="basket link" to="/basket">
+        </Link> */}
+        {/* <Search /> */}
+        {/* <Link className="basket link" to="/basket">
           basket
-        </Link>
-        <Link className="login link" to="/loginForm">
+        </Link> */}
+        {/* <Link className="login link" to="/loginForm">
           Sign in
-        </Link>
+        </Link> */}
       </nav>
     </header>
   );
