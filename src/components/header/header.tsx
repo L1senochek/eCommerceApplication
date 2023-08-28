@@ -1,6 +1,13 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import './header.scss';
 import { Link } from 'react-router-dom';
+import {
+  ABOUT_PAGE,
+  BASKET_PAGE,
+  HOME_PAGE,
+  MENU_PAGE,
+  SIGN_IN_PAGE,
+} from '../../utils/constants/paths';
 
 const Search = (): ReactElement => {
   const [search, setSearch] = useState('');
@@ -31,17 +38,17 @@ const Header = (): ReactElement => {
         <nav className="nav">
           <ul className="nav__list">
             <li className="nav__item">
-              <Link className="main-logo link" to="/">
+              <Link className="main-logo link" to={HOME_PAGE}>
                 <span className="main-logo__img logo"></span>logo
               </Link>
             </li>
             <li className="nav__item">
-              <Link className="menu link" to="/menu">
+              <Link className="menu link" to={MENU_PAGE}>
                 Menu
               </Link>
             </li>
             <li className="nav__item">
-              <Link className="about link" to="/about">
+              <Link className="about link" to={ABOUT_PAGE}>
                 about
               </Link>
             </li>
@@ -49,32 +56,16 @@ const Header = (): ReactElement => {
               <Search />
             </li>
             <li className="nav__item">
-              <Link className="basket link" to="/basket">
+              <Link className="basket link" to={BASKET_PAGE}>
                 basket
               </Link>
             </li>
             <li className="nav__item">
-              <Link className="login link" to="/loginForm">
+              <Link className="login link" to={SIGN_IN_PAGE}>
                 Sign in
               </Link>
             </li>
           </ul>
-          {/* <Link className="main-logo link" to="/">
-            <span className="main-logo__img logo"></span>logo
-          </Link> */}
-          {/* <Link className="menu link" to="/menu">
-            Menu
-          </Link> */}
-          {/* <Link className="about link" to="/about">
-            about
-          </Link> */}
-          {/* <Search /> */}
-          {/* <Link className="basket link" to="/basket">
-            basket
-          </Link> */}
-          {/* <Link className="login link" to="/loginForm">
-            Sign in
-          </Link> */}
         </nav>
       </header>
     </>

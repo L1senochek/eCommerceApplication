@@ -12,6 +12,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { loginUserWithPassApi } from '../../api/loginUserWithPass';
 import { useNavigate } from 'react-router-dom';
 import { FAILED_TO_LOGGED_IN } from '../../utils/constants/constants';
+import { REGISTRATION_PAGE } from '../../utils/constants/paths';
 
 const LoginForm = (): JSX.Element => {
   const [showErrors, setShowErrors] = useState(false);
@@ -81,7 +82,7 @@ const LoginForm = (): JSX.Element => {
         <ErrorMessage conditionError={showErrorSignIn} valueTag={FAILED_TO_LOGGED_IN} />
       )}
       <LinkToWithTextInWrapper text="Dont`n have an account? ">
-        <LinkTo to={'/registrationForm'} text={'Register here'} />
+        <LinkTo to={REGISTRATION_PAGE} text={'Register here'} />
       </LinkToWithTextInWrapper>
     </AuthenticationForm>
   );

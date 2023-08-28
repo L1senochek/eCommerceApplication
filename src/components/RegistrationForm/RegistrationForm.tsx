@@ -17,6 +17,7 @@ import { FAILED_TO_CREATE_CUSTOMER } from '../../utils/constants/constants';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { loginUserWithPassApi } from '../../api/loginUserWithPass';
 import { useNavigate } from 'react-router-dom';
+import { SIGN_IN_PAGE } from '../../utils/constants/paths';
 
 const RegistrationForm = (): JSX.Element => {
   const [showErrorCreate, setShowErrorCreate] = useState(false);
@@ -327,7 +328,7 @@ const RegistrationForm = (): JSX.Element => {
         <ErrorMessage conditionError={showErrorCreate} valueTag={FAILED_TO_CREATE_CUSTOMER} />
       )}
       <LinkToWithTextInWrapper text="Already have an account? ">
-        <LinkTo to={'/loginForm'} text={'Login here'} />
+        <LinkTo to={SIGN_IN_PAGE} text={'Login here'} />
       </LinkToWithTextInWrapper>
     </AuthenticationForm>
   );
