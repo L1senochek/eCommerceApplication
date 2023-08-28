@@ -15,6 +15,8 @@ import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid
 import CheckboxComponent from '../CheckboxComponent/CheckboxComponent';
 import { FAILED_TO_CREATE_CUSTOMER } from '../../utils/constants/constants';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { loginUserWithPassApi } from '../../api/loginUserWithPass';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = (): JSX.Element => {
   const [showErrorCreate, setShowErrorCreate] = useState(false);
@@ -55,6 +57,7 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValueCountryBilling, setAddressValueCountryBilling] = useState('');
   const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
+  const navigation = useNavigate();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
@@ -105,17 +108,18 @@ const RegistrationForm = (): JSX.Element => {
       addressValueStreetNameShipping &&
       addressValuePostalCodeShipping
     ) {
-      console.log('Form Data:', formData);
       const response = await executeCustomerRequest(formData);
-      console.log('Response registr:', response);
 
       if (response === FAILED_TO_CREATE_CUSTOMER) {
-        console.log(1);
         setShowErrorCreate(true);
       } else {
         setShowErrorCreate(false);
-        console.log(2);
-        // router to main page
+        const responseLoginUser = await loginUserWithPassApi(userEmail, password);
+        // add token
+        if (responseLoginUser) {
+          // router to main page
+          navigation('/');
+        }
       }
     }
   };
@@ -156,7 +160,6 @@ const RegistrationForm = (): JSX.Element => {
       setShowErrorAddressCountryBilling(true);
       setShowErrorAddressStreetNameBilling(true);
       setShowErrorAddressPostalCodeBilling(true);
-      console.log('showErrorFirstnameuseEffect4', showErrorFirstname);
     }
   }, [
     addressValueCountryBilling,

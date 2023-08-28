@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Main from '../main/main';
 import Footer from '../../components/footer/footer';
 import LoginForm from '../../components/LoginForm/LoginForm';
@@ -8,42 +8,40 @@ import Header from '../../components/Header/Header';
 
 const App = (): ReactElement => {
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/loginForm"
-          element={
-            <>
-              <main className="main">
-                <LoginForm />
-              </main>
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/registrationForm"
-          element={
-            <>
-              <main className="main">
-                <RegistrationForm />
-              </main>
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Main />
-              <Footer />
-            </>
-          }
-        />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Header />
+            <Main />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/loginForm"
+        element={
+          <>
+            <main className="main">
+              <LoginForm />
+            </main>
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/registrationForm"
+        element={
+          <>
+            <main className="main">
+              <RegistrationForm />
+            </main>
+            <Footer />
+          </>
+        }
+      />
+    </Routes>
   );
 };
 

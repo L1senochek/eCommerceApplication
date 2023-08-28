@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, useEffect } from 'react';
-import './PasswordInput.scss';
+// import './PasswordInput.scss';
 
 interface PasswordInputProps {
   placeholder: string;

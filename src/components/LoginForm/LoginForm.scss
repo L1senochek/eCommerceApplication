@@ -65,6 +65,10 @@
   &__input::placeholder {
     color: $tetiary-color;
   }
+  &__input.input-error {
+    border-color: $error-color;
+    box-shadow: $box-shadow-error;
+  }
   &__user-actions {
     display: flex;
     align-items: center;
