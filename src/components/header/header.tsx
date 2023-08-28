@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import './header.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
   ABOUT_PAGE,
   BASKET_PAGE,
@@ -38,32 +38,47 @@ const Header = (): ReactElement => {
         <nav className="nav">
           <ul className="nav__list">
             <li className="nav__item">
-              <Link className="main-logo link" to={HOME_PAGE}>
-                <span className="main-logo__img logo"></span>logo
-              </Link>
+              <NavLink
+                className={({ isActive }): string => `main-logo link ${isActive ? 'active' : ''}`}
+                to={HOME_PAGE}
+              >
+                <span className="main-logo__img logo"></span> Logo
+              </NavLink>
             </li>
             <li className="nav__item">
-              <Link className="menu link" to={MENU_PAGE}>
+              <NavLink
+                className={({ isActive }): string => `menu link ${isActive ? 'active' : ''}`}
+                to={MENU_PAGE}
+              >
                 Menu
-              </Link>
+              </NavLink>
             </li>
             <li className="nav__item">
-              <Link className="about link" to={ABOUT_PAGE}>
+              <NavLink
+                className={({ isActive }): string => `about link ${isActive ? 'active' : ''}`}
+                to={ABOUT_PAGE}
+              >
                 about
-              </Link>
+              </NavLink>
             </li>
             <li className="nav__item">
               <Search />
             </li>
             <li className="nav__item">
-              <Link className="basket link" to={BASKET_PAGE}>
+              <NavLink
+                className={({ isActive }): string => `basket link ${isActive ? 'active' : ''}`}
+                to={BASKET_PAGE}
+              >
                 basket
-              </Link>
+              </NavLink>
             </li>
             <li className="nav__item">
-              <Link className="login link" to={SIGN_IN_PAGE}>
+              <NavLink
+                className={({ isActive }): string => `login link ${isActive ? 'active' : ''}`}
+                to={SIGN_IN_PAGE}
+              >
                 Sign in
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>

@@ -32,6 +32,7 @@
   text-decoration: none;
 }
 
+.link.active,
 .link:hover {
   color: $fivefold-color;
   text-decoration: underline;
@@ -60,4 +61,5 @@
 .logo {
   background-image: url('../../assets/img/logo.png');
   background-size: cover;
+  margin-right: $margin-primary;
 }
