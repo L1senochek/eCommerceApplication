@@ -48,9 +48,13 @@ const App = (): ReactElement => {
           <>
             <Header />
             <NotFound />
+            <Footer />
           </>
         }
       />
+      {/* <Route path="/items">
+        <Route path=":id" element={item} />
+      </Route> */}
     </Routes>
   );
 };

@@ -32,6 +32,7 @@ const LoginForm = (): JSX.Element => {
       if (responseLoginUser) {
         setShowErrorSignIn(false);
         navigation('/');
+        // <Navigate to="/" />;
       } else {
         setShowErrorSignIn(true);
       }
