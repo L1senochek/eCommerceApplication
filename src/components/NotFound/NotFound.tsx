@@ -2,9 +2,9 @@ import './notFound.scss';
 
 const NotFound = (): JSX.Element => {
   return (
-    <>
-      <div>404</div>
-    </>
+    <div className="not-found">
+      <div className="not-found__img"></div>
+    </div>
   );
 };
 
