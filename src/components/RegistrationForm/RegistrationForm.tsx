@@ -108,18 +108,14 @@ const RegistrationForm = (): JSX.Element => {
       addressValueStreetNameShipping &&
       addressValuePostalCodeShipping
     ) {
-      console.log('Form Data:', formData);
       const response = await executeCustomerRequest(formData);
-      console.log('Response registr:', response);
 
       if (response === FAILED_TO_CREATE_CUSTOMER) {
-        console.log(1);
         setShowErrorCreate(true);
       } else {
         setShowErrorCreate(false);
-        console.log(2);
-        //create api function login client
         const responseLoginUser = await loginUserWithPassApi(userEmail, password);
+        // add token
         if (responseLoginUser) {
           // router to main page
           navigation('/');
@@ -164,7 +160,6 @@ const RegistrationForm = (): JSX.Element => {
       setShowErrorAddressCountryBilling(true);
       setShowErrorAddressStreetNameBilling(true);
       setShowErrorAddressPostalCodeBilling(true);
-      console.log('showErrorFirstnameuseEffect4', showErrorFirstname);
     }
   }, [
     addressValueCountryBilling,
