@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.main {
+  height: calc(100vh - $height-logo-header - $padding-primary * 2  - 18px);
+}
+
+.container-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &__first-img {
+    position: absolute;
+    z-index: -1;
+    background-image: url('../../assets/img/main-sushi.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 56.25vw;
+    opacity: 0.5;
+  }
+  &__logo {
+    background-color: black;
+    width: 200px;
+    height: 200px;
+  }
+}

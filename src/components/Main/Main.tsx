@@ -1,11 +1,14 @@
 import React from 'react';
+import './main.scss';
 // import TestApi from './testApi';
 
 const Main = (): JSX.Element => {
   return (
     <main className="main">
-      <h1>App</h1>
-      {/* <TestApi /> */}
+      <div className="container-slider">
+        <div className="container-slider__logo"></div>
+        <div className="container-slider__first-img"></div>
+      </div>
     </main>
   );
 };

@@ -19,8 +19,8 @@
   align-items: center;
   justify-content: space-between;
   &__img {
-    width: 4vw;
-    height: 4vw;
+    width: $width-logo-header;
+    height: $height-logo-header;
   }
   &__title {
     color: $secondary-color;
