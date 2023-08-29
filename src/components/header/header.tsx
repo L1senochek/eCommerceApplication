@@ -1,8 +1,9 @@
 import React, { ChangeEvent, ReactElement, useContext, useState } from 'react';
 import './header.scss';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   ABOUT_PAGE,
+  ACCOUNT_PAGE,
   BASKET_PAGE,
   HOME_PAGE,
   MENU_PAGE,
@@ -34,8 +35,11 @@ const Search = (): ReactElement => {
 
 const Header = (): ReactElement => {
   const context = useContext(SignInContext);
-  context?.setSignIn(true);
+  // context?.setSignIn(true);
   console.log('isSignIn', context);
+  // const handleSignIn = (): void => {
+  //   // context?.setSignIn(true);
+  // };
   return (
     <>
       <header className="header">
@@ -76,14 +80,31 @@ const Header = (): ReactElement => {
                 basket
               </NavLink>
             </li>
-            <li className="nav__item">
-              <NavLink
-                className={({ isActive }): string => `login link ${isActive ? 'active' : ''}`}
-                to={SIGN_IN_PAGE}
-              >
-                Sign in
-              </NavLink>
-            </li>
+            {context?.isSignIn ? (
+              <li className="nav__item">
+                <Link className="login link" to={SIGN_IN_PAGE}>
+                  Sign in
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li className="nav__item">
+                  <NavLink
+                    className={({ isActive }): string =>
+                      `personal-account link ${isActive ? 'active' : ''}`
+                    }
+                    to={ACCOUNT_PAGE}
+                  >
+                    account
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <Link className="exit link" to={'/'}>
+                    exist
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </header>

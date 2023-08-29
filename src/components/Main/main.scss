@@ -8,15 +8,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  height: 100%;
   &__first-img {
     position: absolute;
     z-index: -1;
     background-image: url('../../assets/img/main-sushi.jpg');
     background-size: cover;
     width: 100vw;
-    height: 56.25vw;
+    height: 68.25vw;
     opacity: 0.5;
+    top: 0;
   }
   &__logo {
     background-color: black;
