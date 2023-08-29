@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import './header.scss';
 import { Link, NavLink } from 'react-router-dom';
 import {
@@ -10,30 +10,10 @@ import {
   SIGN_IN_PAGE,
 } from '../../utils/constants/paths';
 import { SignInContext } from '../SignInContext/SignInContext';
+import Search from '../Search/Search';
+import AccountIcon from '../AccountIcon/AccountIcon';
 
-const Search = (): ReactElement => {
-  const [search, setSearch] = useState('');
-
-  const searchChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSearch(event.target.value);
-    console.log(event.target.value);
-  };
-  return (
-    <div className="search input">
-      <button className="search__loupe"></button>
-      <input
-        type="search"
-        className="search__input"
-        placeholder="Search..."
-        id="search"
-        value={search}
-        onChange={searchChange}
-      />
-    </div>
-  );
-};
-
-const Header = (): ReactElement => {
+const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
   // context?.setSignIn(true);
   console.log('isSignIn', context);
@@ -89,6 +69,7 @@ const Header = (): ReactElement => {
             ) : (
               <>
                 <li className="nav__item">
+                  <AccountIcon classNameAccountIcon={'personal-account'} />
                   <NavLink
                     className={({ isActive }): string =>
                       `personal-account link ${isActive ? 'active' : ''}`
@@ -112,4 +93,4 @@ const Header = (): ReactElement => {
   );
 };
 
-export default Header;
+export default HeaderComponent;
