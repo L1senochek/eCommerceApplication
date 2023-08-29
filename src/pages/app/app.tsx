@@ -10,18 +10,21 @@ import {
   REGISTRATION_PAGE,
   SIGN_IN_PAGE,
 } from '../../utils/constants/paths';
+import { SignInProvider } from '../../components/SignInContext/SignInContext';
 
 const App = (): ReactElement => {
   return (
-    <Routes>
-      <Route path={HOME_PAGE} element={<MainPage />} />
-      <Route path={SIGN_IN_PAGE} element={<SigninPage />} />
-      <Route path={REGISTRATION_PAGE} element={<RegistrationPage />} />
-      <Route path={NOT_FOUND_PAGE} element={<NotFoundPage />} />
-      {/* <Route path="/items">
+    <SignInProvider>
+      <Routes>
+        <Route path={HOME_PAGE} element={<MainPage />} />
+        <Route path={SIGN_IN_PAGE} element={<SigninPage />} />
+        <Route path={REGISTRATION_PAGE} element={<RegistrationPage />} />
+        <Route path={NOT_FOUND_PAGE} element={<NotFoundPage />} />
+        {/* <Route path="/items">
         <Route path=":id" element={item} />
       </Route> */}
-    </Routes>
+      </Routes>
+    </SignInProvider>
   );
 };
 

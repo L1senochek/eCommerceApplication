@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, ReactElement, useContext, useState } from 'react';
 import './header.scss';
 import { NavLink } from 'react-router-dom';
 import {
@@ -8,6 +8,7 @@ import {
   MENU_PAGE,
   SIGN_IN_PAGE,
 } from '../../utils/constants/paths';
+import { SignInContext } from '../SignInContext/SignInContext';
 
 const Search = (): ReactElement => {
   const [search, setSearch] = useState('');
@@ -32,6 +33,9 @@ const Search = (): ReactElement => {
 };
 
 const Header = (): ReactElement => {
+  const context = useContext(SignInContext);
+  context?.setSignIn(true);
+  console.log('isSignIn', context);
   return (
     <>
       <header className="header">
