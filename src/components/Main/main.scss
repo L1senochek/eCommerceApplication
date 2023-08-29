@@ -14,14 +14,26 @@
     z-index: -1;
     background-image: url('../../assets/img/main-sushi.jpg');
     background-size: cover;
-    width: 100vw;
+    width: 99vw;
     height: 68.25vw;
+    height: 48.25vw;
     opacity: 0.5;
     top: 0;
   }
   &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
-    width: 200px;
-    height: 200px;
+    border-radius: 50%;
+    box-shadow: $box-shadow;
+    width: 15vw;
+    height: 15vw;
+    &_img {
+      background-image: url('../../assets/img/logo-v1.png');
+      background-size: cover;
+      width: 10vw;
+      height: 10.76vw;
+    }
   }
 }

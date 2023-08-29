@@ -24,6 +24,7 @@
   &__img {
     width: $width-logo-header;
     height: $height-logo-header;
+    margin-right: $margin-secondary;
   }
   &__title {
     color: $secondary-color;
@@ -64,5 +65,4 @@
 .logo {
   background-image: url('../../assets/img/logo.png');
   background-size: cover;
-  margin-right: $margin-primary;
 }
