@@ -16,11 +16,7 @@ import ExitIcon from '../ExitIcon/ExitIcon';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
-  // context?.setSignIn(true);
   console.log('isSignIn', context);
-  // const handleSignIn = (): void => {
-  //   // context?.setSignIn(true);
-  // };
   return (
     <>
       <header className="header">
@@ -31,7 +27,7 @@ const HeaderComponent = (): JSX.Element => {
                 className={({ isActive }): string => `main-logo link ${isActive ? 'active' : ''}`}
                 to={HOME_PAGE}
               >
-                <span className="main-logo__img logo"></span> Logo
+                <span className="main-logo__img logo"></span> Purrfect Sushi
               </NavLink>
             </li>
             <li className="nav__item">
@@ -73,17 +69,7 @@ const HeaderComponent = (): JSX.Element => {
                   <Link className="personal-account" to={ACCOUNT_PAGE}>
                     <AccountIcon />
                   </Link>
-                  {/* <NavLink
-                    className={({ isActive }): string =>
-                      `personal-account link ${isActive ? 'active' : ''}`
-                    }
-                    to={ACCOUNT_PAGE}
-                  >
-                    account
-                  </NavLink> */}
-                  {/* </li>
-                <li className="nav__item"> */}
-                  <Link className="exit link" to={'/'}>
+                  <Link className="exit" to={HOME_PAGE}>
                     <ExitIcon />
                   </Link>
                 </li>
