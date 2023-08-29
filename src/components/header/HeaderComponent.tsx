@@ -12,6 +12,7 @@ import {
 import { SignInContext } from '../SignInContext/SignInContext';
 import Search from '../Search/Search';
 import AccountIcon from '../AccountIcon/AccountIcon';
+import ExitIcon from '../ExitIcon/ExitIcon';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
@@ -69,19 +70,21 @@ const HeaderComponent = (): JSX.Element => {
             ) : (
               <>
                 <li className="nav__item">
-                  <AccountIcon classNameAccountIcon={'personal-account'} />
-                  <NavLink
+                  <Link className="personal-account" to={ACCOUNT_PAGE}>
+                    <AccountIcon />
+                  </Link>
+                  {/* <NavLink
                     className={({ isActive }): string =>
                       `personal-account link ${isActive ? 'active' : ''}`
                     }
                     to={ACCOUNT_PAGE}
                   >
                     account
-                  </NavLink>
-                </li>
-                <li className="nav__item">
+                  </NavLink> */}
+                  {/* </li>
+                <li className="nav__item"> */}
                   <Link className="exit link" to={'/'}>
-                    exist
+                    <ExitIcon />
                   </Link>
                 </li>
               </>
