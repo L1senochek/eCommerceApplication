@@ -1,14 +1,14 @@
 @import '../../styles/variables.scss';
 
 .main {
-  height: calc(100vh - $height-logo-header - $padding-primary * 2  - 18px);
+  height: calc(100vh - $height-logo-header - $padding-primary * 2 - 18px);
 }
 
 .container-slider {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   &__first-img {
     position: absolute;
     z-index: -1;
