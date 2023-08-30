@@ -1,7 +1,9 @@
 @import '../../styles/variables.scss';
 
 .main {
-  height: calc(100vh - $height-logo-header - ($padding-primary * 2) - 2.08vw - ($padding-primary * 2) - 4px);
+  height: calc(
+    100vh - $height-logo-header - ($padding-primary * 2) - 2.08vw - ($padding-primary * 2) - 4px
+  );
 }
 
 .container-slider {
