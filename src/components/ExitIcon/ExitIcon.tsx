@@ -1,4 +1,16 @@
+import { useContext } from 'react';
+import { SignInContext } from '../SignInContext/SignInContext';
+
 const ExitIcon = (): JSX.Element => {
+  const context = useContext(SignInContext);
+
+  const handleExitClick = (): void => {
+    if (context) {
+      context.setSignIn(false);
+      localStorage.removeItem('accessToken');
+    }
+  };
+
   return (
     <svg
       version="1.0"
@@ -7,6 +19,7 @@ const ExitIcon = (): JSX.Element => {
       height="2.5vw"
       viewBox="0 0 1280.000000 1280.000000"
       preserveAspectRatio="xMidYMid meet"
+      onClick={handleExitClick}
     >
       <g
         transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"

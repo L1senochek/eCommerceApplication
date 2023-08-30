@@ -17,7 +17,7 @@ import BasketIcon from '../BasketIcon/BasketIcon';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
-  console.log('isSignIn', context);
+  console.log('isSignIn', context?.isSignIn);
   return (
     <>
       <header className="header">
@@ -55,7 +55,7 @@ const HeaderComponent = (): JSX.Element => {
                 <BasketIcon />
               </Link>
             </li>
-            {context?.isSignIn ? (
+            {!context?.isSignIn ? (
               <li className="nav__item">
                 <Link className="login link" to={SIGN_IN_PAGE}>
                   Sign in
