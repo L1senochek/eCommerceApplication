@@ -12,7 +12,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { loginUserWithPassApi } from '../../api/loginUserWithPass';
 import { useNavigate } from 'react-router-dom';
 import { FAILED_TO_LOGGED_IN } from '../../utils/constants/constants';
-import { REGISTRATION_PAGE } from '../../utils/constants/paths';
+import { HOME_PAGE, REGISTRATION_PAGE } from '../../utils/constants/paths';
 import { SignInContext } from '../SignInContext/SignInContext';
 
 const LoginForm = (): JSX.Element => {
@@ -26,16 +26,22 @@ const LoginForm = (): JSX.Element => {
   const navigation = useNavigate();
   const context = useContext(SignInContext);
 
+  useEffect(() => {
+    const tokenExists = localStorage.getItem('accessToken');
+    if (tokenExists) {
+      navigation(HOME_PAGE);
+    }
+  }, [context, navigation]);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     setShowErrors(false);
     if (!showErrorEmail && !showErrorPassword && userEmail && password) {
       const responseLoginUser = await loginUserWithPassApi(userEmail, password);
-      console.log('Response LoginUser:', responseLoginUser);
       if (responseLoginUser) {
         setShowErrorSignIn(false);
         context?.setSignIn(true);
-        navigation('/');
+        navigation(HOME_PAGE);
         // <Navigate to="/" />;
       } else {
         setShowErrorSignIn(true);

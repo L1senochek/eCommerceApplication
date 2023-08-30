@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent, useEffect, useContext } from 'react';
 import AuthenticationForm from '../AuthenticationForm/AuthenticationForm';
 
 import Button from '../Button/Button';
@@ -17,11 +17,12 @@ import { FAILED_TO_CREATE_CUSTOMER } from '../../utils/constants/constants';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { loginUserWithPassApi } from '../../api/loginUserWithPass';
 import { useNavigate } from 'react-router-dom';
-import { SIGN_IN_PAGE } from '../../utils/constants/paths';
+import { HOME_PAGE, SIGN_IN_PAGE } from '../../utils/constants/paths';
+import { SignInContext } from '../SignInContext/SignInContext';
 
 const RegistrationForm = (): JSX.Element => {
-  const [showErrorCreate, setShowErrorCreate] = useState(false);
   const [showErrors, setShowErrors] = useState(true);
+  const [showErrorCreate, setShowErrorCreate] = useState(false);
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
   const [showErrorLastname, setShowErrorLastname] = useState(false);
   const [showErrorEmail, setShowErrorEmail] = useState(false);
@@ -59,6 +60,14 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
   const navigation = useNavigate();
+  const context = useContext(SignInContext);
+
+  useEffect(() => {
+    const tokenExists = localStorage.getItem('accessToken');
+    if (tokenExists) {
+      navigation(HOME_PAGE);
+    }
+  }, [context, navigation]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
@@ -116,10 +125,8 @@ const RegistrationForm = (): JSX.Element => {
       } else {
         setShowErrorCreate(false);
         const responseLoginUser = await loginUserWithPassApi(userEmail, password);
-        // add token
         if (responseLoginUser) {
-          // router to main page
-          navigation('/');
+          navigation(HOME_PAGE);
         }
       }
     }
@@ -190,10 +197,10 @@ const RegistrationForm = (): JSX.Element => {
   return (
     <AuthenticationForm onSubmit={handleSubmit} titleText="Create a new account">
       <UniversalInputWithError
-        value={userFirstname}
         onChange={setUserFirstname}
-        showError={showErrorFirstname}
         changeError={setShowErrorFirstname}
+        showError={showErrorFirstname}
+        value={userFirstname}
         validationFunction={isTextInputValid}
         placeholder="Firstname"
         labelText="Firstname"
