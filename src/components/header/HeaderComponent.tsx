@@ -11,9 +11,9 @@ import {
 } from '../../utils/constants/paths';
 import { SignInContext } from '../SignInContext/SignInContext';
 import Search from '../Search/Search';
-import AccountIcon from '../AccountIcon/AccountIcon';
-import ExitIcon from '../ExitIcon/ExitIcon';
-import BasketIcon from '../BasketIcon/BasketIcon';
+import IconAccount from '../IconAccount/IconAccount';
+import IconExit from '../IconExit/IconExit';
+import IconBasket from '../IconBasket/IconBasket';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
@@ -52,7 +52,7 @@ const HeaderComponent = (): JSX.Element => {
             </li>
             <li className="nav__item">
               <Link className="basket" to={BASKET_PAGE}>
-                <BasketIcon />
+                <IconBasket />
               </Link>
             </li>
             {!context?.isSignIn ? (
@@ -65,10 +65,10 @@ const HeaderComponent = (): JSX.Element => {
               <>
                 <li className="nav__item">
                   <Link className="personal-account" to={ACCOUNT_PAGE}>
-                    <AccountIcon />
+                    <IconAccount />
                   </Link>
                   <Link className="exit" to={HOME_PAGE}>
-                    <ExitIcon />
+                    <IconExit />
                   </Link>
                 </li>
               </>

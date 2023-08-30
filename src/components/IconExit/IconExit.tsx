@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { SignInContext } from '../SignInContext/SignInContext';
 
-const ExitIcon = (): JSX.Element => {
+const IconExit = (): JSX.Element => {
   const context = useContext(SignInContext);
 
   const handleExitClick = (): void => {
@@ -51,4 +51,4 @@ const ExitIcon = (): JSX.Element => {
   );
 };
 
-export default ExitIcon;
+export default IconExit;

@@ -1,4 +1,4 @@
-const AccountIcon = (): JSX.Element => {
+const IconAccount = (): JSX.Element => {
   return (
     <svg
       version="1.0"
@@ -36,4 +36,4 @@ const AccountIcon = (): JSX.Element => {
   );
 };
 
-export default AccountIcon;
+export default IconAccount;

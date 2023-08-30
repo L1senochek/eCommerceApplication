@@ -1,4 +1,4 @@
-const AccountIcon = (): JSX.Element => {
+const IconBasket = (): JSX.Element => {
   return (
     <svg
       version="1.0"
@@ -79,4 +79,4 @@ m-1600 -222 c122 -218 262 -494 253 -502 -5 -4 -63 -18 -129 -31 -178 -34
   );
 };
 
-export default AccountIcon;
+export default IconBasket;
