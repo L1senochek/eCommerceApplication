@@ -1,4 +1,5 @@
 import IFieldsetLegendFormProps from '../../model/components/FieldsetLegendForm/FieldsetLegendForm';
+import isPostalCodeValid from '../../utils/validationFunctions/isPostalCodeValid/isPostalCodeValid';
 import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
 import SelectCountry from '../SelectCountry/SelectCountry';
 import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
@@ -60,7 +61,7 @@ const FieldsetLegendForm = ({
       onChange={setAddressValuePostalCode}
       showError={showErrorAddressPostalCode}
       changeError={changeErrorAddressPostalCode}
-      validationFunction={isTextInputValid}
+      validationFunction={isPostalCodeValid}
       placeholder="Postal Code"
       labelText="Postal Code"
       labelFor="postalCode"
