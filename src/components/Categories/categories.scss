@@ -20,11 +20,11 @@
   &__line {
     border: 1px $transperent-color $border-style;
   }
-  &__item:hover>&__title {
+  &__item:hover > &__title {
     color: $fivefold-color;
     text-shadow: $text-shadow;
   }
-  &__item:hover>&__line {
+  &__item:hover > &__line {
     border-color: $fivefold-color;
     width: 100%;
   }
