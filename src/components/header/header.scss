@@ -10,6 +10,9 @@
     width: 100%;
   }
   &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     list-style-type: none;
   }
 }
@@ -19,8 +22,9 @@
   align-items: center;
   justify-content: space-between;
   &__img {
-    width: 4vw;
-    height: 4vw;
+    width: $width-logo-header;
+    height: $height-logo-header;
+    margin-right: $margin-secondary;
   }
   &__title {
     color: $secondary-color;
@@ -32,6 +36,7 @@
   text-decoration: none;
 }
 
+.link.active,
 .link:hover {
   color: $fivefold-color;
   text-decoration: underline;

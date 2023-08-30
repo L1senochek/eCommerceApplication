@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent, useEffect, useContext } from 'react';
 import LinkTo from '../LinkTo/LinkTo';
 import ForgotPasswordLink from '../ForgotPasswordLink/ForgotPasswordLink';
 import Button from '../Button/Button';
@@ -12,26 +12,38 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { loginUserWithPassApi } from '../../api/loginUserWithPass';
 import { useNavigate } from 'react-router-dom';
 import { FAILED_TO_LOGGED_IN } from '../../utils/constants/constants';
+import { HOME_PAGE, REGISTRATION_PAGE } from '../../utils/constants/paths';
+import { SignInContext } from '../SignInContext/SignInContext';
 
 const LoginForm = (): JSX.Element => {
-  const [showErrors, setShowErrors] = useState(false);
+  const [showErrors, setShowErrors] = useState(true);
   const [showErrorSignIn, setShowErrorSignIn] = useState(false);
   const [showErrorEmail, setShowErrorEmail] = useState(false);
   const [showErrorPassword, setShowErrorPassword] = useState(false);
 
   const [userEmail, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const navigation = useNavigate();
+  const context = useContext(SignInContext);
+
+  useEffect(() => {
+    const tokenExists = localStorage.getItem('accessToken');
+    if (tokenExists) {
+      navigation(HOME_PAGE);
+    }
+  }, [context, navigation]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    setShowErrors(true);
+    setShowErrors(false);
     if (!showErrorEmail && !showErrorPassword && userEmail && password) {
       const responseLoginUser = await loginUserWithPassApi(userEmail, password);
-      console.log('Response LoginUser:', responseLoginUser);
       if (responseLoginUser) {
         setShowErrorSignIn(false);
-        navigation('/');
+        context?.setSignIn(true);
+        navigation(HOME_PAGE);
+        // <Navigate to="/" />;
       } else {
         setShowErrorSignIn(true);
       }
@@ -80,7 +92,7 @@ const LoginForm = (): JSX.Element => {
         <ErrorMessage conditionError={showErrorSignIn} valueTag={FAILED_TO_LOGGED_IN} />
       )}
       <LinkToWithTextInWrapper text="Dont`n have an account? ">
-        <LinkTo to={'/registrationForm'} text={'Register here'} />
+        <LinkTo to={REGISTRATION_PAGE} text={'Register here'} />
       </LinkToWithTextInWrapper>
     </AuthenticationForm>
   );
