@@ -8,17 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100%;
-  &__first-img {
-    position: absolute;
-    z-index: -1;
-    background-image: url('../../assets/img/main-page-sushi.png');
-    background-size: cover;
-    width: 100vw;
-    height: 66.66vw;
-    opacity: 0.5;
-    top: 0;
-  }
   &__logo {
     display: flex;
     justify-content: center;
@@ -34,5 +25,21 @@
       width: 10vw;
       height: 10.76vw;
     }
+  }
+  &__btn {
+    width: $width-btn;
+    height: $height-btn;
+    margin-top: $margin-tetiary;
+    font-size: $font-size;
+  }
+  &__first-img {
+    position: absolute;
+    z-index: -1;
+    background-image: url('../../assets/img/main-page-sushi.png');
+    background-size: cover;
+    width: 100vw;
+    height: 66.66vw;
+    opacity: 0.5;
+    top: 0;
   }
 }
