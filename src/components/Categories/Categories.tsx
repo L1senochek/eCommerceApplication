@@ -1,6 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { getAllCategoriesApi } from '../../api/getAllCategories';
 import { Category } from '@commercetools/platform-sdk';
+import './categories.scss';
 
 const Categories = (): ReactElement => {
   const [categoriesItems, setCategoriesItems] = useState<Category[]>([]);
@@ -18,7 +19,8 @@ const Categories = (): ReactElement => {
     return categoriesItems.map((item) => {
       return (
         <div key={item.id} className="categories__item">
-          {item.name['en-US']}
+          <span className="categories__title">{item.name['en-US']}</span>
+          <span className="categories__line"></span>
         </div>
       );
     });

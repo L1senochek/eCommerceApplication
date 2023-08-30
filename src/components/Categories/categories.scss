@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: $padding-secondary;
+  border-radius: $border-radius;
+  border-width: $border-width;
+  border-style: $border-style;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: $padding-secondary;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    transition: $transitionAll;
+  }
+  &__line {
+    border: 1px $transperent-color $border-style;
+  }
+  &__item:hover>&__title {
+    color: $fivefold-color;
+    text-shadow: $text-shadow;
+  }
+  &__item:hover>&__line {
+    border-color: $fivefold-color;
+    width: 100%;
+  }
+}

@@ -1,4 +1,5 @@
 import Categories from '../Categories/Categories';
+import './menu.scss';
 
 const Menu = (): JSX.Element => {
   return (
