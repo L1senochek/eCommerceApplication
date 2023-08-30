@@ -1,19 +1,30 @@
+import { ReactElement, useEffect, useState } from 'react';
 import { getAllCategoriesApi } from '../../api/getAllCategories';
+import { Category } from '@commercetools/platform-sdk';
 
-const Categories = (): JSX.Element => {
-  const res = async (): Promise<void> => {
-    const responseArr = await getAllCategoriesApi();
-    console.log(responseArr);
-    if (responseArr) {
-      console.log(responseArr[0]);
-      responseArr.map((item) => {
-        console.log(item.name['en-US']);
-      });
-    }
+const Categories = (): ReactElement => {
+  const [categoriesItems, setCategoriesItems] = useState<Category[]>([]);
+
+  useEffect(() => {
+    (async (): Promise<void> => {
+      const responseArr = await getAllCategoriesApi();
+      if (responseArr) {
+        setCategoriesItems(responseArr);
+      }
+    })();
+  }, []);
+
+  const createCategoriesItems = (): JSX.Element[] => {
+    return categoriesItems.map((item) => {
+      return (
+        <div key={item.id} className="categories__item">
+          {item.name['en-US']}
+        </div>
+      );
+    });
   };
 
-  res();
-  return <div className="categories">{123}</div>;
+  return <div className="categories">{createCategoriesItems()}</div>;
 };
 
 export default Categories;
