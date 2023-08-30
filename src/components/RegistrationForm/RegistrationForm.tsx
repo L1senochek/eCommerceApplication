@@ -59,6 +59,7 @@ const RegistrationForm = (): JSX.Element => {
   const [addressValueCountryBilling, setAddressValueCountryBilling] = useState('');
   const [addressValueStreetNameBilling, setAddressValueStreetNameBilling] = useState('');
   const [addressValuePostalCodeBilling, setAddressValuePostalCodeBilling] = useState('');
+
   const navigation = useNavigate();
   const context = useContext(SignInContext);
 
@@ -126,6 +127,7 @@ const RegistrationForm = (): JSX.Element => {
         setShowErrorCreate(false);
         const responseLoginUser = await loginUserWithPassApi(userEmail, password);
         if (responseLoginUser) {
+          context?.setSignIn(true);
           navigation(HOME_PAGE);
         }
       }

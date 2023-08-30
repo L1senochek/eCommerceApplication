@@ -23,6 +23,7 @@ const LoginForm = (): JSX.Element => {
 
   const [userEmail, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const navigation = useNavigate();
   const context = useContext(SignInContext);
 
