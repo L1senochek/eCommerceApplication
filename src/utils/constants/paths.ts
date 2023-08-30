@@ -7,3 +7,5 @@ export const BASKET_PAGE = '/basket';
 export const ACCOUNT_PAGE = '/account';
 export const PASSWORD_RESET_PAGE = '/password-reset';
 export const NOT_FOUND_PAGE = '*';
+
+export const GITHUB_PAGE = 'https://github.com/L1senochek';

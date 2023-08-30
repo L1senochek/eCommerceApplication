@@ -25,3 +25,8 @@ html {
 *:hover {
   transition: $transitionAll;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}

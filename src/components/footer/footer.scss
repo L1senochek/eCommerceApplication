@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+    padding: $padding-primary $padding-secondary;
+  }
+  &__item {
+    // text-decoration: none;
+    padding: 0 $padding-primary;
+  }
+}
