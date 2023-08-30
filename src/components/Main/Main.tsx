@@ -11,11 +11,9 @@ const Main = (): JSX.Element => {
         <div className="container-slider__logo">
           <div className="container-slider__logo_img"></div>
         </div>
-        <button className="container-slider__btn btn">
-          <Link to={MENU_PAGE} className="container-slider__link link">
-            Order now
-          </Link>
-        </button>
+        <Link to={MENU_PAGE} className="container-slider__link btn">
+          Order now
+        </Link>
         <div className="container-slider__first-img"></div>
       </div>
     </main>

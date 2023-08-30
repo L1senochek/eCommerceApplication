@@ -28,11 +28,17 @@
       height: 10.76vw;
     }
   }
-  &__btn {
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     width: $width-btn;
     height: $height-btn;
     margin-top: $margin-tetiary;
     font-size: $font-size;
+    border-width: $border-width;
+    border-style: $border-style
   }
   &__first-img {
     position: absolute;

@@ -19,7 +19,7 @@ html {
   // background-image: $background-image;
   background-color: $background-color;
   // background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 *:hover {
