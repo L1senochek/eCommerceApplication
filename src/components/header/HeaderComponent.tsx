@@ -13,6 +13,7 @@ import { SignInContext } from '../SignInContext/SignInContext';
 import Search from '../Search/Search';
 import AccountIcon from '../AccountIcon/AccountIcon';
 import ExitIcon from '../ExitIcon/ExitIcon';
+import BasketIcon from '../BasketIcon/BasketIcon';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
@@ -50,12 +51,9 @@ const HeaderComponent = (): JSX.Element => {
               <Search />
             </li>
             <li className="nav__item">
-              <NavLink
-                className={({ isActive }): string => `basket link ${isActive ? 'active' : ''}`}
-                to={BASKET_PAGE}
-              >
-                basket
-              </NavLink>
+              <Link className="basket" to={BASKET_PAGE}>
+                <BasketIcon />
+              </Link>
             </li>
             {context?.isSignIn ? (
               <li className="nav__item">
