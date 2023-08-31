@@ -19,19 +19,19 @@ const Products = (): JSX.Element => {
   const createProductsItems = (): JSX.Element[] => {
     return productsItems.map((item) => {
       return (
-        <div key={item.id} className="product__item">
+        <div key={item.id} className="product-item">
           <img
-            className="product__img"
+            className="product-item__img"
             src={
               item.masterData.current.masterVariant.images &&
               item.masterData.current.masterVariant.images[0].url
             }
           />
-          <h2 className="product__title">{item.masterData.current.name['en-US']}</h2>
-          <h3 className="product__description">
+          <h2 className="product-item__title">{item.masterData.current.name['en-US']}</h2>
+          <h3 className="product-item__description">
             {item.masterData.current.description && item.masterData.current.description['en-US']}
           </h3>
-          <h2 className="product__price">
+          <h2 className="product-item__price">
             {item.masterData.current.masterVariant.prices &&
               item.masterData.current.masterVariant.prices[0].value.centAmount / 100}
             $
@@ -41,7 +41,7 @@ const Products = (): JSX.Element => {
               item.masterData.current.masterVariant.prices[1].value.centAmount / 100}
             €
           </h2> */}
-          <button className="product__add btn">add</button>
+          <button className="product-item__add btn">add</button>
         </div>
       );
     });
