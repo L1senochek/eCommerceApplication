@@ -1,9 +1,13 @@
+import { ProductType } from '@commercetools/platform-sdk';
 import { getApiRoot, projectKey } from './buildClient';
-import { Category } from '@commercetools/platform-sdk';
 
-export const getAllCategoriesApi = async (): Promise<false | Category[]> => {
+export const getAllProductType = async (): Promise<false | ProductType[]> => {
   try {
-    const response = await getApiRoot().withProjectKey({ projectKey }).categories().get().execute();
+    const response = await getApiRoot()
+      .withProjectKey({ projectKey })
+      .productTypes()
+      .get()
+      .execute();
 
     console.log(response);
     if (response.statusCode === 200) {
