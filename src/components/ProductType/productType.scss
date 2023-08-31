@@ -1,0 +1,4 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin/menu-page-property.scss';
+
+@include menu-page-property(".product-type", $fivefold-color);

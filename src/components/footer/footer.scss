@@ -3,6 +3,7 @@
 .footer {
   display: flex;
   justify-content: flex-end;
+  z-index: 1;
   &__list {
     display: flex;
     align-items: center;
