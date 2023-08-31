@@ -1,0 +1,13 @@
+import Categories from '../Categories/Categories';
+import './menu.scss';
+
+const Menu = (): JSX.Element => {
+  return (
+    <div className="menu">
+      <Categories />
+      {/* <Products /> */}
+    </div>
+  );
+};
+
+export default Menu;

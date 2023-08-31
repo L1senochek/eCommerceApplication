@@ -4,7 +4,7 @@ import './footer.scss';
 import { Link } from 'react-router-dom';
 import { GITHUB_PAGE } from '../../utils/constants/paths';
 
-const Footer = (): ReactElement => {
+const FooterComponent = (): ReactElement => {
   return (
     <footer className="footer">
       <ul className="footer__list">
@@ -19,4 +19,4 @@ const Footer = (): ReactElement => {
   );
 };
 
-export default Footer;
+export default FooterComponent;

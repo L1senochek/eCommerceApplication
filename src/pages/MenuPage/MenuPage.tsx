@@ -1,18 +1,17 @@
-import React from 'react';
 import Footer from '../../components/Footer/FooterComponent';
-import NotFound from '../../components/NotFound/NotFound';
 import Header from '../../components/Header/HeaderComponent';
+import Menu from '../../components/Menu/Menu';
 
-const NotFoundPage = (): JSX.Element => {
+const MenuPage = (): JSX.Element => {
   return (
     <>
       <Header />
       <main className="main">
-        <NotFound />
+        <Menu />
       </main>
       <Footer />
     </>
   );
 };
 
-export default NotFoundPage;
+export default MenuPage;

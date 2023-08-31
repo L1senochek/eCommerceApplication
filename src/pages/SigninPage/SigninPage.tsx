@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/Footer/FooterComponent';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
 const SigninPage = (): JSX.Element => {
