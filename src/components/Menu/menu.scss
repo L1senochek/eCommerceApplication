@@ -1,4 +1,14 @@
+@import '../../styles/variables.scss';
+
 .menu {
   display: flex;
   justify-content: space-around;
+  z-index: 2;
+}
+
+.left-side-bar {
+  padding: $padding-secondary;
+  border-radius: $border-radius;
+  border-width: $border-width;
+  border-style: $border-style;
 }

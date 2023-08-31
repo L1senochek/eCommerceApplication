@@ -1,0 +1,32 @@
+@import '../variables.scss';
+
+@mixin menu-page-property($class, $hover-color) {
+  #{$class} {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &__item {
+      display: flex;
+      flex-direction: column;
+      padding: $padding-secondary $padding-secondary 0 $padding-secondary;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      transition: $transitionAll;
+
+      &:hover > #{$class}__title {
+        color: $hover-color;
+        text-shadow: $text-shadow;
+      }
+
+      &:hover > #{$class}__line {
+        border-color: $hover-color;
+        width: 100%;
+      }
+    }
+    &__line {
+      border: 1px $transperent-color $border-style;
+      margin-top: $margin-secondary;
+    }
+  }
+}
