@@ -1,5 +1,6 @@
 import Categories from '../Categories/Categories';
 import ProductType from '../ProductType/ProductType';
+import Products from '../Products/Products';
 import './menu.scss';
 
 const Menu = (): JSX.Element => {
@@ -9,8 +10,9 @@ const Menu = (): JSX.Element => {
         <Categories />
         <ProductType />
       </div>
-      <div className="right-side-bar">items</div>
-      {/* <Products /> */}
+      <div className="right-side-bar">
+        <Products />
+      </div>
     </div>
   );
 };
