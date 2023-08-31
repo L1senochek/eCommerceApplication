@@ -9,6 +9,7 @@ const Menu = (): JSX.Element => {
         <Categories />
         <ProductType />
       </div>
+      <div className="right-side-bar">items</div>
       {/* <Products /> */}
     </div>
   );
