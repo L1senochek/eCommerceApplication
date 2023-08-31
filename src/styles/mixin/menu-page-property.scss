@@ -18,7 +18,7 @@
         color: $hover-color;
         text-shadow: $text-shadow;
       }
-      
+
       &:hover > #{$class}__line {
         border-color: $hover-color;
         width: 100%;
