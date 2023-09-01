@@ -14,6 +14,7 @@ import Search from '../Search/Search';
 import IconAccount from '../IconAccount/IconAccount';
 import IconExit from '../IconExit/IconExit';
 import IconBasket from '../IconBasket/IconBasket';
+import HeaderItemLink from '../HeaderItemLink/HeaderItemLink';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
@@ -25,10 +26,16 @@ const HeaderComponent = (): JSX.Element => {
           <ul className="nav__list">
             <li className="nav__item">
               <NavLink
-                className={({ isActive }): string => `main-logo link ${isActive ? 'active' : ''}`}
+                className={({ isActive }): string => `main-logo ${isActive ? 'active' : ''}`}
                 to={HOME_PAGE}
               >
-                <span className="main-logo__img logo"></span> Purrfect Sushi
+                <span className="main-logo__img logo"></span>
+                {/* <span className="main-logo__title logo link ">Purrfect Sushi</span> */}
+                <HeaderItemLink
+                  title="Purrfect Sushi"
+                  otherClassNameWrapper="logo-name"
+                  otherClassNameTitle="link"
+                />
               </NavLink>
             </li>
             <li className="nav__item">
@@ -36,7 +43,8 @@ const HeaderComponent = (): JSX.Element => {
                 className={({ isActive }): string => `menu link ${isActive ? 'active' : ''}`}
                 to={MENU_PAGE}
               >
-                Menu
+                {/* Menu */}
+                <HeaderItemLink title="Menu" otherClassNameWrapper="menu" />
               </NavLink>
             </li>
             <li className="nav__item">
