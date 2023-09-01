@@ -1,8 +1,9 @@
 @import '../../styles/variables.scss';
 
-.menu {
+.menu-bar {
   display: flex;
   justify-content: space-around;
+  padding: $padding-menu-bar 0;
   z-index: 2;
 }
 
@@ -11,4 +12,8 @@
   border-radius: $border-radius;
   border-width: $border-width;
   border-style: $border-style;
+}
+
+.right-side-bar {
+  max-width: 60%;
 }

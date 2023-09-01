@@ -5,7 +5,7 @@ import './menu.scss';
 
 const Menu = (): JSX.Element => {
   return (
-    <div className="menu">
+    <div className="menu-bar">
       <div className="left-side-bar">
         <Categories />
         <ProductType />

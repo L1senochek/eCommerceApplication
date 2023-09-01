@@ -41,7 +41,7 @@ const Products = (): JSX.Element => {
               item.masterData.current.masterVariant.prices[1].value.centAmount / 100}
             €
           </h2> */}
-          <button className="product-item__add btn">add</button>
+          <button className="product-item__btn btn">add</button>
         </div>
       );
     });

@@ -3,15 +3,54 @@
 .products {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .product-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 40%;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  padding: $padding-tetiary;
+  margin-bottom: $margin-menu-bar;
+  cursor: pointer;
+  transition: $transitionAll;
+  background-image: $background-image-menu-cards;
+  border-radius: $border-radius;
+  &:hover {
+    box-shadow: 0px 2px 35px 14px rgba(170, 0, 255, 0.04);
+    box-shadow: $box-shadow-menu-cards;
+    background-image: $background-image;
+    transition: $transitionAllHalfSec;
+  }
+  // &:hover > &__title,
+  // &:hover > &__description,
+  // &:hover > &__price {
+  //   color: $secondary-color;
+  // }
   &__img {
     width: 300px;
-    height: 200px;
+    height: 300px;
+    width: 24vw;
+    height: 24vw;
+    border-radius: $border-radius;
+  }
+  &__title,
+  &__description,
+  &__price {
+    padding: $padding-tetiary 0;
+  }
+  &__title {
+    font-family: $font-family-title;
+    color: $secondary-color;
+  }
+  &__description {
+    font-family: $font-family-description;
+    letter-spacing: .06em;
+    letter-spacing: 2px;
+  }
+  &__btn {
+    width: $width-btn;
   }
 }

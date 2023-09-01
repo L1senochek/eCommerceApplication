@@ -21,12 +21,16 @@
 
       &:hover > #{$class}__line {
         border-color: $hover-color;
-        width: 100%;
       }
     }
     &__line {
       border: 1px $transperent-color $border-style;
       margin-top: $margin-secondary;
+      width: 100%;
+    }
+    &__title,
+    &__line {
+      transition: $transitionAllHalfSec;
     }
   }
 }
