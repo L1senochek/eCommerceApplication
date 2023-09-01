@@ -9,7 +9,6 @@ export const getAllProductType = async (): Promise<false | ProductType[]> => {
       .get()
       .execute();
 
-    console.log(response);
     if (response.statusCode === 200) {
       return response.body.results;
     } else {

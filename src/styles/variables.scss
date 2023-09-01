@@ -1,5 +1,6 @@
 // $background-color: #0f001a;
-$background-color: #1f1a24;
+// $background-color: #1f1a24;
+$background-color: #131016;
 $font-color: #ffffff;
 $primary-color: #bb86fc;
 $secondary-color: #e877ff;
@@ -8,9 +9,12 @@ $quaternary-color: #6200b3;
 $fivefold-color: #ff00fe;
 $error-color: #ff0000;
 $background-image: radial-gradient(ellipse at 30% 10%, #26003c, #050505);
+$background-image-menu-cards: radial-gradient(ellipse at 30% 10%, #131016, #0d0911);
 $transperent-color: #00000000;
 
 $font-family: 'Arial', sans-serif;
+$font-family-title: 'Kanit', sans-serif;
+$font-family-description: 'Libre Baskerville', serif;
 $font-size-title: 2rem;
 $font-size-header: 1.5rem;
 $font-size: 1rem;
@@ -20,6 +24,7 @@ $border-radius: 5px;
 $border-width: 2px;
 $border-style: solid;
 $box-shadow: 0 0 10px 1px $fivefold-color;
+$box-shadow-menu-cards: 0 0 20px 1px $fivefold-color;
 $text-shadow: 0 0 10px $fivefold-color;
 
 $box-shadow-error: 0 0 10px 1px $error-color;
@@ -28,11 +33,13 @@ $text-shadow-error: 0 0 10px $error-color;
 $padding-primary: 5px;
 $padding-secondary: 15px;
 $padding-tetiary: 10px;
+$padding-menu-bar: 30px;
 $padding-error-tag: calc(($font-size + 2px + $padding-primary * 2) / 2);
 
 $margin-primary: 5px;
 $margin-secondary: 15px;
 $margin-tetiary: 25px;
+$margin-menu-bar: 15px;
 
 $width-btn-date-of-biirth: 5px;
 $width-btn: 10vw;
@@ -48,3 +55,4 @@ $width-input-btn: 17px;
 $height-input-btn: 17px;
 
 $transitionAll: all 1s ease;
+$transitionAllHalfSec: all 0.5s ease;
