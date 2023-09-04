@@ -15,10 +15,18 @@ const ProductType = (): JSX.Element => {
     })();
   }, []);
 
+  const handleProductClick = (itemId: string): void => {
+    console.log('ClickID:', itemId);
+  };
+
   const createProductTypeItems = (): JSX.Element[] => {
     return productTypeItems.map((item) => {
       return (
-        <div key={item.id} className="product-type__item">
+        <div
+          key={item.id}
+          className="product-type__item"
+          onClick={(): void => handleProductClick(item.id)}
+        >
           <span className="product-type__title">{item.name}</span>
           <span className="product-type__line"></span>
         </div>
