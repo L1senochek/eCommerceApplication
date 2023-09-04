@@ -10,10 +10,11 @@ import {
   SIGN_IN_PAGE,
 } from '../../utils/constants/paths';
 import { SignInContext } from '../SignInContext/SignInContext';
-import Search from '../Search/Search';
+// import Search from '../Search/Search';
 import IconAccount from '../IconAccount/IconAccount';
 import IconExit from '../IconExit/IconExit';
 import IconBasket from '../IconBasket/IconBasket';
+import HeaderItemLink from '../HeaderItemLink/HeaderItemLink';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
@@ -28,7 +29,8 @@ const HeaderComponent = (): JSX.Element => {
                 className={({ isActive }): string => `main-logo link ${isActive ? 'active' : ''}`}
                 to={HOME_PAGE}
               >
-                <span className="main-logo__img logo"></span> Purrfect Sushi
+                <span className="main-logo__img logo"></span>
+                <HeaderItemLink title="Purrfect Sushi" otherClassNameTitle="logo-name" />
               </NavLink>
             </li>
             <li className="nav__item">
@@ -36,7 +38,7 @@ const HeaderComponent = (): JSX.Element => {
                 className={({ isActive }): string => `menu link ${isActive ? 'active' : ''}`}
                 to={MENU_PAGE}
               >
-                Menu
+                <HeaderItemLink title="Menu" otherClassNameTitle="menu" />
               </NavLink>
             </li>
             <li className="nav__item">
@@ -44,12 +46,13 @@ const HeaderComponent = (): JSX.Element => {
                 className={({ isActive }): string => `about link ${isActive ? 'active' : ''}`}
                 to={ABOUT_PAGE}
               >
-                about
+                {/* about */}
+                <HeaderItemLink title="About" otherClassNameTitle="about" />
               </NavLink>
             </li>
-            <li className="nav__item">
+            {/* <li className="nav__item">
               <Search />
-            </li>
+            </li> */}
             <li className="nav__item">
               <Link className="basket" to={BASKET_PAGE}>
                 <IconBasket />
@@ -58,7 +61,8 @@ const HeaderComponent = (): JSX.Element => {
             {!context?.isSignIn ? (
               <li className="nav__item">
                 <Link className="login link" to={SIGN_IN_PAGE}>
-                  Sign in
+                  {/* Sign in */}
+                  <HeaderItemLink title="Sign in" otherClassNameTitle="sign-in" />
                 </Link>
               </li>
             ) : (

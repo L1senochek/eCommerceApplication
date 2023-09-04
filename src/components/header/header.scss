@@ -36,11 +36,13 @@
   text-decoration: none;
 }
 
-.link.active,
-.link:hover {
+.link.active > .header-item__wrapper > .header-item__title {
   color: $fivefold-color;
-  text-decoration: underline;
   text-shadow: $text-shadow;
+}
+
+.link.active > .header-item__wrapper > .header-item__line {
+  border-color: $fivefold-color;
 }
 
 .search {

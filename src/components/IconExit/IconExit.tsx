@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { SignInContext } from '../SignInContext/SignInContext';
+import './icon-exit.scss';
 
 const IconExit = (): JSX.Element => {
   const context = useContext(SignInContext);
@@ -19,6 +20,7 @@ const IconExit = (): JSX.Element => {
       height="2.5vw"
       viewBox="0 0 1280.000000 1280.000000"
       preserveAspectRatio="xMidYMid meet"
+      className="icon-exit"
       onClick={handleExitClick}
     >
       <g
