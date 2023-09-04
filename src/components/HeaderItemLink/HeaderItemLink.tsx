@@ -14,7 +14,7 @@ const HeaderItemLink = ({
         <span className={`header-item__title ${otherClassNameTitle ? otherClassNameTitle : ''}`}>
           {title}
         </span>
-        <span className={`header-item__link`}></span>
+        <span className={`header-item__line`}></span>
       </span>
     </>
   );

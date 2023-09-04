@@ -1,0 +1,6 @@
+@import '../../styles/variables.scss';
+
+.icon-exit:hover > g {
+  fill: $fivefold-color;
+  transition: $transitionAllHalfSec;
+}

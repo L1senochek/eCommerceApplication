@@ -1,0 +1,6 @@
+@import '../../styles/variables.scss';
+
+.icon-basket:hover > g {
+  fill: $fivefold-color;
+  transition: $transitionAllHalfSec;
+}

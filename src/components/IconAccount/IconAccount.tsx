@@ -1,3 +1,5 @@
+import './icon-account.scss';
+
 const IconAccount = (): JSX.Element => {
   return (
     <svg
@@ -7,6 +9,7 @@ const IconAccount = (): JSX.Element => {
       height="1.9vw"
       viewBox="0 0 1280.000000 1248.000000"
       preserveAspectRatio="xMidYMid meet"
+      className="icon-account"
     >
       <g
         transform="translate(0.000000,1248.000000) scale(0.100000,-0.100000)"
