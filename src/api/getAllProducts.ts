@@ -1,16 +1,15 @@
-import { Product } from '@commercetools/platform-sdk';
+import { ProductProjection } from '@commercetools/platform-sdk';
 import { getApiRoot, projectKey } from './buildClient';
 
-export const getAllProducts = async (): Promise<false | Product[]> => {
+export const getAllProducts = async (): Promise<false | ProductProjection[]> => {
   try {
     const response = await getApiRoot()
       .withProjectKey({ projectKey })
-      // .productProjections()
-      .products()
+      .productProjections()
+      // .products()
       .get()
       .execute();
 
-    // console.log(response);
     if (response.statusCode === 200) {
       return response.body.results;
     } else {
