@@ -1,16 +1,15 @@
-import { Product } from '@commercetools/platform-sdk';
+import { ProductProjection } from '@commercetools/platform-sdk';
 import { getApiRoot, projectKey } from './buildClient';
 
-export const getAllProducts = async (): Promise<false | Product[]> => {
+export const getAllProductsByProductTypeId = async (): Promise<false | ProductProjection[]> => {
   try {
     const response = await getApiRoot()
       .withProjectKey({ projectKey })
-      // .productProjections()
-      .products()
-      .get()
+      .productProjections()
+      .search()
+      .get({ queryArgs: { filter: [`productType.id:"fcc15450-4766-4752-a3aa-dfd50e3e13fa"`] } })
       .execute();
 
-    // console.log(response);
     if (response.statusCode === 200) {
       return response.body.results;
     } else {
