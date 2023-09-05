@@ -3,10 +3,7 @@ import { getAllProducts } from '../../api/getAllProducts';
 import './products.scss';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { getAllProductsByProductTypeId } from '../../api/getAllProductsByProductTypeId';
-
-interface ProductsProps {
-  productTypeId: string;
-}
+import ProductsProps from '../../model/components/Products/Products';
 
 const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   const [productsItems, setProductsItems] = useState<ProductProjection[]>([]);
