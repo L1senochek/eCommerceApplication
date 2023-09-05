@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getAllProducts } from '../../api/getAllProducts';
 import './products.scss';
 import { ProductProjection } from '@commercetools/platform-sdk';
@@ -10,8 +10,8 @@ import ProductDetails from '../ProductDetails/ProductDetails';
 const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   const [productsItems, setProductsItems] = useState<ProductProjection[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<ProductProjection | null>(null);
-  // const [showDetails, setShowDetails] = useState(false);
   const [isProductDetailsVisible, setProductDetailsVisible] = useState(false);
+  const productDetailsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     (async (): Promise<void> => {
@@ -20,7 +20,6 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
         : getAllProducts());
 
       if (responseArr) {
-        console.log(123, responseArr);
         setProductsItems(responseArr);
       }
     })();
@@ -31,13 +30,16 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
       if (selectedProduct) {
         await getProductById(selectedProduct.id);
         console.log('Product Details:', selectedProduct);
+
+        if (productDetailsRef.current) {
+          productDetailsRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     })();
   }, [selectedProduct]);
 
   const handleProductClick = async (item: ProductProjection): Promise<void> => {
     setSelectedProduct(item);
-    // setShowDetails(true);
     setProductDetailsVisible(true);
   };
 
@@ -46,7 +48,11 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
       return (
         <>
           {isProductDetailsVisible && selectedProduct && selectedProduct.id === item.id ? (
-            <ProductDetails item={item} onClose={(): void => setProductDetailsVisible(false)} />
+            <ProductDetails
+              item={item}
+              onClose={(): void => setProductDetailsVisible(false)}
+              productDetailsRef={productDetailsRef}
+            />
           ) : (
             <>
               <div

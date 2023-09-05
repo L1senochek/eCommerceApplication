@@ -1,14 +1,9 @@
-import { ProductProjection } from '@commercetools/platform-sdk';
+import ProductDetailsProps from '../../model/components/ProductDetails/ProductDetails';
 
-interface ProductDetailsProps {
-  item: ProductProjection;
-  onClose: () => void;
-}
-
-const ProductDetails = ({ item, onClose }: ProductDetailsProps): JSX.Element => {
+const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProps): JSX.Element => {
   return (
     <>
-      <div className="product-details">
+      <div ref={productDetailsRef} className="product-details">
         <button onClick={onClose}>close</button>
         <h2>{item.name['en-US']} Details</h2>
       </div>
