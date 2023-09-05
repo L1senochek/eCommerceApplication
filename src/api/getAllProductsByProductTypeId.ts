@@ -1,13 +1,15 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { getApiRoot, projectKey } from './buildClient';
 
-export const getAllProducts = async (): Promise<false | ProductProjection[]> => {
+export const getAllProductsByProductTypeId = async (
+  productTypeId: string
+): Promise<false | ProductProjection[]> => {
   try {
     const response = await getApiRoot()
       .withProjectKey({ projectKey })
       .productProjections()
-      // .products()
-      .get()
+      .search()
+      .get({ queryArgs: { filter: [`productType.id:"${productTypeId}"`] } })
       .execute();
 
     if (response.statusCode === 200) {

@@ -12,8 +12,10 @@
   border-radius: $border-radius;
   border-width: $border-width;
   border-style: $border-style;
+  height: fit-content;
 }
 
 .right-side-bar {
   max-width: 60%;
+  min-width: 60%;
 }
