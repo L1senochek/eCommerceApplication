@@ -4,6 +4,7 @@ import Categories from '../Categories/Categories';
 import ProductType from '../ProductType/ProductType';
 import Products from '../Products/Products';
 import './menu.scss';
+import AllProductsBtn from '../AllProductsBtn/AllProductsBtn';
 
 const Menu = (): JSX.Element => {
   const [productTypeId, setProductTypeId] = useState('');
@@ -15,6 +16,7 @@ const Menu = (): JSX.Element => {
   return (
     <div className="menu-bar">
       <div className="left-side-bar">
+        <AllProductsBtn onProductClick={handleProductClick} />
         <Categories />
         <ProductType onProductClick={handleProductClick} />
       </div>
