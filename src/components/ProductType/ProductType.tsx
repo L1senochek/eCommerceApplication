@@ -2,10 +2,7 @@ import { ProductType } from '@commercetools/platform-sdk';
 import { getAllProductType } from '../../api/getAllProductType';
 import './productType.scss';
 import { useEffect, useState } from 'react';
-
-interface ProductTypeProps {
-  onProductClick: (selectedProductTypeId: string) => void;
-}
+import ProductTypeProps from '../../model/components/ProductType/ProductType';
 
 const ProductType = ({ onProductClick }: ProductTypeProps): JSX.Element => {
   const [productTypeItems, setProductTypeItems] = useState<ProductType[]>([]);
