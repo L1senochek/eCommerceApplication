@@ -3,7 +3,11 @@ import { getAllProductType } from '../../api/getAllProductType';
 import './productType.scss';
 import { useEffect, useState } from 'react';
 
-const ProductType = (): JSX.Element => {
+interface ProductTypeProps {
+  onProductClick: (selectedProductTypeId: string) => void;
+}
+
+const ProductType = ({ onProductClick }: ProductTypeProps): JSX.Element => {
   const [productTypeItems, setProductTypeItems] = useState<ProductType[]>([]);
 
   useEffect(() => {
@@ -16,6 +20,7 @@ const ProductType = (): JSX.Element => {
   }, []);
 
   const handleProductClick = (itemId: string): void => {
+    onProductClick(itemId);
     console.log('ClickID:', itemId);
   };
 

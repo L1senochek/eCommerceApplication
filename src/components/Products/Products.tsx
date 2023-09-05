@@ -2,19 +2,27 @@ import { useEffect, useState } from 'react';
 import { getAllProducts } from '../../api/getAllProducts';
 import './products.scss';
 import { ProductProjection } from '@commercetools/platform-sdk';
+import { getAllProductsByProductTypeId } from '../../api/getAllProductsByProductTypeId';
 
-const Products = (): JSX.Element => {
+interface ProductsProps {
+  productTypeId: string;
+}
+
+const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   const [productsItems, setProductsItems] = useState<ProductProjection[]>([]);
 
   useEffect(() => {
     (async (): Promise<void> => {
-      const responseArr = await getAllProducts();
+      const responseArr = await (productTypeId
+        ? getAllProductsByProductTypeId(productTypeId)
+        : getAllProducts());
+
       if (responseArr) {
-        console.log(responseArr);
+        console.log(123, responseArr);
         setProductsItems(responseArr);
       }
     })();
-  }, []);
+  }, [productTypeId]);
 
   const createProductsItems = (): JSX.Element[] => {
     return productsItems.map((item) => {
