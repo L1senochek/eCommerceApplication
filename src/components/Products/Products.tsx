@@ -5,11 +5,13 @@ import { ProductProjection } from '@commercetools/platform-sdk';
 import { getAllProductsByProductTypeId } from '../../api/getAllProductsByProductTypeId';
 import ProductsProps from '../../model/components/Products/Products';
 import getProductById from '../../api/getProductById';
+import ProductDetails from '../ProductDetails/ProductDetails';
 
 const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   const [productsItems, setProductsItems] = useState<ProductProjection[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<ProductProjection | null>(null);
-  const [showDetails, setShowDetails] = useState(false);
+  // const [showDetails, setShowDetails] = useState(false);
+  const [isProductDetailsVisible, setProductDetailsVisible] = useState(false);
 
   useEffect(() => {
     (async (): Promise<void> => {
@@ -35,7 +37,8 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
 
   const handleProductClick = async (item: ProductProjection): Promise<void> => {
     setSelectedProduct(item);
-    setShowDetails(true);
+    // setShowDetails(true);
+    setProductDetailsVisible(true);
   };
 
   const createProductsItems = (): JSX.Element[] => {
@@ -65,6 +68,9 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
           </h2> */}
             <button className="product-item__btn btn">add</button>
           </div>
+          {isProductDetailsVisible && selectedProduct && selectedProduct.id === item.id && (
+            <ProductDetails item={item} onClose={(): void => setProductDetailsVisible(false)} />
+          )}
         </>
       );
     });
@@ -74,11 +80,11 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
     <>
       <div className="products">{createProductsItems()}</div>
 
-      {showDetails && selectedProduct && (
+      {/* {showDetails && selectedProduct && (
         <div className="product-details">
           <h2>{selectedProduct.name['en-US']} Details</h2>
         </div>
-      )}
+      )} */}
     </>
   );
 };
