@@ -1,0 +1,38 @@
+.product-details {
+  display: flex;
+  min-width: 100%;  
+}
+
+.product-details__photos {
+  display: flex;
+  align-items: center;
+}
+
+.product-details__arrow {
+  cursor: pointer;
+  font-size: 24px;
+  margin: 0 10px;
+}
+
+.product-details__photo-cards {
+  display: flex;
+}
+
+.product-details__photo-card {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+.product-details__photo-card.active {
+  border: 2px solid $fivefold-color;
+}
+
+.product-details__photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
