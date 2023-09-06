@@ -49,7 +49,11 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
         <>
           <div
             key={item.id}
-            className="product-item"
+            className={`product-item ${
+              isProductDetailsVisible && selectedProduct && selectedProduct.id === item.id
+                ? 'active'
+                : ''
+            }`}
             onClick={(): Promise<void> => handleProductClick(item)}
           >
             <img
