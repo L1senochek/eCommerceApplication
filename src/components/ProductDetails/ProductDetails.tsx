@@ -32,14 +32,12 @@ const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProp
   };
 
   const incrementCount = (): void => {
-    // Увеличение счетчика на 1, но не более чем максимальное значение (здесь ограничено 99)
     if (count < 99) {
       setCount(count + 1);
     }
   };
 
   const decrementCount = (): void => {
-    // Уменьшение счетчика на 1, но не менее 0
     if (count > 0) {
       setCount(count - 1);
     }
@@ -69,7 +67,7 @@ const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProp
               <div className="product-details__photo-cards">
                 {item.variants[0].images?.map((image, index) => (
                   <div
-                    key={index}
+                    key={item.id + index}
                     className={`product-details__photo-card ${
                       index === currentPhotoIndex ? 'active' : ''
                     }`}

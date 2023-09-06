@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { getAllProductsByProductTypeId } from '../../api/getAllProductsByProductTypeId';
 import Categories from '../Categories/Categories';
 import ProductType from '../ProductType/ProductType';
 import Products from '../Products/Products';

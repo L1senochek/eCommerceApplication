@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { getAllProducts } from '../../api/getAllProducts';
 import './products.scss';
 import { ProductProjection } from '@commercetools/platform-sdk';
@@ -46,7 +46,7 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   const createProductsItems = (): JSX.Element[] => {
     return productsItems.map((item) => {
       return (
-        <>
+        <Fragment key={item.id}>
           <div
             key={item.id}
             className={`product-item ${
@@ -81,7 +81,7 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
               productDetailsRef={productDetailsRef}
             />
           )}
-        </>
+        </Fragment>
       );
     });
   };
