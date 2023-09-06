@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { getAllProducts } from '../../api/getAllProducts';
 import './products.scss';
 import { ProductProjection } from '@commercetools/platform-sdk';
@@ -6,13 +6,16 @@ import { getAllProductsByProductTypeId } from '../../api/getAllProductsByProduct
 import ProductsProps from '../../model/components/Products/Products';
 import getProductById from '../../api/getProductById';
 import ProductDetails from '../ProductDetails/ProductDetails';
+import { SearchResultsContext } from '../SearchResContext/SearchResContext';
 
 const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   const [productsItems, setProductsItems] = useState<ProductProjection[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<ProductProjection | null>(null);
   const [isProductDetailsVisible, setProductDetailsVisible] = useState(false);
   const productDetailsRef = useRef<HTMLDivElement | null>(null);
+  const context = useContext(SearchResultsContext);
 
+  console.log(context?.searchResults, 11111111111222);
   useEffect(() => {
     (async (): Promise<void> => {
       const responseArr = await (productTypeId

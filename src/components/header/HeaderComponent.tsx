@@ -18,7 +18,6 @@ import HeaderItemLink from '../HeaderItemLink/HeaderItemLink';
 
 const HeaderComponent = (): JSX.Element => {
   const context = useContext(SignInContext);
-  console.log('isSignIn', context?.isSignIn);
   return (
     <>
       <header className="header">
