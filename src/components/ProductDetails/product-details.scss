@@ -1,0 +1,119 @@
+.product-details {
+  display: flex;
+  min-width: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+  background-image: $background-image-menu-cards;
+  margin-bottom: $margin-secondary;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-menu-cards;
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2vw;
+    height: 2vw;
+    margin: 1% 1% 0 0;
+  }
+  &__content {
+    display: flex;
+    width: 99%;
+    &_left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &_right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      width: 50%;
+      padding: $padding-secondary;
+    }
+  }
+  &__photo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    &_main {
+      width: 30vw;
+      height: 30vw;
+    }
+  }
+  &__photos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $padding-secondary 0;
+  }
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 $margin-primary;
+    cursor: pointer;
+    border-radius: 50%;
+    border-width: $border-width;
+    border-style: $border-style;
+    border-color: $primary-color;
+    transition: $transitionAllHalfSec;
+  }
+  &__arrow:hover {
+    border-color: $fivefold-color;
+  }
+  &__arrow.arrow-right {
+    transform: rotate(180deg);
+  }
+  &__photo-cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__photo-card {
+    width: 7vw;
+    height: 7vw;
+    border: $border-width $border-style $transperent-color;
+    transition: $transitionAllHalfSec;
+    margin: 0 $margin-primary;
+    overflow: hidden;
+    cursor: pointer;
+    &_mini {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__photo-card.active {
+    border-color: $fivefold-color;
+  }
+  &__title {
+    padding: $padding-primary 0;
+    font-family: $font-family-title;
+    color: $secondary-color;
+  }
+  &__description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: $padding-primary 0;
+    font-family: $font-family-description;
+    letter-spacing: 0.06em;
+    letter-spacing: 2px;
+  }
+  &__btn-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 8vw;
+    &_btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2vw;
+      height: 2vw;
+    }
+  }
+}

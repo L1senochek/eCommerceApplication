@@ -24,11 +24,6 @@
     background-image: $background-image;
     transition: $transitionAllHalfSec;
   }
-  // &:hover > &__title,
-  // &:hover > &__description,
-  // &:hover > &__price {
-  //   color: $secondary-color;
-  // }
   &__img {
     width: 300px;
     height: 300px;
@@ -52,5 +47,9 @@
   }
   &__btn {
     width: $width-btn;
+  }
+  &.active {
+    box-shadow: $box-shadow-menu-cards;
+    background-image: $background-image;
   }
 }
