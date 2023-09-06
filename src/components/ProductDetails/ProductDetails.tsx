@@ -75,6 +75,18 @@ const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProp
           </div>
           <div className="product-details__content_right">
             <h2 className="product-details__title">{item.name['en-US']}</h2>
+            <h3 className="product-details__description">
+              {item.description ? item.description['en-US'] : ''}
+            </h3>
+            <div>
+              {item.masterVariant.prices ? item.masterVariant.prices[0].value.centAmount / 2 : ''}{' '}
+              {item.masterVariant.prices ? item.masterVariant.prices[0].value.currencyCode : ''}
+            </div>
+            <div className="product-details__btn-wrapper">
+              <button className="product-details__btn-wrapper_btn minus-btn btn">-</button>
+              <div className="product-details__btn-wrapper_count">0</div>
+              <button className="product-details__btn-wrapper_btn plus-btn btn">+</button>
+            </div>
           </div>
         </div>
       </div>
