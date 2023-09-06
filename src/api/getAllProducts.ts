@@ -7,6 +7,7 @@ export const getAllProducts = async (): Promise<false | ProductProjection[]> => 
       .withProjectKey({ projectKey })
       .productProjections()
       // .products()
+      // .get({ queryArgs: { limit: 6 } })
       .get()
       .execute();
 
