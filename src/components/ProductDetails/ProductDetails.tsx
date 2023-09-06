@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ProductDetailsProps from '../../model/components/ProductDetails/ProductDetails';
 import './product-details.scss';
+import IconArrow from '../IconArrow/IconArrow';
 
 const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProps): JSX.Element => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -36,36 +37,43 @@ const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProp
           <span className="cross">x</span>
         </button>
         <div className="product-details__content">
-          <div className="product-details__photo">
-            {item.variants[0].images && (
-              <img
-                src={item.variants[0].images[currentPhotoIndex].url}
-                alt={`Photo ${currentPhotoIndex + 1}`}
-              />
-            )}
+          <div className="product-details__content_left">
+            <div className="product-details__photo">
+              {item.variants[0].images && (
+                <img
+                  src={item.variants[0].images[currentPhotoIndex].url}
+                  className="product-details__photo_main"
+                  alt={`Photo ${`${item.key}` + 1}`}
+                />
+              )}
+            </div>
+            <div className="product-details__photos">
+              <div className="product-details__arrow arrow-left" onClick={prevPhoto}>
+                <IconArrow />
+              </div>
+              <div className="product-details__photo-cards">
+                {item.variants[0].images?.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`product-details__photo-card ${
+                      index === currentPhotoIndex ? 'active' : ''
+                    }`}
+                    onClick={(): void => handleThumbnailClick(index)}
+                  >
+                    <img
+                      src={image.url}
+                      className="product-details__photo-card_mini"
+                      alt={`Photo ${`${item.key}` + 1}`}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="product-details__arrow arrow-right" onClick={nextPhoto}>
+                <IconArrow />
+              </div>
+            </div>
           </div>
-          <div className="product-details__photos">
-            <div className="product-details__arrow arroe-left" onClick={prevPhoto}>
-              left
-            </div>
-            <div className="product-details__photo-cards">
-              {item.variants[0].images?.map((image, index) => (
-                <div
-                  key={index}
-                  className={`product-details__photo-card ${
-                    index === currentPhotoIndex ? 'active' : ''
-                  }`}
-                  onClick={(): void => handleThumbnailClick(index)}
-                >
-                  <img src={image.url} alt={`Photo ${index + 1}`} />
-                </div>
-              ))}
-            </div>
-            <div className="product-details__arrow arroe-right" onClick={nextPhoto}>
-              right
-            </div>
-          </div>
-          <div>
+          <div className="product-details__content_right">
             <h2 className="product-details__title">{item.name['en-US']}</h2>
           </div>
         </div>
