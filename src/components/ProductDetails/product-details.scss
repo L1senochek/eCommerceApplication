@@ -29,7 +29,7 @@
       align-items: center;
       justify-content: space-around;
       width: 50%;
-      padding: $padding-secondary 0;
+      padding: $padding-secondary;
     }
   }
   &__photo {
@@ -90,6 +90,8 @@
   }
   &__title {
     padding: $padding-primary 0;
+    font-family: $font-family-title;
+    color: $secondary-color;
   }
   &__description {
     display: flex;
@@ -97,6 +99,9 @@
     align-items: center;
     text-align: center;
     padding: $padding-primary 0;
+    font-family: $font-family-description;
+    letter-spacing: 0.06em;
+    letter-spacing: 2px;
   }
   &__btn-wrapper {
     display: flex;

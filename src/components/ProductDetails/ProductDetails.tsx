@@ -5,6 +5,7 @@ import IconArrow from '../IconArrow/IconArrow';
 
 const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProps): JSX.Element => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [count, setCount] = useState(0);
 
   const nextPhoto = (): void => {
     if (item.variants[0].images) {
@@ -28,6 +29,20 @@ const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProp
 
   const handleThumbnailClick = (index: number): void => {
     setCurrentPhotoIndex(index);
+  };
+
+  const incrementCount = (): void => {
+    // Увеличение счетчика на 1, но не более чем максимальное значение (здесь ограничено 99)
+    if (count < 99) {
+      setCount(count + 1);
+    }
+  };
+
+  const decrementCount = (): void => {
+    // Уменьшение счетчика на 1, но не менее 0
+    if (count > 0) {
+      setCount(count - 1);
+    }
   };
 
   return (
@@ -83,9 +98,19 @@ const ProductDetails = ({ item, onClose, productDetailsRef }: ProductDetailsProp
               {item.masterVariant.prices ? item.masterVariant.prices[0].value.currencyCode : ''}
             </div>
             <div className="product-details__btn-wrapper">
-              <button className="product-details__btn-wrapper_btn minus-btn btn">-</button>
-              <div className="product-details__btn-wrapper_count">0</div>
-              <button className="product-details__btn-wrapper_btn plus-btn btn">+</button>
+              <button
+                className="product-details__btn-wrapper_btn minus-btn btn"
+                onClick={decrementCount}
+              >
+                -
+              </button>
+              <div className="product-details__btn-wrapper_count">{count}</div>
+              <button
+                className="product-details__btn-wrapper_btn plus-btn btn"
+                onClick={incrementCount}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
