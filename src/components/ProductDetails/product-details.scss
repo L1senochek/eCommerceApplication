@@ -85,7 +85,7 @@
   &__photo-card.active {
     border-color: $fivefold-color;
   }
-  &__title  {
+  &__title {
     padding: $padding-primary 0;
   }
   &__description {
@@ -96,7 +96,7 @@
     padding: $padding-primary 0;
   }
   &__btn-wrapper {
-    display: flex;    
+    display: flex;
     justify-content: space-around;
     align-items: center;
     width: 8vw;
@@ -108,4 +108,8 @@
       height: 2vw;
     }
   }
+}
+
+.arrow-right {
+  transform: rotate(180deg);
 }

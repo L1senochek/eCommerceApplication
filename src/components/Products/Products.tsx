@@ -47,7 +47,6 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
     return productsItems.map((item) => {
       return (
         <>
-          {/* <> */}
           <div
             key={item.id}
             className="product-item"
@@ -71,40 +70,12 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
           </h2> */}
             <button className="product-item__btn btn">add</button>
           </div>
-          {/* </> */}
           {isProductDetailsVisible && selectedProduct && selectedProduct.id === item.id && (
             <ProductDetails
               item={item}
               onClose={(): void => setProductDetailsVisible(false)}
               productDetailsRef={productDetailsRef}
             />
-            // ) : (
-            //   <>
-            //     <div
-            //       key={item.id}
-            //       className="product-item"
-            //       onClick={(): Promise<void> => handleProductClick(item)}
-            //     >
-            //       <img
-            //         className="product-item__img"
-            //         src={item.masterVariant.images && item.masterVariant.images[0].url}
-            //       />
-            //       <h2 className="product-item__title">{item.name['en-US']}</h2>
-            //       <h3 className="product-item__description">
-            //         {item.description && item.description['en-US']}
-            //       </h3>
-            //       <h2 className="product-item__price">
-            //         {item.masterVariant.prices && item.masterVariant.prices[0].value.centAmount / 100}
-            //         $
-            //       </h2>
-            //       {/* <h2>
-            //   {item.masterData.current.masterVariant.prices &&
-            //     item.masterData.current.masterVariant.prices[1].value.centAmount / 100}
-            //   €
-            // </h2> */}
-            //       <button className="product-item__btn btn">add</button>
-            //     </div>
-            //   </>
           )}
         </>
       );
