@@ -1,33 +1,41 @@
 import { ChangeEvent, ReactElement, useContext, useEffect, useState } from 'react';
 import getProductsSearch from '../../api/getProductsSearch';
-// import { ProductProjection } from '@commercetools/platform-sdk';
 import { SearchResultsContext } from '../SearchResContext/SearchResContext';
 
 const Search = (): ReactElement => {
   const [search, setSearch] = useState('');
-  const [searchButtonClicked, setSearchButtonClicked] = useState(false);
   const context = useContext(SearchResultsContext);
 
   const searchChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSearch(event.target.value);
+    const value = event.target.value;
+    setSearch(value);
+
+    if (value === '') {
+      context?.setSearchResults([]);
+    }
   };
 
   const handleSearchProductClick = async (): Promise<void> => {
-    setSearchButtonClicked(true);
+    context?.setSearchButtonClicked(true);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key === 'Enter') {
+      context?.setSearchButtonClicked(true);
+    }
   };
 
   useEffect(() => {
-    if (searchButtonClicked) {
+    if (context?.isSearchButtonClicked) {
       (async (): Promise<void> => {
         const res = await getProductsSearch(search);
         if (res) {
           context?.setSearchResults(res || []);
-          console.log(search, res, context?.searchResults);
         }
+        context?.setSearchButtonClicked(false);
       })();
     }
-    setSearchButtonClicked(false);
-  }, [search, searchButtonClicked, context]);
+  }, [search, context]);
 
   return (
     <div className="search input">
@@ -39,6 +47,7 @@ const Search = (): ReactElement => {
         id="search"
         value={search}
         onChange={searchChange}
+        onKeyDown={handleKeyDown}
       />
     </div>
   );

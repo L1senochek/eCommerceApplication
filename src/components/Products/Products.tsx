@@ -15,7 +15,6 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   const productDetailsRef = useRef<HTMLDivElement | null>(null);
   const context = useContext(SearchResultsContext);
 
-  console.log(context?.searchResults, 11111111111222);
   useEffect(() => {
     (async (): Promise<void> => {
       const responseArr = await (productTypeId
@@ -32,7 +31,6 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
     (async (): Promise<void> => {
       if (selectedProduct) {
         await getProductById(selectedProduct.id);
-        console.log('Product Details:', selectedProduct);
 
         if (productDetailsRef.current) {
           productDetailsRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -47,7 +45,9 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   };
 
   const createProductsItems = (): JSX.Element[] => {
-    return productsItems.map((item) => {
+    const products = context?.searchResults.length ? context?.searchResults : productsItems;
+
+    return products.map((item) => {
       return (
         <Fragment key={item.id}>
           <div
