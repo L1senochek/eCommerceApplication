@@ -1,8 +1,8 @@
 import { ChangeEvent, ReactElement, useContext, useEffect } from 'react';
-import getProductsSearch from '../../api/getProductsSearch';
 import { SearchResultsContext } from '../SearchResContext/SearchResContext';
 import IconLoupe from '../IconLoupe/IconLoupe';
 import './search.scss';
+import getProductsFilter from '../../api/getProductsFilter';
 
 const Search = (): ReactElement => {
   const context = useContext(SearchResultsContext);
@@ -29,7 +29,7 @@ const Search = (): ReactElement => {
   useEffect(() => {
     if (context?.isSearchButtonClicked) {
       (async (): Promise<void> => {
-        const res = await getProductsSearch(context?.search);
+        const res = await getProductsFilter({ searchTerm: context?.search });
         if (res) {
           context?.setSearchResults(res || []);
         }
