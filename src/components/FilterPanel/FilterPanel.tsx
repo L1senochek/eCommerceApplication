@@ -1,4 +1,5 @@
 import Search from '../Search/Search';
+import Sort from '../Sort/Sort';
 import './filter-panel.scss';
 
 const FilterPanel = (): JSX.Element => {
@@ -6,6 +7,7 @@ const FilterPanel = (): JSX.Element => {
     <>
       <div className="filter-panel">
         <Search />
+        <Sort />
       </div>
     </>
   );
