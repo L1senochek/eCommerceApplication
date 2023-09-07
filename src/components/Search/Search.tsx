@@ -1,6 +1,8 @@
 import { ChangeEvent, ReactElement, useContext, useEffect, useState } from 'react';
 import getProductsSearch from '../../api/getProductsSearch';
 import { SearchResultsContext } from '../SearchResContext/SearchResContext';
+import IconLoupe from '../IconLoupe/IconLoupe';
+import './search.scss';
 
 const Search = (): ReactElement => {
   const [search, setSearch] = useState('');
@@ -39,7 +41,9 @@ const Search = (): ReactElement => {
 
   return (
     <div className="search input">
-      <button className="search__loupe" onClick={handleSearchProductClick}></button>
+      <button className="search__loupe" onClick={handleSearchProductClick}>
+        <IconLoupe />
+      </button>
       <input
         type="search"
         className="search__input"
