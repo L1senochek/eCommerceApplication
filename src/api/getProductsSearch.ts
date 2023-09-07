@@ -12,6 +12,7 @@ const getProductsSearch = async (searchTerm: string): Promise<false | ProductPro
         queryArgs: {
           'text.en-US': searchTerm,
           limit: LIMIT_ITEM_ON_PAGE,
+          fuzzy: true,
         },
       })
       .execute();

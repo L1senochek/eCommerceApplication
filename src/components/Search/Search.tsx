@@ -1,16 +1,15 @@
-import { ChangeEvent, ReactElement, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, ReactElement, useContext, useEffect } from 'react';
 import getProductsSearch from '../../api/getProductsSearch';
 import { SearchResultsContext } from '../SearchResContext/SearchResContext';
 import IconLoupe from '../IconLoupe/IconLoupe';
 import './search.scss';
 
 const Search = (): ReactElement => {
-  const [search, setSearch] = useState('');
   const context = useContext(SearchResultsContext);
 
   const searchChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
-    setSearch(value);
+    context?.setSearch(value);
 
     if (value === '') {
       context?.setSearchResults([]);
@@ -30,14 +29,14 @@ const Search = (): ReactElement => {
   useEffect(() => {
     if (context?.isSearchButtonClicked) {
       (async (): Promise<void> => {
-        const res = await getProductsSearch(search);
+        const res = await getProductsSearch(context?.search);
         if (res) {
           context?.setSearchResults(res || []);
         }
         context?.setSearchButtonClicked(false);
       })();
     }
-  }, [search, context]);
+  }, [context]);
 
   return (
     <div className="search input">
@@ -49,7 +48,7 @@ const Search = (): ReactElement => {
         className="search__input"
         placeholder="Search..."
         id="search"
-        value={search}
+        value={context?.search}
         onChange={searchChange}
         onKeyDown={handleKeyDown}
       />
