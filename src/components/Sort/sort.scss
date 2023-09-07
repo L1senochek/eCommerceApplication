@@ -6,6 +6,11 @@
   justify-content: space-around;
   padding: 0 $padding-secondary;
   cursor: pointer;
+  &.desc > &__icon {
+    > .icon-arrow {
+      transform: rotate(90deg);
+    }
+  }
   &__icon {
     > .icon-arrow {
       transform: rotate(-90deg);
