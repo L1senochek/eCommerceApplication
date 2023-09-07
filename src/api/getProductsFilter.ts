@@ -1,16 +1,7 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { LIMIT_ITEM_ON_PAGE } from '../utils/constants/constants';
 import { getApiRoot, projectKey } from './buildClient';
-
-interface IgetProductsFilter {
-  sortType?: string;
-  searchTerm?: string;
-  categoryId?: string;
-  productTypeId?: string;
-  priceCurrencyValue?: string;
-  priceCountryValue?: string;
-  priceCustomerGroupValue?: string;
-}
+import IgetProductsFilter from '../model/api/getProductsFilter';
 
 const getProductsFilter = async ({
   sortType,
