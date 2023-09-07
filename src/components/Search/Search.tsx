@@ -1,11 +1,11 @@
 import { ChangeEvent, ReactElement, useContext, useEffect } from 'react';
-import { SearchResultsContext } from '../SearchResContext/SearchResContext';
+import { MenuContext } from '../MenuContext/MenuContext';
 import IconLoupe from '../IconLoupe/IconLoupe';
 import './search.scss';
 import getProductsFilter from '../../api/getProductsFilter';
 
 const Search = (): ReactElement => {
-  const context = useContext(SearchResultsContext);
+  const context = useContext(MenuContext);
 
   const searchChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;

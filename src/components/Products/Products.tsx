@@ -3,29 +3,28 @@ import { getAllProducts } from '../../api/getAllProducts';
 import './products.scss';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { getAllProductsByProductTypeId } from '../../api/getAllProductsByProductTypeId';
-import ProductsProps from '../../model/components/Products/Products';
 import getProductById from '../../api/getProductById';
 import ProductDetails from '../ProductDetails/ProductDetails';
-import { SearchResultsContext } from '../SearchResContext/SearchResContext';
+import { MenuContext } from '../MenuContext/MenuContext';
 
-const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
+const Products = (): JSX.Element => {
   const [productsItems, setProductsItems] = useState<ProductProjection[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<ProductProjection | null>(null);
   const [isProductDetailsVisible, setProductDetailsVisible] = useState(false);
   const productDetailsRef = useRef<HTMLDivElement | null>(null);
-  const context = useContext(SearchResultsContext);
+  const context = useContext(MenuContext);
 
   useEffect(() => {
     (async (): Promise<void> => {
-      const responseArr = await (productTypeId
-        ? getAllProductsByProductTypeId(productTypeId)
+      const responseArr = await (context?.productTypeId
+        ? getAllProductsByProductTypeId(context?.productTypeId)
         : getAllProducts());
 
       if (responseArr) {
         setProductsItems(responseArr);
       }
     })();
-  }, [productTypeId]);
+  }, [context?.productTypeId]);
 
   useEffect(() => {
     (async (): Promise<void> => {

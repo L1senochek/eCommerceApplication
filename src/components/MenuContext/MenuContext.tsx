@@ -1,19 +1,20 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
 import React, { createContext, useState } from 'react';
 import {
-  ISearchResultsContextProps,
-  ISearchResultsProvider,
-} from '../../model/components/SearchResContext/SearchResContext';
+  IMenuContextProps,
+  IMenuProvider,
+} from '../../model/components/SearchResContext/MenuContext';
 
-export const SearchResultsContext = createContext<ISearchResultsContextProps | null>(null);
+export const MenuContext = createContext<IMenuContextProps | null>(null);
 
-export const SearchResultsProvider = ({ children }: ISearchResultsProvider): JSX.Element => {
+export const MenuProvider = ({ children }: IMenuProvider): JSX.Element => {
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<ProductProjection[]>([]);
   const [isSearchButtonClicked, setSearchButtonClicked] = useState<boolean>(false);
+  const [productTypeId, setProductTypeId] = useState('');
 
   return (
-    <SearchResultsContext.Provider
+    <MenuContext.Provider
       value={{
         search,
         setSearch,
@@ -21,9 +22,11 @@ export const SearchResultsProvider = ({ children }: ISearchResultsProvider): JSX
         setSearchResults,
         isSearchButtonClicked,
         setSearchButtonClicked,
+        productTypeId,
+        setProductTypeId,
       }}
     >
       {children}
-    </SearchResultsContext.Provider>
+    </MenuContext.Provider>
   );
 };
