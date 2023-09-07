@@ -1,9 +1,12 @@
 import Search from '../Search/Search';
+import './filter-panel.scss';
 
 const FilterPanel = (): JSX.Element => {
   return (
     <>
-      <Search />
+      <div className="filter-panel">
+        <Search />
+      </div>
     </>
   );
 };
