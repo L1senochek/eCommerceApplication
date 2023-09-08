@@ -13,7 +13,10 @@ const Products = (): JSX.Element => {
   const [isProductDetailsVisible, setProductDetailsVisible] = useState(false);
   const productDetailsRef = useRef<HTMLDivElement | null>(null);
   const context = useContext(MenuContext);
+  // const prevProductTypeIdRef = useRef<string | undefined>(context?.productTypeId);
 
+  console.log('sortItems', context?.filterResults);
+  console.log('productsItems', productsItems);
   useEffect(() => {
     (async (): Promise<void> => {
       const responseArr = await (context?.productTypeId
@@ -25,6 +28,27 @@ const Products = (): JSX.Element => {
       }
     })();
   }, [context?.productTypeId]);
+
+  // useEffect(() => {
+  //   const currentProductTypeId = context?.productTypeId;
+  //   console.log('id1111111111', currentProductTypeId);
+  //   if (currentProductTypeId !== prevProductTypeIdRef.current) {
+  //     (async (): Promise<void> => {
+  //       const responseArr = await (currentProductTypeId
+  //         ? getAllProductsByProductTypeId(currentProductTypeId)
+  //         : getAllProducts());
+
+  //       if (responseArr) {
+  //         context?.setProductsItems(responseArr);
+  //       }
+  //       // context?.setProductsItems((prevProducts) => {
+  //       //   return responseArr || prevProducts;
+  //       // });
+
+  //       prevProductTypeIdRef.current = currentProductTypeId;
+  //     })();
+  //   }
+  // }, [context]);
 
   useEffect(() => {
     (async (): Promise<void> => {
@@ -44,7 +68,7 @@ const Products = (): JSX.Element => {
   };
 
   const createProductsItems = (): JSX.Element[] => {
-    const products = context?.searchResults.length ? context?.searchResults : productsItems;
+    const products = context?.filterResults.length ? context?.filterResults : productsItems;
 
     return products.map((item) => {
       return (

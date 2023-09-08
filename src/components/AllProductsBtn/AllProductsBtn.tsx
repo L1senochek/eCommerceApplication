@@ -6,6 +6,7 @@ const AllProductsBtn = (): JSX.Element => {
   const context = useContext(MenuContext);
 
   const handleAllProductClick = (itemId: string): void => {
+    context?.setFilterResults([]);
     context?.setProductTypeId(itemId);
   };
   return (

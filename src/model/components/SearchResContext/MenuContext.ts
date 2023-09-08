@@ -4,8 +4,8 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 export interface IMenuContextProps {
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
-  searchResults: ProductProjection[];
-  setSearchResults: Dispatch<SetStateAction<ProductProjection[]>>;
+  filterResults: ProductProjection[];
+  setFilterResults: Dispatch<SetStateAction<ProductProjection[]>>;
   isSearchButtonClicked: boolean;
   setSearchButtonClicked: Dispatch<SetStateAction<boolean>>;
   productTypeId: string;

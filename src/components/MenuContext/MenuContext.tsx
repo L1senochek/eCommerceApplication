@@ -9,7 +9,7 @@ export const MenuContext = createContext<IMenuContextProps | null>(null);
 
 export const MenuProvider = ({ children }: IMenuProvider): JSX.Element => {
   const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState<ProductProjection[]>([]);
+  const [filterResults, setFilterResults] = useState<ProductProjection[]>([]);
   const [isSearchButtonClicked, setSearchButtonClicked] = useState<boolean>(false);
   const [productTypeId, setProductTypeId] = useState('');
 
@@ -18,8 +18,8 @@ export const MenuProvider = ({ children }: IMenuProvider): JSX.Element => {
       value={{
         search,
         setSearch,
-        searchResults,
-        setSearchResults,
+        filterResults,
+        setFilterResults,
         isSearchButtonClicked,
         setSearchButtonClicked,
         productTypeId,

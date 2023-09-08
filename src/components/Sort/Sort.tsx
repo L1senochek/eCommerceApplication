@@ -11,7 +11,7 @@ const Sort = (): JSX.Element => {
 
   const handleSortPriceClick = async (): Promise<void> => {
     setPriceASC(!priceASC);
-
+    console.log('priceASC2222', priceASC);
     const res = await getProductsFilter({
       // productTypeId: 'fcc15450-4766-4752-a3aa-dfd50e3e13fa',
       // productTypeId: '172e8c21-7243-43c1-b6f8-b61b6d4646f0',
@@ -22,6 +22,9 @@ const Sort = (): JSX.Element => {
       // sortType: 'price desc',
       searchTerm: context?.search ? context?.search : '',
     });
+    if (res) {
+      context?.setFilterResults(res);
+    }
     console.log(res, context);
   };
 

@@ -12,7 +12,7 @@ const Search = (): ReactElement => {
     context?.setSearch(value);
 
     if (value === '') {
-      context?.setSearchResults([]);
+      context?.setFilterResults([]);
     }
   };
 
@@ -31,7 +31,7 @@ const Search = (): ReactElement => {
       (async (): Promise<void> => {
         const res = await getProductsFilter({ searchTerm: context?.search });
         if (res) {
-          context?.setSearchResults(res || []);
+          context?.setFilterResults(res || []);
         }
         context?.setSearchButtonClicked(false);
       })();
