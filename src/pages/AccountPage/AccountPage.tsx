@@ -1,3 +1,4 @@
+import Account from '../../components/Account/Account';
 import Footer from '../../components/Footer/FooterComponent';
 import Header from '../../components/Header/HeaderComponent';
 
@@ -6,7 +7,7 @@ const AccountPage = (): JSX.Element => {
     <>
       <Header />
       <main className="account">
-        <>account</>
+        <Account />
       </main>
       <Footer />
     </>
