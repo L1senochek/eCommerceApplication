@@ -1,8 +1,6 @@
 @import '../../styles/variables.scss';
 
-.icon-arrow {
+.search__loupe:hover > .icon-loupe > g {
+  fill: $fivefold-color;
   transition: $transitionAllHalfSec;
-  &:hover > g {
-    fill: $fivefold-color;
-  }
 }

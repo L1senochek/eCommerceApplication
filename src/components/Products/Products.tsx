@@ -1,35 +1,59 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { getAllProducts } from '../../api/getAllProducts';
 import './products.scss';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { getAllProductsByProductTypeId } from '../../api/getAllProductsByProductTypeId';
-import ProductsProps from '../../model/components/Products/Products';
 import getProductById from '../../api/getProductById';
 import ProductDetails from '../ProductDetails/ProductDetails';
+import { MenuContext } from '../MenuContext/MenuContext';
 
-const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
+const Products = (): JSX.Element => {
   const [productsItems, setProductsItems] = useState<ProductProjection[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<ProductProjection | null>(null);
   const [isProductDetailsVisible, setProductDetailsVisible] = useState(false);
   const productDetailsRef = useRef<HTMLDivElement | null>(null);
+  const context = useContext(MenuContext);
+  // const prevProductTypeIdRef = useRef<string | undefined>(context?.productTypeId);
 
+  console.log('sortItems', context?.filterResults);
+  console.log('productsItems', productsItems);
   useEffect(() => {
     (async (): Promise<void> => {
-      const responseArr = await (productTypeId
-        ? getAllProductsByProductTypeId(productTypeId)
+      const responseArr = await (context?.productTypeId
+        ? getAllProductsByProductTypeId(context?.productTypeId)
         : getAllProducts());
 
       if (responseArr) {
         setProductsItems(responseArr);
       }
     })();
-  }, [productTypeId]);
+  }, [context?.productTypeId]);
+
+  // useEffect(() => {
+  //   const currentProductTypeId = context?.productTypeId;
+  //   console.log('id1111111111', currentProductTypeId);
+  //   if (currentProductTypeId !== prevProductTypeIdRef.current) {
+  //     (async (): Promise<void> => {
+  //       const responseArr = await (currentProductTypeId
+  //         ? getAllProductsByProductTypeId(currentProductTypeId)
+  //         : getAllProducts());
+
+  //       if (responseArr) {
+  //         context?.setProductsItems(responseArr);
+  //       }
+  //       // context?.setProductsItems((prevProducts) => {
+  //       //   return responseArr || prevProducts;
+  //       // });
+
+  //       prevProductTypeIdRef.current = currentProductTypeId;
+  //     })();
+  //   }
+  // }, [context]);
 
   useEffect(() => {
     (async (): Promise<void> => {
       if (selectedProduct) {
         await getProductById(selectedProduct.id);
-        console.log('Product Details:', selectedProduct);
 
         if (productDetailsRef.current) {
           productDetailsRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -44,9 +68,11 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
   };
 
   const createProductsItems = (): JSX.Element[] => {
-    return productsItems.map((item) => {
+    const products = context?.filterResults.length ? context?.filterResults : productsItems;
+
+    return products.map((item) => {
       return (
-        <>
+        <Fragment key={item.id}>
           <div
             key={item.id}
             className={`product-item ${
@@ -81,7 +107,7 @@ const Products = ({ productTypeId }: ProductsProps): JSX.Element => {
               productDetailsRef={productDetailsRef}
             />
           )}
-        </>
+        </Fragment>
       );
     });
   };

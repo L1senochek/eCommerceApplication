@@ -45,25 +45,6 @@
   border-color: $fivefold-color;
 }
 
-.search {
-  display: flex;
-  &__loupe {
-    margin-right: $padding-primary;
-    border-color: $fivefold-color;
-    background: transparent;
-    width: $width-input-btn;
-    height: $height-input-btn;
-  }
-  &__input {
-    width: 100%;
-    padding-left: $padding-primary;
-    background-image: $background-image;
-    color: $fivefold-color;
-    border: none;
-    outline: none;
-  }
-}
-
 .logo {
   background-image: url('../../assets/img/logo.png');
   background-size: cover;

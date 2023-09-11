@@ -1,11 +1,12 @@
 import { ProductType } from '@commercetools/platform-sdk';
 import { getAllProductType } from '../../api/getAllProductType';
 import './productType.scss';
-import { useEffect, useState } from 'react';
-import ProductTypeProps from '../../model/components/ProductType/ProductType';
+import { useContext, useEffect, useState } from 'react';
+import { MenuContext } from '../MenuContext/MenuContext';
 
-const ProductType = ({ onProductClick }: ProductTypeProps): JSX.Element => {
+const ProductType = (): JSX.Element => {
   const [productTypeItems, setProductTypeItems] = useState<ProductType[]>([]);
+  const context = useContext(MenuContext);
 
   useEffect(() => {
     (async (): Promise<void> => {
@@ -17,7 +18,7 @@ const ProductType = ({ onProductClick }: ProductTypeProps): JSX.Element => {
   }, []);
 
   const handleProductClick = (itemId: string): void => {
-    onProductClick(itemId);
+    context?.setProductTypeId(itemId);
     console.log('ClickID:', itemId);
   };
 

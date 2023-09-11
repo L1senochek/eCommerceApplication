@@ -1,13 +1,8 @@
-import { ReactNode, createContext, useState } from 'react';
-
-interface ISignInContextProps {
-  isSignIn: boolean;
-  setSignIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface ISignInProvider {
-  children: ReactNode;
-}
+import { createContext, useState } from 'react';
+import {
+  ISignInContextProps,
+  ISignInProvider,
+} from '../../model/components/SignInContext/SignInContext';
 
 export const SignInContext = createContext<ISignInContextProps | undefined>(undefined);
 

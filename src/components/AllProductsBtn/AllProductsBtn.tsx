@@ -1,9 +1,13 @@
-import AllProductsBtnProps from '../../model/components/AllProductsBtn/AllProductsBtn';
+import { useContext } from 'react';
+import { MenuContext } from '../MenuContext/MenuContext';
 import './all-products-btn.scss';
 
-const AllProductsBtn = ({ onProductClick }: AllProductsBtnProps): JSX.Element => {
+const AllProductsBtn = (): JSX.Element => {
+  const context = useContext(MenuContext);
+
   const handleAllProductClick = (itemId: string): void => {
-    onProductClick(itemId);
+    context?.setFilterResults([]);
+    context?.setProductTypeId(itemId);
   };
   return (
     <>
