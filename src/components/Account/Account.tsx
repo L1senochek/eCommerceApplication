@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignInContext } from '../SignInContext/SignInContext';
 import { HOME_PAGE } from '../../utils/constants/paths';
+// import getCustomerWithPasswordToken from '../../api/getCustomerByPass';
 
 const Account = (): JSX.Element => {
   const navigation = useNavigate();
@@ -14,9 +15,14 @@ const Account = (): JSX.Element => {
     }
   }, [context, navigation]);
 
+  const handle = async (): Promise<void> => {
+    // const res = await getCustomerWithPasswordToken();
+    // console.log(res);
+  };
+
   return (
     <>
-      <div>acc</div>
+      <div onClick={handle}>acc</div>
     </>
   );
 };
