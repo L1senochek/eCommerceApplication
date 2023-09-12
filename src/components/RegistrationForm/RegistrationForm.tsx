@@ -90,6 +90,8 @@ const RegistrationForm = (): JSX.Element => {
     const defaultAddresses = useAsDefault ? { defaultShippingAddress: 0 } : {};
     const formData = {
       email: `${userEmail}`,
+      lastName: `${userLastname}`,
+      firstName: `${userFirstname}`,
       password: password,
       confirmPassword: confirmPassword,
       dateOfBirth: dateOfBirth,
