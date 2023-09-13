@@ -15,11 +15,13 @@
   }
   &__tab {
     padding: $padding-primary $padding-secondary;
-    border-bottom: $border-width;
+    border-bottom-width: $border-width;
+    border-bottom-style: $border-style;
+    border-color: $transperent-color;
     cursor: pointer;
   }
   &__tab.active {
-    border-bottom-style: $border-style;
+    color: $fivefold-color;
     border-color: $fivefold-color;
   }
   &__details {
