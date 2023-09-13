@@ -6,7 +6,7 @@ import './PasswordInput.scss';
 import IUniversalInputWithErrorProps from '../../model/components/UniversalInputWithError/UniversalInputWithError';
 
 const UniversalInputWithError = ({
-  value,
+  value = '',
   onChange,
   showError,
   changeError,
@@ -20,9 +20,11 @@ const UniversalInputWithError = ({
   classNameWrapperPass,
   classNameInputPass,
   classNameBtnPass,
+  classNameError,
   isPassword = false,
   isConfirmPassword = false,
   isPasswordsMatch,
+  disabled = false,
 }: IUniversalInputWithErrorProps): JSX.Element => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -53,8 +55,13 @@ const UniversalInputWithError = ({
             className={`${classNameInput} ${showError ? 'input-error' : ''}`}
             onChange={handleChange}
             value={value}
+            disabled={disabled}
           />
-          <ErrorMessage conditionError={showError} valueTag={`${validationFunction(value).text}`} />
+          <ErrorMessage
+            classNameError={classNameError}
+            conditionError={showError}
+            valueTag={`${validationFunction(value).text}`}
+          />
         </>
       )}
       {(isPassword || isConfirmPassword) && (
@@ -82,12 +89,14 @@ const UniversalInputWithError = ({
           </div>
           {isPassword && (
             <ErrorMessage
+              classNameError={classNameError}
               conditionError={showError}
               valueTag={`${validationFunction(value).text}`}
             />
           )}
           {isConfirmPassword && (
             <ErrorMessage
+              classNameError={classNameError}
               conditionError={!isPasswordsMatch && isConfirmPassword}
               valueTag={'Passwords don`t match'}
             />

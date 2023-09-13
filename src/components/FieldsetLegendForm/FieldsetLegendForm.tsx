@@ -28,7 +28,7 @@ const FieldsetLegendForm = ({
     <SelectCountry
       value={selectedCountry}
       setValueSelect={setSelectedCountry}
-      classNameLabel="authentication-form__address-label country"
+      classNameLabel="authentication-form__label address-label country"
       htmlFor="country"
       textLabel="Country"
     />
@@ -43,6 +43,8 @@ const FieldsetLegendForm = ({
       labelFor="city"
       type="text"
       classNameInput="authentication-form__input input address-input city"
+      classNameLabel="authentication-form__label"
+      classNameError="authentication-form__error-message"
     />
     <UniversalInputWithError
       value={addressValueStreetName}
@@ -55,6 +57,8 @@ const FieldsetLegendForm = ({
       labelFor="streetName"
       type="text"
       classNameInput="authentication-form__input input address-input street-name"
+      classNameLabel="authentication-form__label"
+      classNameError="authentication-form__error-message"
     />
     <UniversalInputWithError
       value={addressValuePostalCode}
@@ -67,6 +71,8 @@ const FieldsetLegendForm = ({
       labelFor="postalCode"
       type="text"
       classNameInput="authentication-form__input input address-input postal-code"
+      classNameLabel="authentication-form__label"
+      classNameError="authentication-form__error-message"
     />
   </fieldset>
 );

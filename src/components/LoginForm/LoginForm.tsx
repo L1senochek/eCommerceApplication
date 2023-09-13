@@ -69,7 +69,9 @@ const LoginForm = (): JSX.Element => {
         labelText="Email"
         labelFor="userEmail"
         type="text"
+        classNameLabel="authentication-form__label"
         classNameInput="authentication-form__input input useremail"
+        classNameError="authentication-form__error-message"
       />
       <UniversalInputWithError
         onChange={setPassword}
@@ -82,9 +84,11 @@ const LoginForm = (): JSX.Element => {
         labelFor="password"
         type="password"
         isPassword={true}
+        classNameLabel="authentication-form__label"
         classNameWrapperPass="authentication-form__input input"
         classNameInputPass="authentication-form__input_form password"
         classNameBtnPass="authentication-form__input_btn"
+        classNameError="authentication-form__error-message"
       />
       <ForgotPasswordLink />
       <Button type="submit" text="Sign in" className="authentication-form__submit btn" />

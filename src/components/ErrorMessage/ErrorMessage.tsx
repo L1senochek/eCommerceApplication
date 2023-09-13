@@ -1,11 +1,15 @@
 import IErrorMessageProps from '../../model/components/ErrorMessage/ErrorMessage';
 import './errorMessage.scss';
 
-const ErrorMessage = ({ conditionError, valueTag }: IErrorMessageProps): JSX.Element => {
+const ErrorMessage = ({
+  conditionError,
+  valueTag,
+  classNameError,
+}: IErrorMessageProps): JSX.Element => {
   return (
     <>
       <p
-        className={`authentication-form__error-message error-message ${
+        className={`${classNameError ? classNameError : ''} error-message ${
           conditionError ? 'active' : ''
         }`}
       >

@@ -210,7 +210,9 @@ const RegistrationForm = (): JSX.Element => {
         labelText="Firstname"
         labelFor="firstNameInput"
         type="text"
+        classNameLabel="authentication-form__label"
         classNameInput="authentication-form__input input first-name-input"
+        classNameError="authentication-form__error-message"
       />
       <UniversalInputWithError
         onChange={setUserLastname}
@@ -222,7 +224,9 @@ const RegistrationForm = (): JSX.Element => {
         labelText="Lastname"
         labelFor="lastNameInput"
         type="text"
+        classNameLabel="authentication-form__label"
         classNameInput="authentication-form__input input last-name-input"
+        classNameError="authentication-form__error-message"
       />
       <UniversalInputWithError
         onChange={setEmail}
@@ -234,7 +238,9 @@ const RegistrationForm = (): JSX.Element => {
         labelText="Email"
         labelFor="userEmail"
         type="text"
+        classNameLabel="authentication-form__label"
         classNameInput="authentication-form__input input useremail"
+        classNameError="authentication-form__error-message"
       />
       <UniversalInputWithError
         onChange={setPassword}
@@ -247,9 +253,11 @@ const RegistrationForm = (): JSX.Element => {
         labelFor="password"
         type="password"
         isPassword={true}
+        classNameLabel="authentication-form__label"
         classNameWrapperPass="authentication-form__input input"
         classNameInputPass="authentication-form__input_form password"
         classNameBtnPass="authentication-form__input_btn"
+        classNameError="authentication-form__error-message"
       />
       <UniversalInputWithError
         onChange={setConfirmPassword}
@@ -261,9 +269,11 @@ const RegistrationForm = (): JSX.Element => {
         labelText="Confirm Password"
         labelFor="confirmPassword"
         type="password"
+        classNameLabel="authentication-form__label"
         classNameWrapperPass="authentication-form__input input"
         classNameInputPass="authentication-form__input_form password"
         classNameBtnPass="authentication-form__input_btn"
+        classNameError="authentication-form__error-message"
         isConfirmPassword={true}
         isPasswordsMatch={password === confirmPassword}
       />
@@ -276,7 +286,9 @@ const RegistrationForm = (): JSX.Element => {
         labelText="Date of Birth"
         labelFor="dateOfBirth"
         type="date"
+        classNameLabel="authentication-form__label"
         classNameInput="authentication-form__date-of-birth date-of-birth input"
+        classNameError="authentication-form__error-message"
       />
       <FieldsetLegendForm
         selectedCountry={selectedCountryShipping}
