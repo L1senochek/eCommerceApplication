@@ -8,6 +8,9 @@ import { Customer } from '@commercetools/platform-sdk';
 import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
 import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
 import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailValid';
+import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid';
+import isPasswordValid from '../../utils/validationFunctions/isPasswordValid/isPasswordValid';
+import './account.scss';
 // import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
 // import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
 // import getCustomerWithPasswordToken from '../../api/getCustomerByPass';
@@ -30,6 +33,7 @@ const Account = (): JSX.Element => {
   // const [showErrorAddressCountryBilling, setShowErrorAddressCountryBilling] = useState(false);
   // const [showErrorAddressStreetNameBilling, setShowErrorAddressStreetNameBilling] = useState(false);
   // const [showErrorAddressPostalCodeBilling, setShowErrorAddressPostalCodeBilling] = useState(false);
+  const [activeTab, setActiveTab] = useState('general');
   const [userProfile, setUserProfile] = useState<Customer | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedProfile, setEditedProfile] = useState<Customer | null>(null);
@@ -110,71 +114,173 @@ const Account = (): JSX.Element => {
     }
   };
 
+  const handleTabClick = (tabName: string): void => {
+    setActiveTab(tabName);
+  };
+
   const userProfileDetails = (): JSX.Element => {
     return (
       <>
         <div className="account__wrapper">
           <h2 className="account__title">Profile</h2>
           {userProfile && (
-            <div className="account__details">
-              <UniversalInputWithError
-                onChange={(e): void => handleInputChange('firstName', e)}
-                changeError={setShowErrorFirstname}
-                showError={showErrorFirstname}
-                value={userProfile.firstName}
-                validationFunction={isTextInputValid}
-                placeholder="Firstname"
-                labelText="Firstname"
-                labelFor="firstNameInput"
-                type="text"
-                classNameLabel="account__label"
-                classNameInput="account__input input first-name-input"
-                disabled={!isEditing}
-              />
-              <UniversalInputWithError
-                onChange={(e): void => handleInputChange('lastName', e)}
-                changeError={setShowErrorLastname}
-                showError={showErrorLastname}
-                value={userProfile.lastName}
-                validationFunction={isTextInputValid}
-                placeholder="Lastname"
-                labelText="Lastname"
-                labelFor="lastNameInput"
-                type="text"
-                classNameLabel="account__label"
-                classNameInput="account__input input last-name-input"
-                disabled={!isEditing}
-              />
-              <UniversalInputWithError
-                onChange={(e): void => handleInputChange('email', e)}
-                changeError={setShowErrorEmail}
-                showError={showErrorEmail}
-                value={userProfile.email}
-                validationFunction={isEmailValid}
-                placeholder="User@example.com"
-                labelText="Email"
-                labelFor="userEmail"
-                type="text"
-                classNameLabel="account__label"
-                classNameInput="account__input input last-name-input"
-                classNameError="account__error-message"
-                disabled={!isEditing}
-              />
-              {isEditing ? (
-                <div className="account__btn-wrapper">
-                  <button className="btn" onClick={handleSaveClick}>
-                    Save
-                  </button>
-                  <button className="btn" onClick={handleCancelClick}>
-                    Cancel
-                  </button>
+            <>
+              <div className="account__tabs">
+                <div
+                  className={`account__tab general ${activeTab === 'general' ? 'active' : ''}`}
+                  onClick={(): void => handleTabClick('general')}
+                >
+                  General
                 </div>
-              ) : (
-                <button className="btn" onClick={handleEditClick}>
-                  Edit profile
-                </button>
-              )}
-            </div>
+                <div
+                  className={`account__tab security ${activeTab === 'security' ? 'active' : ''}`}
+                  onClick={(): void => handleTabClick('security')}
+                >
+                  Security
+                </div>
+                <div
+                  className={`account__tab addresses ${activeTab === 'addresses' ? 'active' : ''}`}
+                  onClick={(): void => handleTabClick('addresses')}
+                >
+                  Addresses
+                </div>
+                <div
+                  className={`account__tab orders ${activeTab === 'orders' ? 'active' : ''}`}
+                  onClick={(): void => handleTabClick('orders')}
+                >
+                  Orders
+                </div>
+              </div>
+              <div className="account__details">
+                <div className="account__details_right-side">
+                  {activeTab === 'general' && (
+                    <>
+                      <UniversalInputWithError
+                        onChange={(e): void => handleInputChange('firstName', e)}
+                        changeError={setShowErrorFirstname}
+                        showError={showErrorFirstname}
+                        value={userProfile.firstName}
+                        validationFunction={isTextInputValid}
+                        placeholder="Firstname"
+                        labelText="Firstname"
+                        labelFor="firstNameInput"
+                        type="text"
+                        classNameLabel="account__label"
+                        classNameInput="account__input input first-name-input"
+                        disabled={!isEditing}
+                      />
+                      <UniversalInputWithError
+                        onChange={(e): void => handleInputChange('lastName', e)}
+                        changeError={setShowErrorLastname}
+                        showError={showErrorLastname}
+                        value={userProfile.lastName}
+                        validationFunction={isTextInputValid}
+                        placeholder="Lastname"
+                        labelText="Lastname"
+                        labelFor="lastNameInput"
+                        type="text"
+                        classNameLabel="account__label"
+                        classNameInput="account__input input last-name-input"
+                        disabled={!isEditing}
+                      />
+                    </>
+                  )}
+                  {activeTab === 'security' && (
+                    <>
+                      <UniversalInputWithError
+                        onChange={(e): void => handleInputChange('password', e)}
+                        changeError={setShowErrorPassword}
+                        showError={showErrorPassword}
+                        value={userProfile.password}
+                        validationFunction={isPasswordValid}
+                        placeholder="New password"
+                        labelText="New password"
+                        labelFor="password"
+                        type="password"
+                        isPassword={true}
+                        classNameLabel="account__label"
+                        classNameWrapperPass="account__input input"
+                        classNameInputPass="account__input_form password"
+                        classNameBtnPass="account__input_btn"
+                        classNameInput="account__input input last-name-input"
+                        classNameError="account__error-message"
+                        disabled={!isEditing}
+                      />
+                      <UniversalInputWithError
+                        onChange={(e): void => handleInputChange('password', e)}
+                        changeError={setShowErrorPassword}
+                        showError={showErrorPassword}
+                        value={userProfile.password}
+                        validationFunction={isPasswordValid}
+                        placeholder="New password"
+                        labelText="New password"
+                        labelFor="password"
+                        type="password"
+                        isPassword={true}
+                        classNameLabel="account__label"
+                        classNameWrapperPass="account__input input"
+                        classNameInputPass="account__input_form password"
+                        classNameBtnPass="account__input_btn"
+                        classNameInput="account__input input last-name-input"
+                        classNameError="account__error-message"
+                        disabled={!isEditing}
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="account__details_left-side">
+                  {activeTab === 'general' && (
+                    <>
+                      <UniversalInputWithError
+                        onChange={(e): void => handleInputChange('email', e)}
+                        changeError={setShowErrorEmail}
+                        showError={showErrorEmail}
+                        value={userProfile.email}
+                        validationFunction={isEmailValid}
+                        placeholder="User@example.com"
+                        labelText="Email"
+                        labelFor="userEmail"
+                        type="text"
+                        classNameLabel="account__label"
+                        classNameInput="account__input input last-name-input"
+                        classNameError="account__error-message"
+                        disabled={!isEditing}
+                      />
+                      <UniversalInputWithError
+                        onChange={(e): void => handleInputChange('dateOfBirth', e)}
+                        changeError={setShowErrorDateOfBirth}
+                        showError={showErrorDateOfBirth}
+                        value={userProfile.dateOfBirth}
+                        validationFunction={isDateValid}
+                        labelText="Date of Birth"
+                        labelFor="dateOfBirth"
+                        type="date"
+                        classNameLabel="account__label"
+                        classNameInput="account__input input date-of-birth"
+                        classNameError="account__error-message"
+                        disabled={!isEditing}
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="account__btn-wrapper">
+                  {isEditing ? (
+                    <>
+                      <button className="btn" onClick={handleSaveClick}>
+                        Save
+                      </button>
+                      <button className="btn" onClick={handleCancelClick}>
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
+                    <button className="btn" onClick={handleEditClick}>
+                      Edit profile
+                    </button>
+                  )}
+                </div>
+              </div>
+            </>
           )}
         </div>
       </>
