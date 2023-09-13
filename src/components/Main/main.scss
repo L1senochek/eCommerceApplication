@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
-.main {
+.main-page,
+.page-error {
   height: calc(
     100vh - $height-logo-header - ($padding-primary * 2) - 2.08vw - $padding-secondary - 1px
   );

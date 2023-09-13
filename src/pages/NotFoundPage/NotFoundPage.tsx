@@ -7,7 +7,7 @@ const NotFoundPage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <main className="main">
+      <main className="main error-page">
         <NotFound />
       </main>
       <Footer />

@@ -6,7 +6,7 @@ import { MENU_PAGE } from '../../utils/constants/paths';
 
 const Main = (): JSX.Element => {
   return (
-    <main className="main">
+    <main className="main main-page">
       <div className="container-slider">
         <div className="container-slider__logo">
           <div className="container-slider__logo_img"></div>
