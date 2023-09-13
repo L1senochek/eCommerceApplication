@@ -34,15 +34,13 @@
 .link {
   color: $primary-color;
   text-decoration: none;
-}
-
-.link.active > .header-item__wrapper > .header-item__title {
-  color: $fivefold-color;
-  text-shadow: $text-shadow;
-}
-
-.link.active > .header-item__wrapper > .header-item__line {
-  border-color: $fivefold-color;
+  &.active > .header-item__wrapper > .header-item__title {
+    color: $fivefold-color;
+    text-shadow: $text-shadow;
+  }
+  &.active > .header-item__wrapper > .header-item__line {
+    border-color: $fivefold-color;
+  }
 }
 
 .logo {

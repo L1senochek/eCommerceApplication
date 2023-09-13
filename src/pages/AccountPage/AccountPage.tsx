@@ -6,7 +6,7 @@ const AccountPage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <main className="account">
+      <main className="main">
         <Account />
       </main>
       <Footer />
