@@ -1,4 +1,5 @@
 import Account from '../../components/Account/Account';
+import { AccountProvider } from '../../components/AccountContext/AccountContext';
 import Footer from '../../components/Footer/FooterComponent';
 import Header from '../../components/Header/HeaderComponent';
 
@@ -7,7 +8,9 @@ const AccountPage = (): JSX.Element => {
     <>
       <Header />
       <main className="main">
-        <Account />
+        <AccountProvider>
+          <Account />
+        </AccountProvider>
       </main>
       <Footer />
     </>

@@ -1,20 +1,25 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
 import React, { createContext, useState } from 'react';
-import { IMenuContextProps, IMenuProvider } from '../../model/components/MenuContext/MenuContext';
+import {
+  IAccountContextProps,
+  IAccountProvider,
+} from '../../model/components/AccountContext/AccountContext';
 
-export const MenuContext = createContext<IMenuContextProps | null>(null);
+export const AccountContext = createContext<IAccountContextProps | null>(null);
 
-export const MenuProvider = ({ children }: IMenuProvider): JSX.Element => {
-  const [search, setSearch] = useState('');
+export const AccountProvider = ({ children }: IAccountProvider): JSX.Element => {
+  const [activeTab, setActiveTab] = useState('general');
+
   const [filterResults, setFilterResults] = useState<ProductProjection[]>([]);
   const [isSearchButtonClicked, setSearchButtonClicked] = useState<boolean>(false);
   const [productTypeId, setProductTypeId] = useState('');
 
   return (
-    <MenuContext.Provider
+    <AccountContext.Provider
       value={{
-        search,
-        setSearch,
+        activeTab,
+        setActiveTab,
+
         filterResults,
         setFilterResults,
         isSearchButtonClicked,
@@ -24,6 +29,6 @@ export const MenuProvider = ({ children }: IMenuProvider): JSX.Element => {
       }}
     >
       {children}
-    </MenuContext.Provider>
+    </AccountContext.Provider>
   );
 };
