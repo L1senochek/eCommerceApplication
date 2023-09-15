@@ -4,7 +4,6 @@ import { SignInContext } from '../SignInContext/SignInContext';
 import { HOME_PAGE } from '../../utils/constants/paths';
 import getMyProfile from '../../api/getMyProfile';
 import HttpStatusCodes from '../../model/api/httpStatusCodes';
-// import { Customer } from '@commercetools/platform-sdk';
 import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
 import isPasswordValid from '../../utils/validationFunctions/isPasswordValid/isPasswordValid';
 import './account.scss';
@@ -12,9 +11,6 @@ import { AccountContext } from '../AccountContext/AccountContext';
 import { Customer } from '@commercetools/platform-sdk';
 import ActiveTab from '../ActiveTabs/ActiveTabs';
 import GeneralTab from '../GeneralTab/GeneralTab';
-// import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
-// import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
-// import getCustomerWithPasswordToken from '../../api/getCustomerByPass';
 
 const Account = (): JSX.Element => {
   // const [showErrorCreate, setShowErrorCreate] = useState(false);
@@ -77,48 +73,6 @@ const Account = (): JSX.Element => {
     console.log(userProfile);
   };
 
-  // const handleEditClick = (): void => {
-  //   setEditedProfile(userProfile ? { ...userProfile } : null);
-  //   setIsEditing(true);
-  // };
-
-  // const handleSaveClick = (): void => {
-  //   if (
-  //     !showErrorFirstname &&
-  //     !showErrorLastname &&
-  //     !showErrorEmail &&
-  //     !showErrorPassword &&
-  //     !showErrorConfirmPassword &&
-  //     !showErrorDateOfBirth &&
-  //     !showErrorAddressCountryShipping &&
-  //     !showErrorAddressStreetNameShipping &&
-  //     !showErrorAddressPostalCodeShipping
-  //   ) {
-  //     // sent to eCom
-  //     setIsEditing(false);
-  //   }
-  // };
-
-  // const handleCancelClick = (): void => {
-  //   setShowErrorFirstname(false);
-  //   setShowErrorLastname(false);
-  //   setShowErrorEmail(false);
-  //   setShowErrorDateOfBirth(false);
-
-  //   setShowErrorConfirmPassword(false);
-  //   setShowErrorPassword(false);
-  //   setShowErrorAddressCountryShipping(false);
-  //   setShowErrorAddressStreetNameShipping(false);
-  //   setShowErrorAddressPostalCodeShipping(false);
-  //   // setShowErrorAddressCountryBilling(false);
-  //   // setShowErrorAddressStreetNameBilling(false);
-  //   // setShowErrorAddressPostalCodeBilling(false);
-  //   setIsEditing(false);
-  //   if (editedProfile) {
-  //     // setUserProfile(editedProfile);
-  //   }
-  // };
-
   const handleInputChange = (fieldName: string, value: string): void => {
     if (userProfile && isEditing) {
       setUserProfile({ ...userProfile, [fieldName]: value });
@@ -127,16 +81,11 @@ const Account = (): JSX.Element => {
 
   const updateUserProfile = (fieldName: string, value: string): void => {
     if (userProfile) {
-      // setUserProfile({ ...userProfile, [fieldName]: value });
       const updatedProfile = { ...userProfile, [fieldName]: value };
       setUserProfile(updatedProfile);
       console.log(fieldName, userProfile);
     }
   };
-
-  // const handleTabClick = (tabName: string): void => {
-  //   setActiveTab(tabName);
-  // };
 
   const userProfileDetails = (): JSX.Element => {
     return (
@@ -153,36 +102,6 @@ const Account = (): JSX.Element => {
                     onInputChange={updateUserProfile}
                     setUserProfile={setUserProfile}
                   />
-                  // <>
-                  //   <UniversalInputWithError
-                  //     onChange={(e): void => handleInputChange('firstName', e)}
-                  //     changeError={setShowErrorFirstname}
-                  //     showError={showErrorFirstname}
-                  //     value={userProfile.firstName}
-                  //     validationFunction={isTextInputValid}
-                  //     placeholder="Firstname"
-                  //     labelText="Firstname"
-                  //     labelFor="firstNameInput"
-                  //     type="text"
-                  //     classNameLabel="account__label"
-                  //     classNameInput="account__input input first-name-input"
-                  //     disabled={!isEditing}
-                  //   />
-                  //   <UniversalInputWithError
-                  //     onChange={(e): void => handleInputChange('lastName', e)}
-                  //     changeError={setShowErrorLastname}
-                  //     showError={showErrorLastname}
-                  //     value={userProfile.lastName}
-                  //     validationFunction={isTextInputValid}
-                  //     placeholder="Lastname"
-                  //     labelText="Lastname"
-                  //     labelFor="lastNameInput"
-                  //     type="text"
-                  //     classNameLabel="account__label"
-                  //     classNameInput="account__input input last-name-input"
-                  //     disabled={!isEditing}
-                  //   />
-                  // </>
                 )}
                 {accountContext?.activeTab === 'security' && (
                   <>
