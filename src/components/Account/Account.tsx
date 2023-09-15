@@ -127,7 +127,9 @@ const Account = (): JSX.Element => {
 
   const updateUserProfile = (fieldName: string, value: string): void => {
     if (userProfile) {
-      setUserProfile({ ...userProfile, [fieldName]: value });
+      // setUserProfile({ ...userProfile, [fieldName]: value });
+      const updatedProfile = { ...userProfile, [fieldName]: value };
+      setUserProfile(updatedProfile);
       console.log(fieldName, userProfile);
     }
   };
@@ -146,7 +148,11 @@ const Account = (): JSX.Element => {
               <ActiveTab />
               <div className="account__details">
                 {accountContext?.activeTab === 'general' && (
-                  <GeneralTab userProfile={userProfile} onInputChange={updateUserProfile} />
+                  <GeneralTab
+                    userProfile={userProfile}
+                    onInputChange={updateUserProfile}
+                    setUserProfile={setUserProfile}
+                  />
                   // <>
                   //   <UniversalInputWithError
                   //     onChange={(e): void => handleInputChange('firstName', e)}

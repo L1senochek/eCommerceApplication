@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
 import { Customer } from '@commercetools/platform-sdk';
 import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/isTextInputValid';
@@ -8,9 +8,10 @@ import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailVa
 interface IGeneralTab {
   userProfile: Customer | null;
   onInputChange: (fieldName: string, value: string) => void;
+  setUserProfile: React.Dispatch<React.SetStateAction<Customer | null>>;
 }
 
-const GeneralTab = ({ userProfile, onInputChange }: IGeneralTab): JSX.Element => {
+const GeneralTab = ({ userProfile, onInputChange, setUserProfile }: IGeneralTab): JSX.Element => {
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
   const [showErrorLastname, setShowErrorLastname] = useState(false);
   const [showErrorEmail, setShowErrorEmail] = useState(false);
@@ -37,6 +38,7 @@ const GeneralTab = ({ userProfile, onInputChange }: IGeneralTab): JSX.Element =>
       onInputChange('dateOfBirth', userProfile.dateOfBirth);
 
       setIsEditing(false);
+      console.log(userProfile, 444444);
     }
   };
 
@@ -57,7 +59,15 @@ const GeneralTab = ({ userProfile, onInputChange }: IGeneralTab): JSX.Element =>
     setIsCancelClick(true);
 
     setIsEditing(false);
-
+    // setEditedProfile((prevProfile) => {
+    //   if (prevProfile && prevProfile.firstName && prevProfile.lastName && prevProfile.dateOfBirth) {
+    //     onInputChange('firstName', prevProfile.firstName);
+    //     onInputChange('lastName', prevProfile.lastName);
+    //     onInputChange('email', prevProfile.email);
+    //     onInputChange('dateOfBirth', prevProfile.dateOfBirth);
+    //   }
+    //   return prevProfile;
+    // });
     console.log(isCancelClick, editedProfile, 22222222);
 
     if (
@@ -67,15 +77,17 @@ const GeneralTab = ({ userProfile, onInputChange }: IGeneralTab): JSX.Element =>
       editedProfile.dateOfBirth
     ) {
       // setUserProfile(editedProfile);
+      // onInputChange('firstName', userProfile.firstName);
       onInputChange('firstName', editedProfile.firstName);
-      console.log(editedProfile, editedProfile.firstName, 33333333);
-      // onInputChange('firstName', 'editedProfile.firstName');
       onInputChange('lastName', editedProfile.lastName);
       onInputChange('email', editedProfile.email);
       onInputChange('dateOfBirth', editedProfile.dateOfBirth);
+      console.log(userProfile, editedProfile, 33333333);
+      setUserProfile(editedProfile);
     }
   };
 
+  useEffect(() => {}, []);
   // const handleInputChange = (fieldName: string, value: string): void => {
   //   if (userProfile && isEditing) {
   //     setUserProfile({ ...userProfile, [fieldName]: value });
