@@ -22,6 +22,7 @@ $font-size-px: 16px;
 
 $border-radius: 5px;
 $border-width: 2px;
+$border-width-account-details: 0.5px;
 $border-style: solid;
 $box-shadow: 0 0 10px 1px $fivefold-color;
 $box-shadow-menu-cards: 0 0 20px 1px $fivefold-color;
@@ -34,6 +35,8 @@ $padding-primary: 5px;
 $padding-secondary: 15px;
 $padding-tetiary: 10px;
 $padding-menu-bar: 30px;
+$padding-account-details-title: 50px;
+$padding-account-details: 40px;
 $padding-error-tag: calc(($font-size + 2px + $padding-primary * 2) / 2);
 $padding-icon-loupe: 1px;
 

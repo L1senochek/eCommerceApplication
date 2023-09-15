@@ -5,6 +5,7 @@ import isTextInputValid from '../../utils/validationFunctions/isTextInputValid/i
 import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid';
 import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailValid';
 import IAccountTab from '../../model/components/AccountTab/AccountTab';
+import './general-tab.scss';
 
 const GeneralTab = ({ userProfile, onInputChange, setUserProfile }: IAccountTab): JSX.Element => {
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);

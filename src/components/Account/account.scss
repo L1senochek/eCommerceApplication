@@ -1,12 +1,18 @@
 @import '../../styles/variables.scss';
 
 .account {
+  padding: $padding-account-details 0;
   &__wrapper {
     display: flex;
     flex-direction: column;
   }
   &__title {
-    padding: $padding-primary $padding-secondary;
+    padding: $padding-primary $padding-account-details-title;
+  }
+  &__line {
+    width: calc(100% - ($padding-account-details * 2));
+    border: $border-width-account-details $quaternary-color $border-style;
+    margin: 0 $padding-account-details;
   }
   &__tabs {
     display: flex;
@@ -17,7 +23,7 @@
     padding: $padding-primary $padding-secondary;
     border-bottom-width: $border-width;
     border-bottom-style: $border-style;
-    border-color: $transperent-color;
+    border-color: $quaternary-color;
     cursor: pointer;
   }
   &__tab.active {
@@ -27,5 +33,14 @@
   &__details {
     display: flex;
     justify-content: space-around;
+    padding: $padding-account-details 0;
+    &_right-side,
+    &_left-side {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__label {
+    padding: $padding-tetiary 0;
   }
 }

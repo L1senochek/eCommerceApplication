@@ -92,6 +92,7 @@ const Account = (): JSX.Element => {
       <>
         <div className="account__wrapper">
           <h2 className="account__title">Profile</h2>
+          <span className="account__line"></span>
           {userProfile && (
             <>
               <ActiveTab />
