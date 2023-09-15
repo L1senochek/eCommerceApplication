@@ -11,6 +11,7 @@ import { AccountContext } from '../AccountContext/AccountContext';
 import { Customer } from '@commercetools/platform-sdk';
 import ActiveTab from '../ActiveTabs/ActiveTabs';
 import GeneralTab from '../GeneralTab/GeneralTab';
+import { ACCOUNT_TAB_GENERAL, ACCOUNT_TAB_SECURITY } from '../../utils/constants/constants';
 
 const Account = (): JSX.Element => {
   // const [showErrorCreate, setShowErrorCreate] = useState(false);
@@ -97,14 +98,14 @@ const Account = (): JSX.Element => {
             <>
               <ActiveTab />
               <div className="account__details">
-                {accountContext?.activeTab === 'general' && (
+                {accountContext?.activeTab === ACCOUNT_TAB_GENERAL && (
                   <GeneralTab
                     userProfile={userProfile}
                     onInputChange={updateUserProfile}
                     setUserProfile={setUserProfile}
                   />
                 )}
-                {accountContext?.activeTab === 'security' && (
+                {accountContext?.activeTab === ACCOUNT_TAB_SECURITY && (
                   <>
                     <UniversalInputWithError
                       onChange={(e): void => handleInputChange('password', e)}
