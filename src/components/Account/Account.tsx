@@ -4,14 +4,13 @@ import { SignInContext } from '../SignInContext/SignInContext';
 import { HOME_PAGE } from '../../utils/constants/paths';
 import getMyProfile from '../../api/getMyProfile';
 import HttpStatusCodes from '../../model/api/httpStatusCodes';
-import UniversalInputWithError from '../UniversalInputWithError/UniversalInputWithError';
-import isPasswordValid from '../../utils/validationFunctions/isPasswordValid/isPasswordValid';
 import './account.scss';
 import { AccountContext } from '../AccountContext/AccountContext';
 import { Customer } from '@commercetools/platform-sdk';
 import ActiveTab from '../ActiveTabs/ActiveTabs';
 import GeneralTab from '../GeneralTab/GeneralTab';
 import { ACCOUNT_TAB_GENERAL, ACCOUNT_TAB_SECURITY } from '../../utils/constants/constants';
+import SecurityTab from '../SecurityTab/SecurityTab';
 
 const Account = (): JSX.Element => {
   // const [showErrorCreate, setShowErrorCreate] = useState(false);
@@ -20,7 +19,7 @@ const Account = (): JSX.Element => {
   // const [showErrorEmail, setShowErrorEmail] = useState(false);
   // const [showErrorDateOfBirth, setShowErrorDateOfBirth] = useState(false);
 
-  const [showErrorPassword, setShowErrorPassword] = useState(false);
+  // const [showErrorPassword, setShowErrorPassword] = useState(false);
   // const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
 
   // const [showErrorAddressCountryShipping, setShowErrorAddressCountryShipping] = useState(false);
@@ -37,10 +36,10 @@ const Account = (): JSX.Element => {
 
   // const [activeTab, setActiveTab] = useState('general');
   const [userProfile, setUserProfile] = useState<Customer | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
   // const [editedProfile, setEditedProfile] = useState<Customer | null>(null);
 
-  console.log(setIsEditing);
+  // console.log(setIsEditing);
 
   const navigation = useNavigate();
   const signInContext = useContext(SignInContext);
@@ -74,11 +73,11 @@ const Account = (): JSX.Element => {
     console.log(userProfile);
   };
 
-  const handleInputChange = (fieldName: string, value: string): void => {
-    if (userProfile && isEditing) {
-      setUserProfile({ ...userProfile, [fieldName]: value });
-    }
-  };
+  // const handleInputChange = (fieldName: string, value: string): void => {
+  //   if (userProfile && isEditing) {
+  //     setUserProfile({ ...userProfile, [fieldName]: value });
+  //   }
+  // };
 
   const updateUserProfile = (fieldName: string, value: string): void => {
     if (userProfile) {
@@ -107,7 +106,8 @@ const Account = (): JSX.Element => {
                 )}
                 {accountContext?.activeTab === ACCOUNT_TAB_SECURITY && (
                   <>
-                    <UniversalInputWithError
+                    <SecurityTab />
+                    {/* <UniversalInputWithError
                       onChange={(e): void => handleInputChange('password', e)}
                       changeError={setShowErrorPassword}
                       showError={showErrorPassword}
@@ -144,7 +144,7 @@ const Account = (): JSX.Element => {
                       classNameInput="account__input input last-name-input"
                       classNameError="account__error-message"
                       disabled={!isEditing}
-                    />
+                    /> */}
                   </>
                 )}
               </div>
