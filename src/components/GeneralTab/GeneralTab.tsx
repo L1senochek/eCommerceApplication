@@ -6,6 +6,7 @@ import isDateValid from '../../utils/validationFunctions/isDateValid/isDateValid
 import isEmailValid from '../../utils/validationFunctions/isEmailValid/isEmailValid';
 import IAccountTab from '../../model/components/AccountTab/AccountTab';
 import './general-tab.scss';
+import EditButtons from '../EditButtons/EditButtons';
 
 const GeneralTab = ({ userProfile, onInputChange, setUserProfile }: IAccountTab): JSX.Element => {
   const [showErrorFirstname, setShowErrorFirstname] = useState(false);
@@ -135,22 +136,12 @@ const GeneralTab = ({ userProfile, onInputChange, setUserProfile }: IAccountTab)
           />
         </>
       </div>
-      <div className="account__btn-wrapper">
-        {isEditing ? (
-          <>
-            <button className="btn" onClick={handleSaveClick}>
-              Save
-            </button>
-            <button className="btn" onClick={handleCancelClick}>
-              Cancel
-            </button>
-          </>
-        ) : (
-          <button className="btn" onClick={handleEditClick}>
-            Edit profile
-          </button>
-        )}
-      </div>
+      <EditButtons
+        isEditing={isEditing}
+        onSaveClick={handleSaveClick}
+        onCancelClick={handleCancelClick}
+        onEditClick={handleEditClick}
+      />
     </>
   );
 };

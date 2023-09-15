@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.account__btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  & > .btn {
+    margin: $margin-account-btn 0;
+    width: 80px;
+  }
+}
